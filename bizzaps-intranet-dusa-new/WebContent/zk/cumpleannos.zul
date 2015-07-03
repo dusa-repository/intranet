@@ -1,0 +1,76 @@
+<?page title="Productos" contentType="text/html;charset=utf-8"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="public/bootstrap-slate.min.css" />
+
+	<div height="100%" width="100%" class="bs-example">
+		<listbox height="auto" width="auto"
+			emptyMessage="No Hay Cumpleañeros en el dia Seleccionado">
+			<listitem>
+				<listcell>
+					<hlayout>
+						<image width="100px" height="100px"
+							src="/public/imagenes/generales/cumple1.jpg" />
+						<vlayout>
+							<label value="Maria Jose Parra" sclass="titulo" />
+							<hlayout>
+								<label value="Fecha Nac:" sclass="titulo2" />
+								<label value="10/06/1990" sclass="heavy" />
+							</hlayout>
+						</vlayout>
+					</hlayout>
+				</listcell>
+			</listitem>
+			<listitem>
+				<listcell>
+					<hlayout>
+						<image width="100px" height="100px"
+							src="/public/imagenes/generales/cumple2.jpg" />
+						<vlayout>
+							<label value="Pedro Ramon Lopez" sclass="titulo" />
+							<hlayout>
+								<label value="Fecha Nac:" sclass="titulo2" />
+								<label value="15/06/1970" sclass="heavy" />
+							</hlayout>
+						</vlayout>
+					</hlayout>
+				</listcell>
+			</listitem>
+			<listitem>
+				<listcell>
+					<hlayout>
+						<image width="100px" height="100px"
+							src="/public/imagenes/generales/cumple3.jpg" />
+						<vlayout>
+							<label value="Adriana Lucia Perez" sclass="titulo" />
+							<hlayout>
+								<label value="Fecha Nac:" sclass="titulo2" />
+								<label value="20/06/1988" sclass="heavy" />
+							</hlayout>
+						</vlayout>
+					</hlayout>
+				</listcell>
+			</listitem>
+			<listitem>
+				<listcell>
+					<hlayout>
+						<image width="100px" height="100px"
+							src="/public/imagenes/generales/cumple4.jpg" />
+						<vlayout>
+							<label value="Alejandro Jesus Rodriguez" sclass="titulo" />
+							<hlayout>
+								<label value="Fecha Nac:" sclass="titulo2" />
+								<label value="28/06/1975" sclass="heavy" />
+							</hlayout>
+						</vlayout>
+					</hlayout>
+				</listcell>
+			</listitem>
+		</listbox>
+	</div>
+
+</zk>

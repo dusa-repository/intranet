@@ -1,0 +1,49 @@
+<zk xmlns:w="client" xmlns:n="native">
+	<div height="100%" width="100%" class="bs-example">
+		<div class="jumbotron">
+			<div class="container">
+				<n:h1>Responsabilidad Social Empresarial
+				</n:h1>
+				<hbox widths="40%,60%">
+					<div>
+						<image id="imagen1" width="290px" height="350px"
+							src="/public/imagenes/generales/panelinfo3.png" />
+					</div>
+					<div>
+						<n:p>
+							Mantener el foco orientado hacia una misión, visión y valores
+							organizacionales bien claros, roles bien definidos en lo
+							económico, social y ambiental mediante la sustentabilidad con
+							recurso humano altamente comprometido, con sentido de
+							pertenencia, forma parte de algunos logros sustantivos que se
+							exhiben hoy día desde Destilerías Unidas, S.A.
+						</n:p>
+						<n:p>
+							Dentro del mar de las dificultades, también existen
+							oportunidades. Hay
+							que ser creativos, porque lo demanda el
+							momento, es la innovación
+							y apostar al futuro. Las dificultades
+							siempre van a existir, por
+							eso estamos aquí los integrantes de
+							organizaciones quienes
+							cumplimos el rol de asegurar que las
+							empresas subsistan y
+							crezcan
+						</n:p>
+						<n:p>
+							El aprovechamiento máximo de recursos físicos y financieros,
+							mantener una simbiosis a nivel de junta directiva, cuyos miembros
+							son fieles creyentes en el país, ha sido una de las fórmulas que
+							le ha permitido a DUSA, entre otras cosas fomentar la
+							Responsabilidad Social Empresarial en los sectores salud,
+							educación, cultura, deporte y ambiente en la población de La
+							Miel, municipio Simón Planas.
+						</n:p>
+
+					</div>
+				</hbox>
+			</div>
+		</div>
+	</div>
+</zk>

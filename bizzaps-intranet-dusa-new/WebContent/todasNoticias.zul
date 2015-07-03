@@ -1,0 +1,114 @@
+<?page title="Noticias" contentType="text/html;charset=utf-8"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="public/bootstrap-slate.min.css" />
+	<div>
+
+		<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+			<hbox width="100%">
+				<div align="center">
+					<separator />
+					<label value="" class="label" />
+				</div>
+			</hbox>
+
+		</div>
+		<div class="container bs-docs-container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="bs-sidebar hidden-print affix">
+						<div>
+							<image width="100%" src="/public/imagenes/generales/logo.png" />
+						</div>
+						<html><![CDATA[
+
+<ul class="nav bs-sidenav">
+	<li class="">
+		<a href=""><image src="public/imagenes/menu/periodico.png"  class="img-rounded"></image>Noticias</a>
+
+	</li></ul>
+]]></html>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="noticias">Noticias</n:h1>
+						</div>
+						<div height="100%" width="100%" class="bs-example">
+							<div class="jumbotron">
+								<div class="container">
+									<n:h1>Gran noticia de la intranet de DUSA</n:h1>
+									<hbox widths="50%,50%">
+										<div>
+											<image id="imagen1" width="300px" height="200px"
+												src="/public/imagenes/generales/noticia1.jpg" />
+											<n:p>
+												16/06/15
+											</n:p>
+										</div>
+										<n:p>
+											Se realiza la primera prueba de la intranet, siempre
+											enfocados
+											en
+											realizar el mejor servicio de la comunidad
+											DUSA...................
+										</n:p>
+									</hbox>
+								</div>
+							</div>
+						</div>
+						<div height="100%" width="100%" class="bs-example">
+							<div class="jumbotron">
+								<div class="container">
+									<n:h1>Se realiza la primera prueba de la intranet</n:h1>
+									<hbox widths="50%,50%">
+										<div>
+											<image id="imagen2"  width="300px" height="200px"
+												src="/public/imagenes/generales/noticia2.jpg" />
+											<n:p>
+												10/06/15
+											</n:p>
+										</div>
+										<n:p>
+											Ya son 58 años al mando de la brigada DUSA, trabajando
+											por
+											el
+											bienestar de cada uno de nuestros
+											trabajadores.......................
+										</n:p>
+									</hbox>
+								</div>
+							</div>
+						</div>
+						<div height="100%" width="100%" class="bs-example">
+							<div class="jumbotron">
+								<div class="container">
+									<n:h1>Nuevas presentaciones en nuestros productos</n:h1>
+									<hbox widths="50%,50%">
+										<div>
+											<image id="imagen3"  width="300px" height="200px"
+												src="/public/imagenes/generales/2.jpg" />
+											<n:p>
+												01/06/15
+											</n:p>
+										</div>
+										<n:p>
+											Dusa muestra los nuevos empaques de los productos, a traves de
+											nuestra pagina principal se podran conocer cada uno de
+											ellos.............................................
+										</n:p>
+									</hbox>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</zk>

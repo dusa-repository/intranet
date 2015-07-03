@@ -1,0 +1,24 @@
+tr.myodd td.z-row-inner, tr.myodd {
+	background-color: #E4EBF8;
+}
+.myimg {
+	margin: 5px; border: 1px solid #CFCFCF;
+}
+div.z-column-cnt {
+	text-align: center; font-weight: bold;
+}
+div.z-row-cnt span {
+	font-family: Tahoma,Arial,serif;
+	color: #0E3A99;
+}
+.heavy {
+	font-weight:bold;
+}
+.heavy-italic{
+	font-weight:bold;
+	font-style: italic;
+}
+.price{
+	color:green;
+	float:right;
+}

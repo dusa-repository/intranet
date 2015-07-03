@@ -1,0 +1,84 @@
+<?page title="Productos" contentType="text/html;charset=utf-8"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="public/bootstrap-slate.min.css" />
+
+	<div height="100%" width="100%" class="bs-example">
+		<listbox height="auto" width="auto"
+			emptyMessage="No Hay Cumpleañeros en el dia Seleccionado">
+			<listhead>
+				<listheader label="" width="18%" />
+				<listheader label="" width="22%">
+					<textbox class="form-control input-sm" placeholder="Nombre" />
+				</listheader>
+				<listheader label="" width="17%">
+					<textbox class="form-control input-sm" placeholder="Telefono Movil" />
+				</listheader>
+				<listheader label="" width="17%">
+					<textbox class="form-control input-sm" placeholder="Telefono Fijo" />
+				</listheader>
+				<listheader label="" width="26%" >
+					<textbox class="form-control input-sm" placeholder="Direccion" />
+				</listheader>
+			</listhead>
+			<listitem>
+				<listcell>
+					<image width="100px" height="100px"
+						src="/public/imagenes/generales/cumple1.jpg" />
+				</listcell>
+				<listcell>
+					<label value="Maria Jose Parra" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="0416-8765555" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="0251-6876666" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="Barquisimeto, Estado Lara" sclass="heavy" />
+				</listcell>
+			</listitem>
+					<listitem>
+				<listcell>
+					<image width="100px" height="100px"
+						src="/public/imagenes/generales/cumple2.jpg" />
+				</listcell>
+				<listcell>
+					<label value="Miguel Antonio Perez" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="0416-5465768" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="0251-3253456" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="Barquisimeto, Estado Lara" sclass="heavy" />
+				</listcell>
+			</listitem>
+					<listitem>
+				<listcell>
+					<image width="100px" height="100px"
+						src="/public/imagenes/generales/cumple3.jpg" />
+				</listcell>
+				<listcell>
+					<label value="Mariana Adriana Rodriguez" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="0424-5435456" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="0251-3567456" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="Barquisimeto, Estado Lara" sclass="heavy" />
+				</listcell>
+			</listitem>
+		</listbox>
+	</div>
+</zk>

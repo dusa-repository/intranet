@@ -1,0 +1,147 @@
+<?page title="Productos" contentType="text/html;charset=utf-8"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="public/bootstrap-slate.min.css" />
+	<div>
+
+		<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+			<hbox width="100%">
+				<div align="center">
+					<separator />
+					<label value="" class="label" />
+				</div>
+			</hbox>
+
+		</div>
+		<div class="container bs-docs-container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="bs-sidebar hidden-print affix">
+						<div>
+							<image width="100%" src="/public/imagenes/generales/logo.png" />
+						</div>
+						<html><![CDATA[
+
+<ul class="nav bs-sidenav">
+	<li class="">
+		<a href=""><image src="public/imagenes/menu/productos.png"  class="img-rounded"></image>Productos</a>
+
+	</li></ul>
+]]></html>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="noticias">Productos</n:h1>
+						</div>
+						<div height="100%" width="100%" class="bs-example">
+							<listbox height="auto" width="auto"
+								emptyMessage="No Hay Productos Disponibles">
+								<listhead>
+									<listheader label="Productos disponibles en la botique"
+										width="80%" />
+									<listheader label="Cantidad" sort="auto" width="10%" />
+									<listheader label="Precio" sort="auto" width="10%" />
+								</listhead>
+								<listitem>
+									<listcell>
+										<hlayout>
+											<image width="230px" height="150px"
+												src="/public/imagenes/generales/franela.jpg" />
+											<vlayout>
+												<label value="Franela Deportiva" sclass="titulo" />
+												<hlayout>
+													<label value="Descripcion:" sclass="titulo2" />
+													<label value="Uniformes creados para momentos deportivos"
+														sclass="heavy" />
+												</hlayout>
+												<hlayout>
+													<label value="Talla:" sclass="titulo2" />
+													<label value="M" sclass="heavy" />
+												</hlayout>
+												<hlayout>
+													<label value="Color:" sclass="titulo2" />
+													<label value="Blanco" sclass="heavy" />
+												</hlayout>
+											</vlayout>
+										</hlayout>
+									</listcell>
+									<listcell>
+										<label value="2" sclass="numero" />
+									</listcell>
+									<listcell>
+										<label value="2.000 Bsf" sclass="numero" />
+									</listcell>
+								</listitem>
+								<listitem>
+									<listcell>
+										<hlayout>
+											<image width="230px" height="150px"
+												src="/public/imagenes/generales/gorra.jpg" />
+											<vlayout>
+												<label value="Gorra Deportiva" sclass="titulo" />
+												<hlayout>
+													<label value="Descripcion:" sclass="titulo2" />
+													<label value="Accesorios creados para momentos deportivos"
+														sclass="heavy" />
+												</hlayout>
+												<hlayout>
+													<label value="Modelo:" sclass="titulo2" />
+													<label value="Loto" sclass="heavy" />
+												</hlayout>
+												<hlayout>
+													<label value="Color:" sclass="titulo2" />
+													<label value="Blanca" sclass="heavy" />
+												</hlayout>
+											</vlayout>
+										</hlayout>
+									</listcell>
+									<listcell>
+										<label value="10" sclass="numero" />
+									</listcell>
+									<listcell>
+										<label value="1.000 Bsf" sclass="numero" />
+									</listcell>
+								</listitem>
+								<listitem>
+									<listcell>
+										<hlayout>
+											<image width="230px" height="150px"
+												src="/public/imagenes/generales/libreta.jpg" />
+											<vlayout>
+												<label value="Libreta" sclass="titulo" />
+												<hlayout>
+													<label value="Descripcion:" sclass="titulo2" />
+													<label value="Articulo de Escritorio" sclass="heavy" />
+												</hlayout>
+												<hlayout>
+													<label value="Modelo:" sclass="titulo2" />
+													<label value="6 Materias" sclass="heavy" />
+												</hlayout>
+												<hlayout>
+													<label value="Color:" sclass="titulo2" />
+													<label value="Roja" sclass="heavy" />
+												</hlayout>
+											</vlayout>
+										</hlayout>
+									</listcell>
+									<listcell>
+										<label value="10" sclass="numero" />
+									</listcell>
+									<listcell>
+										<label value="800 Bsf" sclass="numero" />
+									</listcell>
+								</listitem>
+							</listbox>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</zk>

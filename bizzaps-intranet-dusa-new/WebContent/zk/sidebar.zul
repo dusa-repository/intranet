@@ -1,0 +1,46 @@
+<html><![CDATA[
+
+<ul class="nav bs-sidenav">
+	<li class="active">
+		<a href="#inicio"><image src="public/imagenes/menu/home.png"  class="img-rounded"></image>Inicio</a>
+	</li>
+	<li class="">
+		<a href="#noticias"><image src="public/imagenes/menu/periodico.png"  class="img-rounded"></image>Noticias</a>
+
+	</li>
+	<li>
+		<a href="#productos"><image src="public/imagenes/menu/productos.png"  class="img-rounded"></image>Productos</a>		
+	</li>
+	<li>
+		<a href="#iso"><image src="public/imagenes/menu/iso.png"  class="img-rounded"></image>Normas ISO</a>
+	</li>
+	<li>
+		<a href="#produccion"><image src="public/imagenes/menu/produccion.png"  class="img-rounded"></image>Produccion</a>
+	</li>
+	<li>
+		<a href="#ventas"><image src="public/imagenes/menu/ventas.png"  class="img-rounded"></image>Ventas</a>
+	</li>
+	<li>
+		<a href="#social"><image src="public/imagenes/menu/social.png"  class="img-rounded"></image>Responsabilidad Social</a>
+	</li>
+	<li>
+		<a href="#revista"><image src="public/imagenes/menu/revista.png"  class="img-rounded"></image>Revistas</a>
+	</li> 
+	<li>
+       <a href="#documentos"><image src="public/imagenes/menu/word.png"  class="img-rounded"></image>Documentos</a>
+	</li>
+		<li>
+       <a href="#enlaces"><image src="public/imagenes/menu/enlace.png"  class="img-rounded"></image>Enlaces</a>
+	</li>
+		<li>
+		<a href="#cumpleannos"><image src="public/imagenes/menu/cumpleannos.png"  class="img-rounded"></image>Cumpleaños</a>
+	</li>
+	<li>
+			<li>
+		<a href="#directorio"><image src="public/imagenes/menu/directorio.png"  class="img-rounded"></image>Directorio</a>
+	</li>
+	</li>
+
+
+</ul>
+]]></html>

@@ -1,0 +1,30 @@
+<zk>
+	<html>
+		<script type="text/javascript" defer="true">
+			$(document).ready(function(){ var first = 0; var speed =
+			700; var
+			pause = 3500; function removeFirst(){ first =
+			$('ul#cuadronot
+			li:first').html(); $('ul#cuadronot
+			li:first') .animate({opacity: 0} ,
+			speed) .fadeOut('slow',
+			function() {$(this).remove();});
+			addLast(first); } function
+			addLast(first){ last = '
+			<li style="display:none">'+first+'</li>
+			'; $('ul#cuadronot').append(last) $('ul#cuadronot li:last')
+			.animate({opacity: 1}, speed) .fadeIn('slow') } interval =
+			setInterval(removeFirst, pause); });
+		</script>
+		<script type="text/javascript" src="js/Carrusel.js" />
+		<script type="text/javascript" defer="true">
+			window.onload = DP.inicio;
+		</script>
+	</html>
+		<div class="bs-example">
+			<div height="120%" width="100%" id="divCarrusel"
+				apply="controlador.portal.CCarruselPortal">
+			</div>
+	
+	</div>
+</zk>

@@ -1,0 +1,39 @@
+<zk xmlns:w="client" xmlns:n="native">
+
+	<div height="100%" width="100%" class="bs-example">
+		<hbox widths="50%,50%">
+			<div class="jumbotron" align="center">
+				<div class="container">
+					<n:h1>Gran primera noticia de la intranet de DUSA</n:h1>
+					<image id="imagen1" width="250px" height="170px"
+						src="/public/imagenes/generales/noticia1.jpg" />
+					<n:p>
+						Se realiza la primera prueba de la intranet, siempre enfocados
+						en
+						realizar el mejor servicio de la comunidad
+						DUSA...................
+					</n:p>
+					<n:p>
+						16/06/15
+					</n:p>
+				</div>
+			</div>
+			<div class="jumbotron" align="center">
+				<div class="container">
+					<n:h1>Se realiza la primera prueba de la intranet</n:h1>
+					<image id="imagen2" width="250px" height="170px"
+						src="/public/imagenes/generales/noticia2.jpg" />
+					<n:p>
+						Ya son 58 años al mando de la brigada DUSA, trabajando por el
+						bienestar de cada uno de nuestros
+						trabajadores.......................
+					</n:p>
+					<n:p>
+						10/06/15
+					</n:p>
+				</div>
+			</div>
+		</hbox>
+	</div>
+
+</zk>

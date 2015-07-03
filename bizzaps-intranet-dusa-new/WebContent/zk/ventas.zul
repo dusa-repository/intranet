@@ -1,0 +1,84 @@
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="public/bootstrap-slate.min.css" />
+	<div height="100%" width="100%" class="bs-example">
+		<listbox id="listaVentas" width="auto"
+			emptyMessage="No hay Ventas Para Mostrar">
+			<listhead>
+				<listheader label="Marca" width="20%" />
+				<listheader label="Diaria" width="15%" />
+				<listheader label="Acumulada" width="20%" />
+				<listheader label="Planificada" width="20%" />
+			</listhead>
+			<listitem>
+				<listcell>
+					<label value="Cacique" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="100" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="1500" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="4000" sclass="heavy" />
+				</listcell>
+			</listitem>
+			<listitem>
+				<listcell>
+					<label value="Diplomatico" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="200" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="2000" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="5000" sclass="heavy" />
+				</listcell>
+			</listitem>
+			<listitem>
+				<listcell>
+					<label value="Glacial" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="300" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="2500" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="2800" sclass="heavy" />
+				</listcell>
+			</listitem>
+						<listitem>
+				<listcell>
+					<label value="Stanislaff" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="100" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="3500" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="6000" sclass="heavy" />
+				</listcell>
+			</listitem>
+					<listitem>
+				<listcell>
+					<label value="Naiguata" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="400" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="4000" sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="6500" sclass="heavy" />
+				</listcell>
+			</listitem>
+		</listbox>
+	</div>
+</zk>

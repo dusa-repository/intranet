@@ -1,0 +1,209 @@
+<zk xmlns:w="client" xmlns:n="native">
+	<div height="100%" width="100%" class="bs-example">
+		<div class="jumbotron">
+			<div class="container">
+				<n:h1>Recertificación a la constancia: ISO 14001 GestiónAmbiental
+				</n:h1>
+				<hbox widths="35%,65%">
+					<div>
+						<image id="imagen1" width="250px" height="360px"
+							src="/public/imagenes/generales/panelinfo1.jpg" />
+					</div>
+					<div>
+						<n:p>
+							Siendo la primera y única empresa de bebidas alcohólicas en
+							Venezuela en
+							obtener la certificación y recertificación, la sexta
+							productora de
+							ron a nivel mundial, éste importante logro ha sido
+							posible luego
+							de someter a DUSA a una exigente auditoría que
+							permitió constatar
+							la implementación y utilización de un correcto
+							sistema de gestión
+							ambiental.
+						</n:p>
+						<n:p>
+							El pasado mes de julio 2012, DUSA
+							recibió la recertificación
+							ISO
+							14001 en un acto realizado en la
+							Planta Industrial de La Miel,
+							junto con la presencia de FONDONORMA
+							(Fondo para la Normalización
+							y
+							Certificación de Calidad), gracias a
+							su política medioambiental
+							basada en un sistema integrado que
+							permite minimizar el impacto
+							ambiental y optimizar la utilización
+							de los recursos naturales.
+						</n:p>
+						<n:p>
+							El acto, dirigido por FONDONORMA, ente
+							certificador de
+							Venezuela,
+							afirmó la importancia de obtener un
+							reconocimiento y
+							premio a la
+							constancia, ISO 14001, norma aceptada
+							internacionalmente
+							que
+							establece cómo implantar un sistema de
+							gestión medioambiental y
+							surge en consideración a la problemática
+							ambiental a nivel
+							mundial.
+						</n:p>
+
+					</div>
+				</hbox>
+				<n:p>
+					La recertificación, fue acreditada tras
+					un arduo proceso
+					de
+					evaluación
+					donde se estudiaron los programas para
+					lograr los
+					objetivos y metas
+					ambientales y posteriormente, a través
+					de una
+					auditoría por parte
+					del ente certificador, se confirmó el
+					cumplimiento de los requisitos
+					de la norma.
+				</n:p>
+				<n:p>
+					Dentro de los
+					programas
+					ambientales de DUSA, en materia
+					de manejo
+					y
+					disposición
+					de aguas
+					residuales, el 100 % de sus aguas
+					residuales
+					(vinazas)
+					están siendo
+					aprovechadas como fertilizante para
+					caña
+					de
+					azúcar,
+					pasto y como
+					alimento animal, el 100 % de residuos
+					sólidos
+					(vidrio, cartón , papel
+					, plástico y chatarra ) son
+					recuperados y
+					reciclados; además mantiene
+					un programa permanente
+					de
+					reforestación, a
+					la fecha ha plantado mas
+					de 6000 árboles en
+					su
+					área
+					de influencia y
+					mantiene un programa de
+					ahorro del
+					consumo de
+					agua,
+					logrando hasta
+					ahora una reducción del 50
+					%.
+				</n:p>
+			</div>
+		</div>
+	</div>
+	<div height="100%" width="100%" class="bs-example">
+		<div class="jumbotron">
+			<div class="container">
+				<n:h1>Una historia de retos y metas alcanzadas</n:h1>
+				<hbox widths="35%,65%">
+					<div>
+						<image id="imagen2" width="250px" height="360px"
+							src="/public/imagenes/generales/panelinfo2.jpg" />
+					</div>
+					<div>
+						<n:p>
+							Hoy en día, el concepto de Calidad puede considerarse
+							plenamente
+							arraigado e incorporado al acerbo empresarial. Sin
+							embargo, se
+							observa cierta confusión a la hora de manejar los
+							términos de
+							Control de Calidad, Aseguramiento de la Calidad y
+							Calidad Total.
+						</n:p>
+						<n:p>
+							Control de Calidad:
+						</n:p>
+						<n:p>
+							Esta primera etapa se caracteriza
+							por la realización de
+							inspecciones y
+							ensayos para comprobar si una
+							determinada materia
+							prima, un
+							producto en proceso o un producto
+							terminado, cumple con
+							las
+							especificaciones establecidas y evitar la
+							salida de productos
+							defectuosos. Se trata, sin duda, de una
+							concepción poco
+							competitiva
+							de la Gestión de la Calidad, ya que las
+							inspecciones o
+							ensayos
+							tienen lugar “a posteriori”, cuando la
+							materia prima se ha
+							recibido, cuando un proceso productivo ha
+							concluido o cuando el
+							producto final está terminado.
+						</n:p>
+						<n:p>
+							Aseguramiento de la Calidad:
+						</n:p>
+						<n:p>
+							Surge con el desarrollo tecnológico y económico, por
+							la
+							necesidad de
+							industrias que no pueden permitirse el lujo de
+							tener
+							una
+							falla de
+							calidad, tales como la aeronáutica, la nuclear,
+							o de
+							la
+							defensa.
+						</n:p>
+					</div>
+				</hbox>
+				<n:p>
+					El Aseguramiento de la Calidad no sustituye al
+					Control de
+					Calidad
+					sino que lo absorbe y lo complementa con un
+					conjunto
+					adicional de
+					acciones planificadas que evitan productos
+					defectuosos,
+					lo cual
+					genera confianza y satisfacción de los
+					clientes.
+				</n:p>
+				<n:p>
+					DUSA en esta etapa evolutiva de la calidad, aceptó el
+					reto y se
+					planteó como objetivo estratégico desarrollar un Sistema
+					de
+					Gestión
+					de Calidad ISO 9.001, alcanzando la certificación de su
+					sistema en
+					1995.
+				</n:p>
+			</div>
+		</div>
+	</div>
+</zk>

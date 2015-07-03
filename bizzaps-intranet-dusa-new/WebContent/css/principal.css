@@ -1,0 +1,173 @@
+<
+style type ="text/css">* {
+	padding: 0px;
+	margin: 0px;
+}
+
+#header {
+	margin: auto;
+	width: 500px;
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	z-index: 100;
+}
+
+#header2 {
+	margin: auto;
+	width: 280px;
+	position: absolute;
+	top: 335px;
+	left: 900px;
+}
+
+ul,ol {
+	list-style: none;
+}
+
+.nav li a {
+	background-color: #E5E4E4;
+	color: black;
+	font-size: 16px;
+	text-decoration: none;
+	padding: 10px 15px;
+	display: block;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #610B0B;
+	font-weight: bold;
+}
+
+.nav li a:hover {
+	background-color: #C63F3F;
+}
+
+.nav>li {
+	float: left;
+}
+/* Sub-menu*/
+.nav li ul {
+	display: none;
+	position: absolute;
+	min-width: 140px;
+}
+
+.nav li:hover>ul {
+	display: block;
+}
+
+.nav li ul li {
+	position: relative;
+}
+
+.nav li ul li ul {
+	right: -140px;
+	top: 0px;
+}
+
+#contenedor {
+	padding: 0px;
+	margin-left: 15px;
+}
+
+h1#titulo {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 30px;
+	color: #F5DA81;
+	letter-spacing: -1px;
+	font-weight: normal;
+	background: #861111;
+	height: 65px;
+	padding: 20px;
+	position: absolute;
+	width: 1300px;
+	top: 100px;
+}
+
+h2#tira {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 40px;
+	color: #861111;
+	letter-spacing: -1px;
+	font-weight: normal;
+	background: #D5D2D2;
+	padding: 20px;
+	height: 120px;
+	position: absolute;
+	width: 1300px;
+	top: 30px;
+}
+
+body {
+	background-color: #727070;
+	width: :100%;
+	height: 100%;
+}
+
+img#logo {
+	position: absolute;
+	top: 50px;
+	left: 1100px;
+	height: 90px;
+}
+
+img#fondo {
+	position: absolute;
+	top: 30px;
+	left: 0px;
+	height: 160px;
+	width: 100%;
+}
+
+img#back {
+	position: absolute;
+	top: 270px;
+	left: 125px;
+	border-width: 4px;
+	border-color: #861111;
+	border-style: solid;
+}
+
+img#mascota {
+	position: absolute;
+	top: 480px;
+	left: 970px;
+	border-width: 2px;
+	border-color: black;
+	border-style: solid;
+}
+
+#formularioRegistro {
+	margin: auto;
+	width: 410px;
+	height: 210px;
+	position: absolute;
+	top: 295px;
+	left: 830px;
+	background-color: #B3B3B3;
+}
+
+#respuesta {
+	width: 400px;
+	position: absolute;
+	top: 10px;
+	left: 40px;
+}
+
+#botonIngresar {
+	color: #F5DA81;
+	background-color: #861111;
+	height: 30px;
+	width: 120px;
+	position: absolute;
+	cursor: pointer;
+	font-size: 20px;
+	z-index: 30;
+}
+
+#botonIngresar:hover {
+	background-color: grey;
+}
+</
+style
+>

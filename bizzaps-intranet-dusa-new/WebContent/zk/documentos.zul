@@ -1,0 +1,56 @@
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="public/bootstrap-slate.min.css" />
+	<div height="100%" width="100%" class="bs-example">
+		<listbox id="listaDocumentos" width="auto"
+			emptyMessage="No hay Documentos Para Mostrar">
+			<listhead>
+				<listheader label="Nombre" width="35%" />
+				<listheader label="Descripcion" width="35%" />
+				<listheader label="Tipo" width="13%" />
+				<listheader label="" width="17%" />
+			</listhead>
+			<listitem>
+				<listcell>
+					<label value="Formato 1" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="Formato que muestra...." sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="Excel" sclass="heavy" />
+				</listcell>
+				<listcell>
+				<button sclass="btn-primary">Descargar</button>
+				</listcell>
+			</listitem>
+			<listitem>
+				<listcell>
+					<label value="Constancia" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="Constancia con detalles... " sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="Word" sclass="heavy" />
+				</listcell>
+				<listcell>
+				<button sclass="btn-primary">Descargar</button>
+				</listcell>
+			</listitem>
+			<listitem>
+				<listcell>
+					<label value="Solicitud de Fideicomiso" sclass="titulo" />
+				</listcell>
+				<listcell>
+					<label value="Solicitud para...." sclass="heavy" />
+				</listcell>
+				<listcell>
+					<label value="Word" sclass="heavy" />
+				</listcell>
+				<listcell>
+				<button sclass="btn-primary">Descargar</button>
+				</listcell>
+			</listitem>
+		</listbox>
+	</div>
+</zk>
