@@ -1,10 +1,10 @@
 <zk xmlns:w="client" xmlns:n="native">
 
-	<div height="100%" width="100%" class="bs-example"  apply="controlador.portal.CNoticiaPortal">
+	<div id="ven" height="100%" width="100%" class="bs-example"  apply="controlador.portal.CNoticiaPortal">
 		<hbox widths="50%,50%">
 			<div class="jumbotron" align="center">
 				<div class="container">
-					<n:h1><label id="titulo"/></n:h1>
+					<n:h1><label id="titulo" value="Se realiza la primera prueba de la intranet" style="font-size:20px" class="h1"/></n:h1>
 					<image id="imagen1" width="250px" height="170px"
 						src="/public/imagenes/generales/noticia1.jpg" />
 					<n:p><label id="noticia"/></n:p>
