@@ -1,0 +1,212 @@
+<?page title="Bienvenido" contentType="text/html;charset=utf-8"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="public/bootstrap-slate.min.css" />
+	<div apply="controlador.portal.CPortal">
+
+		<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+			<hbox widths="75%,25%" width="100%">
+				<div>
+					<separator />
+					<label value="Sistema INTRANET de Dusa" class="label" />
+				</div>
+				<div align="right">
+					<separator />
+					<hbox widths="33%,33%,34%" width="100%">
+						<a tooltiptext="Pulse para ir a Provincial" target="_blank"
+							href="https://www.provincial.com/">
+							<image style="cursor:pointer" src="/public/imagenes/generales/provincial.jpg"
+								class="img-rounded" />
+						</a>
+						<a tooltiptext="Pulse ver el Paso del Ron Diplomatico" target="_blank"
+							href="http://rondiplomatico.com/pages/elpaso.php">
+							<image style="cursor:pointer" src="/public/imagenes/generales/pasoFondo.png"
+								class="img-rounded" />
+						</a>
+						<a tooltiptext="Pulse ir a TodoTicket" target="_blank"
+							href="https://www.todoticket.com.ve">
+							<image style="cursor:pointer" src="/public/imagenes/generales/todoticket.jpg"
+								class="img-rounded" />
+						</a>
+					</hbox>
+				</div>
+			</hbox>
+		</div>
+		<div class="container bs-docs-container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="bs-sidebar hidden-print affix">
+						<div>
+							<image width="100%" src="/public/imagenes/generales/logo.png" />
+						</div>
+						<include src="zk/sidebar.zul" />
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="bs-docs-section" >
+						<div class="page-header">
+							<n:h1 id="inicio">Inicio</n:h1>
+						</div>				
+						<include src="/carrusel.zul" />
+					</div>
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="noticias">Noticias</n:h1>
+						</div>
+						<div align="right">
+							<a target="_blank" href="/todasNoticias.zul" style="color:#F3F781">
+								<label value="Ver todas las Noticias"
+									style="color:#F3F781;font-size:18px;cursor:pointer;font-style:italic" />
+							</a>
+						</div>
+						<include src="zk/noticias.zul" />
+					</div>
+
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="productos">Productos</n:h1>
+						</div>
+						<div align="right">
+							<a target="_blank" href="/todosProductos.zul" style="color:#F3F781">
+								<label value="Ver todos los productos"
+									style="color:#F3F781;font-size:18px;cursor:pointer;font-style:italic" />
+							</a>
+						</div>
+						<include src="zk/productos.zul" />
+					</div>
+
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="iso">Normas ISO</n:h1>
+						</div>
+						<include src="zk/iso.zul" />
+					</div>
+
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="produccion">Produccion</n:h1>
+						</div>
+						<include src="zk/produccion.zul" />
+					</div>
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="ventas">Ventas</n:h1>
+						</div>
+						<include src="zk/ventas.zul" />
+					</div>
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="social">Responsabilidad Social</n:h1>
+						</div>
+						<include src="zk/social.zul" />
+					</div>
+
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="revista">Revistas</n:h1>
+						</div>
+						<div class="bs-example" align="center">
+							<div class="jumbotron">
+								<div class="container">
+									<separator />
+									<separator />
+									<n:h1>D'estilo</n:h1>
+									<a tooltiptext="Pulse para ver D'estilo" target="_blank"
+										href="">
+										<image style="cursor:pointer"
+											src="/public/imagenes/generales/bannerdestilos.jpg" class="img-rounded" />
+									</a>
+									<separator />
+									<separator />
+									<separator />
+									<separator />
+									<hbox widths="47%,6%,47%" width="100%">
+										<div align="right">
+											<div align="center">
+												<n:h1>Prensa Digital</n:h1>
+											</div>
+											<separator />
+											<a tooltiptext="Pulse ver la prensa digitalizada" target="_blank"
+												href="">
+												<image style="cursor:pointer" src="/public/imagenes/generales/prensa.jpg"
+													class="img-rounded" />
+											</a>
+											<separator />
+										</div>
+										<separator />
+										<div align="left">
+											<div align="center">
+												<n:h1>Dusa Previene</n:h1>
+											</div>
+											<separator />
+											<a tooltiptext="Pulse ir ver el folleto de Dusa Previene"
+												target="_blank" href="">
+												<image style="cursor:pointer" src="/public/imagenes/generales/logo2.png"
+													class="img-rounded" />
+											</a>
+											<separator />
+										</div>
+									</hbox>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="documentos">Documentos</n:h1>
+						</div>
+						<include src="zk/documentos.zul" />
+					</div>
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="enlaces">Enlaces</n:h1>
+						</div>
+						<div align="right">
+							<a target="_blank" href="/index.zul" style="color:#F3F781">
+								<label value="Enlace Sistema Intranet"
+									style="color:#F3F781;font-size:18px;cursor:pointer;font-style:italic" />
+							</a>
+						</div>
+						<include src="zk/enlaces.zul" />
+					</div>
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="cumpleannos">Cumpleaños</n:h1>
+						</div>
+						<hbox width="100%" widths="50%,50%">
+							<div>
+								<n:p><![CDATA[Seleccione mes]]></n:p>
+								<datebox sclass="input-group" onCreate="self.value = new Date()" />
+							</div>
+							<div align="right">
+								<image id="imagen" width="200px" height="70px"
+									src="/public/imagenes/generales/cumpleannos.jpg" />
+							</div>
+						</hbox>
+						<separator />
+						<include src="zk/cumpleannos.zul" />
+					</div>
+					<div class="bs-docs-section">
+						<div class="page-header">
+							<n:h1 id="directorio">Directorio</n:h1>
+						</div>
+						<hbox width="100%" widths="50%,50%">
+							<n:p><![CDATA[Ingrese un criterio de busqueda]]></n:p>
+							<div align="right">
+								<image width="200px" height="70px"
+									src="/public/imagenes/generales/directorio.jpg" />
+							</div>
+						</hbox>
+						<separator />
+						<include src="zk/directorio.zul" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</zk>

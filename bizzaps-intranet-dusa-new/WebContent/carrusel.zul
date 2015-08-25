@@ -21,10 +21,10 @@
 			window.onload = DP.inicio;
 		</script>
 	</html>
+	<div apply="controlador.portal.CCarruselPortal" >
 		<div class="bs-example">
-			<div height="120%" width="100%" id="divCarrusel"
-				apply="controlador.portal.CCarruselPortal">
+			<div height="120%" width="100%" id="divCarrusel">
 			</div>
-	
+	</div>
 	</div>
 </zk>

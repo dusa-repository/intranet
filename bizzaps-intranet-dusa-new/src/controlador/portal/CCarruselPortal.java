@@ -17,6 +17,7 @@ import org.zkoss.zhtml.Ul;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Image;
+import org.zkoss.zul.Label;
 
 import controlador.maestros.CGenerico;
 
@@ -27,14 +28,12 @@ public class CCarruselPortal extends CGenerico {
 	@Wire
 	private Div divCarrusel;
 
-
-
 	/*
 	 * Dibuja el Ul y Li en el Index.zul para lograr que el carrusel de
 	 * imagenes fuera dinamico
 	 */
 	private void cargarCarrusel() {
-		List<Carrusel> imagenes = servicioCarrusel.buscarPorTipo("Carrusel");
+		List<Carrusel> imagenes = servicioCarrusel.buscar();
 		Ul diapos = new Ul();
 		diapos.setId("diapos");
 		divCarrusel.appendChild(diapos);
@@ -58,7 +57,6 @@ public class CCarruselPortal extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-		 cargarCarrusel();
-		
+		 cargarCarrusel();		
 	}
 }

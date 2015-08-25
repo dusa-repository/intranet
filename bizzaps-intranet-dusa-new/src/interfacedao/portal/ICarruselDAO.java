@@ -7,7 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ICarruselDAO extends JpaRepository<Carrusel, Long> {
 
-	List<Carrusel> findByTipo(String string);
-
 
 }

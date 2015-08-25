@@ -22,12 +22,12 @@ public class Carrusel implements Serializable {
 	@Column(name = "id_carrusel")
 	private long idCarrusel;
 
+	@Column(length = 500)
 	private String nombre;
 	
 	@Lob
 	private byte[] imagen;
-	
-	private String tipo;
+
 
 	public Carrusel() {
 		super();

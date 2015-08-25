@@ -16,8 +16,8 @@ http://www.springframework.org/schema/data/jpa http://www.springframework.org/sc
 
 	<mvc:annotation-driven />
 	<aop:config proxy-target-class="true" />
-	<context:component-scan base-package="servicio" />
-	<jpa:repositories base-package="interfacedao" />
+	<context:component-scan base-package="servicio,security.servicio" />
+	<jpa:repositories base-package="interfacedao,security.interfacedao" />
 	<import resource="classpath:/META-INF/ConfiguracionSeguridad.xml" />
 	<import resource="classpath:/META-INF/ConfiguracionBaseDatos.xml" />
 	<import resource="classpath:/META-INF/PropiedadesBaseDatos.xml" />

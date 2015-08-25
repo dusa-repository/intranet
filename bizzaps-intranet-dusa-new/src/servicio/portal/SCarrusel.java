@@ -21,7 +21,4 @@ public class SCarrusel {
 		return carruselDAO.findAll();
 	}
 
-	public List<Carrusel> buscarPorTipo(String string) {
-		return carruselDAO.findByTipo(string);
-	}
 }
