@@ -21,4 +21,16 @@ public class SCarrusel {
 		return carruselDAO.findAll();
 	}
 
+	public void eliminarTodas() {
+		carruselDAO.deleteAll();
+	}
+
+	public void eliminar(int i) {
+		carruselDAO.delete((long) i);
+	}
+
+	public boolean existe(int i) {
+		return carruselDAO.exists((long) i);
+	}
+
 }

@@ -1,0 +1,89 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divCarrusel" width="100%" apply="controlador.maestros.CCarrusel">
+		<groupbox mold="3d" width="auto" title="Carrusel">
+			<div id="botoneraCarrusel" />
+			<separator />
+			<hbox align="bottom" pack="center" height="100%" width="100%">
+				<space />
+				<space />
+				<vbox>
+					<textbox class="multilinea" multiline="true" id="txtNombre1"
+						hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre de la Imagen 1" />
+					<image
+						tooltiptext="Tamaños permitidos: Minimo 512KB y Maximo 2MB  &#x0d;Formatos permitidos: .png y .jpeg"
+						style="border: 1px outset #A0A0A0;" id="imagen1" width="190px"
+						height="190px" />
+					<space />
+					<fileupload image="/public/imagenes/botones/cargar.png"
+						id="fudImagen1" label="Cargar Imagen" width="150px">
+					</fileupload>
+					<button id="btnRemover1" label="Remover Imagen" width="150px"
+						tooltiptext="Presione para Remover la Imagen" image="/public/imagenes/botones/quitar.png" />
+				</vbox>
+				<space />
+				<space />
+				<space />
+				<space />
+				<space />
+				<vbox>
+					<textbox class="multilinea" multiline="true" id="txtNombre2"
+						hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre de la Imagen 2" />
+					<image
+						tooltiptext="Tamaños permitidos: Minimo 512KB y Maximo 2MB &#x0d;Formatos permitidos: .png y .jpeg"
+						style="border: 1px outset #A0A0A0;" id="imagen2" width="190px"
+						height="190px" />
+
+					<space />
+					<fileupload image="/public/imagenes/botones/cargar.png"
+						id="fudImagen2" label="Cargar Imagen" width="150px">
+					</fileupload>
+					<button id="btnRemover2" label="Remover Imagen" width="150px"
+						tooltiptext="Presione para Remover la Imagen" image="/public/imagenes/botones/quitar.png" />
+				</vbox>
+				<space />
+				<space />
+				<space />
+				<space />
+				<space />
+				<vbox>
+					<textbox class="multilinea" multiline="true" id="txtNombre3"
+						hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre de la Imagen 3" />
+					<image
+						tooltiptext="Tamaños permitidos: Minimo 512KB y Maximo 2MB &#x0d;Formatos permitidos: .png y .jpeg"
+						style="border: 1px outset #A0A0A0;" id="imagen3" width="190px"
+						height="190px" />
+					<space />
+					<fileupload image="/public/imagenes/botones/cargar.png"
+						id="fudImagen3" label="Cargar Imagen" width="150px">
+					</fileupload>
+					<button id="btnRemover3" label="Remover Imagen" width="150px"
+						tooltiptext="Presione para Remover la Imagen" image="/public/imagenes/botones/quitar.png" />
+				</vbox>
+				<space />
+				<space />
+				<space />
+				<space />
+				<space />
+				<vbox>
+					<textbox class="multilinea" multiline="true" id="txtNombre4"
+						hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre de la Imagen 4" />
+					<image
+						tooltiptext="Tamaños permitidos: Minimo 512KB y Maximo 2MB  &#x0d;Formatos permitidos: .png y .jpeg"
+						style="border: 1px outset #A0A0A0;" id="imagen4" width="190px"
+						height="190px" />
+					<space />
+					<fileupload image="/public/imagenes/botones/cargar.png"
+						id="fudImagen4" label="Cargar Imagen" width="150px">
+					</fileupload>
+					<button id="btnRemover4" label="Remover Imagen" width="150px"
+						tooltiptext="Presione para Remover la Imagen" image="/public/imagenes/botones/quitar.png" />
+				</vbox>
+				<separator />
+				<separator />
+				<separator />
+			</hbox>
+		</groupbox>
+		<separator />
+	</div>
+</zk>

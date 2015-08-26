@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
-
 import javax.persistence.Table;
 @Entity
 @Table(name="carrusel")
@@ -18,7 +17,6 @@ public class Carrusel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_carrusel")
 	private long idCarrusel;
 
@@ -32,6 +30,13 @@ public class Carrusel implements Serializable {
 	public Carrusel() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Carrusel(long idCarrusel, String nombre, byte[] imagen) {
+		super();
+		this.idCarrusel = idCarrusel;
+		this.nombre = nombre;
+		this.imagen = imagen;
 	}
 
 	public long getIdCarrusel() {

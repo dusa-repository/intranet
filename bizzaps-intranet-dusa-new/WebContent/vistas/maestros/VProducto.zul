@@ -1,0 +1,78 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divProducto" width="100%" apply="controlador.maestros.CProducto">
+		<groupbox mold="3d" width="auto" title="Producto">
+			<div id="botoneraProducto" />
+			<groupbox id="gpxRegistro" class="azul" width="auto" title="">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para ingresar los Productos" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Nombre:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<cell colspan="3">
+								<textbox class="multilinea" multiline="true" id="txtNombre"
+									hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre del Producto" />
+							</cell>
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Descripcion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<cell colspan="3">
+								<textbox class="multilinea" multiline="true" id="txtDescripcion"
+									hflex="1" maxlength="500" tooltiptext="Ingrese la Descripcion del Producto" />
+							</cell>
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Cantidad:" />
+								<space />
+								<label value="" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<spinner id="spnCantidad" width="100%" step="1" value="0"
+								constraint="min 0 max 99999999" tooltiptext="Ingrese la existencia del Producto" />
+							<hbox>
+								<label class="etiqueta" value="Precio unitario" />
+								<space />
+								<label value="" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<doublespinner id="spnPrecio" width="100%" step="1"
+								value="0" constraint="min 0 max 99999999" tooltiptext="Ingrese el Precio unitario del Producto" />
+						</row>
+						<row>
+							<fileupload label="Cargar Imagen" width="150px"
+								image="/public/imagenes/botones/cargar.png" id="fudImagenUsuario">
+							</fileupload>
+							<image id="imagen" width="50px" height="50px" />
+							<hbox />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para ver los Productos" />
+				<separator />
+				<div id="catalogoProducto" tooltiptext="Seleccione el Producto para Realizar una Accion" />
+			</groupbox>
+		</groupbox>
+	</div>
+</zk>

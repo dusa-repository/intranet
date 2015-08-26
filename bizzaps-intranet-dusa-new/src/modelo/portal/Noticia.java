@@ -48,6 +48,20 @@ public class Noticia implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Noticia(long idNoticia, String titulo, byte[] imagen, String texto,
+			Timestamp fecha, Timestamp fechaAuditoria, String horaAuditoria,
+			String usuarioAuditoria) {
+		super();
+		this.idNoticia = idNoticia;
+		this.titulo = titulo;
+		this.imagen = imagen;
+		this.texto = texto;
+		this.fecha = fecha;
+		this.fechaAuditoria = fechaAuditoria;
+		this.horaAuditoria = horaAuditoria;
+		this.usuarioAuditoria = usuarioAuditoria;
+	}
+
 	public long getIdNoticia() {
 		return idNoticia;
 	}

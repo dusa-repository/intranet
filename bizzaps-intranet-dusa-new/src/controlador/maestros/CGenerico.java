@@ -3,6 +3,7 @@ package controlador.maestros;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.URL;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -30,6 +31,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.SelectorComposer;
@@ -39,27 +41,30 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Tab;
 
+import servicio.maestros.SNoticia;
+import servicio.maestros.SProducto;
 import servicio.portal.SCarrusel;
-
+import componente.Botonera;
+import componente.Catalogo;
 import componente.Mensaje;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public abstract class CGenerico extends SelectorComposer<Component> {
 
 	private static final long serialVersionUID = -3701148488846104476L;
-	
+
 	@WireVariable("SCarrusel")
 	protected SCarrusel servicioCarrusel;
-	
-	private static ApplicationContext app = new ClassPathXmlApplicationContext(
-			"/META-INF/ConfiguracionAplicacion.xml");
+	@WireVariable("SProducto")
+	protected SProducto servicioProducto;
+	@WireVariable("SNoticia")
+	protected SNoticia servicioNoticia;
 
 	protected static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
 	protected static SimpleDateFormat formatoFechaRara = new SimpleDateFormat(
 			"yyyyMMdd");
 	public List<Tab> tabs = new ArrayList<Tab>();
-	public Groupbox grxGraficoGeneral;
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public Calendar calendario = Calendar.getInstance();
 	// Cambio en la hora borrados los :
@@ -72,8 +77,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	public Mensaje msj = new Mensaje();
 	public String cerrar;
 	public Time tiempo = new Time(fecha.getTime());
-	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-			"/META-INF/PropiedadesBaseDatos.xml");
+	URL url = getClass().getResource("/controlador/maestros/ohne.png");
 
 	public Timestamp metodoFecha() {
 		fecha = new Date();
@@ -88,7 +92,6 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 				+ String.valueOf(calendario.get(Calendar.SECOND));
 	}
 
-	
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
@@ -268,16 +271,6 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		return Executions.getCurrent().getContextPath() + "/";
 	}
 
-	public List<String> obtenerPropiedades() {
-		List<String> arreglo = new ArrayList<String>();
-		DriverManagerDataSource ds = (DriverManagerDataSource) applicationContext
-				.getBean("dataSource");
-		arreglo.add(ds.getUsername());
-		arreglo.add(ds.getPassword());
-		arreglo.add(ds.getUrl());
-		return arreglo;
-	}
-
 	class SMTPAuthenticator extends javax.mail.Authenticator {
 		public PasswordAuthentication getPasswordAuthentication() {
 			return new PasswordAuthentication("cdusa", "cartucho");
@@ -321,6 +314,50 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 			bd = bd.setScale(places, RoundingMode.HALF_UP);
 		}
 		return bd.doubleValue();
+	}
+
+	public boolean validarSeleccion(Catalogo<?> catalogo) {
+		List<?> seleccionados = catalogo.obtenerSeleccionados();
+		if (seleccionados == null) {
+			Mensaje.mensajeAlerta(Mensaje.noHayRegistros);
+			return false;
+		} else {
+			if (seleccionados.isEmpty()) {
+				Mensaje.mensajeAlerta(Mensaje.noSeleccionoItem);
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
+
+	protected void mostrarBotones(Botonera botonera, boolean b) {
+		botonera.getChildren().get(1).setVisible(!b);
+		botonera.getChildren().get(2).setVisible(b);
+		botonera.getChildren().get(6).setVisible(false);
+		botonera.getChildren().get(8).setVisible(false);
+		botonera.getChildren().get(0).setVisible(b);
+		botonera.getChildren().get(3).setVisible(!b);
+		botonera.getChildren().get(5).setVisible(!b);
+	}
+
+	public boolean validarMedia(Media media) {
+		if (!media.getContentType().equals("image/jpeg")
+				&& !media.getContentType().equals("image/png")) {
+			Mensaje.mensajeAlerta(Mensaje.noPermitido);
+			return false;
+		} else {
+			if (media.getByteData().length < 512000) {
+				Mensaje.mensajeAlerta(Mensaje.tamanioMuyPequenio);
+				return false;
+			} else {
+				if (media.getByteData().length > 2048000) {
+					Mensaje.mensajeAlerta(Mensaje.tamanioMuyGrande);
+					return false;
+				} else
+					return true;
+			}
+		}
 	}
 
 }

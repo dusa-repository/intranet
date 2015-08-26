@@ -33,7 +33,6 @@ public class Mensaje {
 	public static String contrasennasNoCoinciden = "Las Contraseñas no Coinciden.";
 	public static String eliminacionFallida = "No puede eliminar este grupo";
 	public static String noPermitido = "El tipo de archivo que ha seleccionado no esta permitido, solo archivos con extension .jpeg y .png son permitidos";
-	public static String tamanioMuyGrande = "El archivo que ha seleccionado excede el tamaño maximo establecido (100 KB)";
 	public static String noEliminar = "El Registro no se puede Eliminar, Esta siendo Usado";
 	public static String telefonoInvalido = "Formato de Telefono No Valido";
 	public static String camposPresentaciones = "Debe Llenar Todos los Campos de la Lista de Presentaciones";
@@ -61,13 +60,16 @@ public class Mensaje {
 	public static String seleccionarEstado= "Debe Seleccionar un Estado";
 	public static String cedulaUsada="La Cedula esta siendo usada por otro Registro";
 	public static String placaUsada="La Placa esta siendo usada por otro Registro";
+	public static String tamanioMuyPequenio = "El archivo que ha seleccionado es menor el tamaño minimo establecido (512 KB)";
+	public static String tamanioMuyGrande = "El archivo que ha seleccionado excede el tamaño maximo establecido (2 MB)";
+	
 	
 	public void mensajeInformacion(String msj) {
 	      Messagebox.show(msj, "Informacion",
 					Messagebox.OK, Messagebox.INFORMATION);
 		}
 	
-	public void mensajeAlerta(String msj) {
+	public static void mensajeAlerta(String msj) {
 	      Messagebox.show(msj, "Alerta",
 					Messagebox.OK, Messagebox.EXCLAMATION);
 		}

@@ -6,7 +6,7 @@
 <?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="public/bootstrap-slate.min.css" />
-	<div>
+	<div apply="controlador.portal.CTodosProductosPortal">
 
 		<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
 			<hbox width="100%">
@@ -40,7 +40,7 @@
 							<n:h1 id="noticias">Productos</n:h1>
 						</div>
 						<div height="100%" width="100%" class="bs-example">
-							<listbox height="auto" width="auto"
+							<listbox id="ltbProductos" height="auto" width="auto"
 								emptyMessage="No Hay Productos Disponibles">
 								<listhead>
 									<listheader label="Productos disponibles en la botique"
@@ -48,95 +48,27 @@
 									<listheader label="Cantidad" sort="auto" width="10%" />
 									<listheader label="Precio" sort="auto" width="10%" />
 								</listhead>
-								<listitem>
-									<listcell>
-										<hlayout>
-											<image width="230px" height="150px"
-												src="/public/imagenes/generales/franela.jpg" />
-											<vlayout>
-												<label value="Franela Deportiva" sclass="titulo" />
-												<hlayout>
-													<label value="Descripcion:" sclass="titulo2" />
-													<label value="Uniformes creados para momentos deportivos"
-														sclass="heavy" />
-												</hlayout>
-												<hlayout>
-													<label value="Talla:" sclass="titulo2" />
-													<label value="M" sclass="heavy" />
-												</hlayout>
-												<hlayout>
-													<label value="Color:" sclass="titulo2" />
-													<label value="Blanco" sclass="heavy" />
-												</hlayout>
-											</vlayout>
-										</hlayout>
-									</listcell>
-									<listcell>
-										<label value="2" sclass="numero" />
-									</listcell>
-									<listcell>
-										<label value="2.000 Bsf" sclass="numero" />
-									</listcell>
-								</listitem>
-								<listitem>
-									<listcell>
-										<hlayout>
-											<image width="230px" height="150px"
-												src="/public/imagenes/generales/gorra.jpg" />
-											<vlayout>
-												<label value="Gorra Deportiva" sclass="titulo" />
-												<hlayout>
-													<label value="Descripcion:" sclass="titulo2" />
-													<label value="Accesorios creados para momentos deportivos"
-														sclass="heavy" />
-												</hlayout>
-												<hlayout>
-													<label value="Modelo:" sclass="titulo2" />
-													<label value="Loto" sclass="heavy" />
-												</hlayout>
-												<hlayout>
-													<label value="Color:" sclass="titulo2" />
-													<label value="Blanca" sclass="heavy" />
-												</hlayout>
-											</vlayout>
-										</hlayout>
-									</listcell>
-									<listcell>
-										<label value="10" sclass="numero" />
-									</listcell>
-									<listcell>
-										<label value="1.000 Bsf" sclass="numero" />
-									</listcell>
-								</listitem>
-								<listitem>
-									<listcell>
-										<hlayout>
-											<image width="230px" height="150px"
-												src="/public/imagenes/generales/libreta.jpg" />
-											<vlayout>
-												<label value="Libreta" sclass="titulo" />
-												<hlayout>
-													<label value="Descripcion:" sclass="titulo2" />
-													<label value="Articulo de Escritorio" sclass="heavy" />
-												</hlayout>
-												<hlayout>
-													<label value="Modelo:" sclass="titulo2" />
-													<label value="6 Materias" sclass="heavy" />
-												</hlayout>
-												<hlayout>
-													<label value="Color:" sclass="titulo2" />
-													<label value="Roja" sclass="heavy" />
-												</hlayout>
-											</vlayout>
-										</hlayout>
-									</listcell>
-									<listcell>
-										<label value="10" sclass="numero" />
-									</listcell>
-									<listcell>
-										<label value="800 Bsf" sclass="numero" />
-									</listcell>
-								</listitem>
+								<template name="model">
+									<listitem>
+										<listcell>
+											<hlayout>
+												<image width="230px" height="150px" content="${each.traerImagen()}" />
+												<vlayout>
+													<label value="${each.nombre}" sclass="titulo" />
+													<hlayout>
+														<label value="${each.descripcion}" sclass="heavy" />
+													</hlayout>
+												</vlayout>
+											</hlayout>
+										</listcell>
+										<listcell>
+											<label value="${each.cantidad}" sclass="numero" />
+										</listcell>
+										<listcell>
+											<label value="${each.precio}" sclass="numero" />
+										</listcell>
+									</listitem>
+								</template>
 							</listbox>
 						</div>
 					</div>
