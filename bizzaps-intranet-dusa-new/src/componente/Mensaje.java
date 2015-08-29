@@ -60,7 +60,7 @@ public class Mensaje {
 	public static String seleccionarEstado= "Debe Seleccionar un Estado";
 	public static String cedulaUsada="La Cedula esta siendo usada por otro Registro";
 	public static String placaUsada="La Placa esta siendo usada por otro Registro";
-	public static String tamanioMuyPequenio = "El archivo que ha seleccionado es menor el tamaño minimo establecido (512 KB)";
+	public static String tamanioMuyPequenio = "El archivo que ha seleccionado es menor el tamaño minimo establecido (128 KB)";
 	public static String tamanioMuyGrande = "El archivo que ha seleccionado excede el tamaño maximo establecido (2 MB)";
 	
 	

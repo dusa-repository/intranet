@@ -181,7 +181,6 @@
 						<hbox width="100%" widths="50%,50%">
 							<div>
 								<n:p><![CDATA[Seleccione mes]]></n:p>
-								<datebox sclass="input-group" onCreate="self.value = new Date()" />
 							</div>
 							<div align="right">
 								<image id="imagen" width="200px" height="70px"

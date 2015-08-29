@@ -7,9 +7,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-
-
-import modelo.portal.Carrusel;
+import modelo.maestros.Carrusel;
 
 import org.springframework.stereotype.Controller;
 import org.zkoss.zhtml.Li;

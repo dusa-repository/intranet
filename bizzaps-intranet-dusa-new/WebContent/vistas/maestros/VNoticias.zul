@@ -7,52 +7,59 @@
 				<caption label="Nuevo" style="font-weight:bold"
 					tooltiptext="Presione para ingresar las Noticias" />
 				<separator />
-				<grid width="100%">
-					<columns visible="false">
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-					</columns>
-					<rows>
-						<row>
-							<hbox>
-								<label class="etiqueta" value="Titulo:" />
-								<space />
-								<label value="*" style="font-weight:bold;color:red" />
-							</hbox>
-							<cell colspan="3">
-								<textbox class="multilinea" multiline="true" id="txtNombre"
-									hflex="1" maxlength="250" tooltiptext="Ingrese el Titulo de la Noticia" />
-							</cell>
-						</row>
-						<row>
-							<hbox>
-								<label class="etiqueta" value="Descripcion:" />
-								<space />
-								<label value="*" style="font-weight:bold;color:red" />
-							</hbox>
-							<cell colspan="3">
-								<textbox class="multilinea" multiline="true" id="txtDescripcion"
-									hflex="1" maxlength="500" tooltiptext="Ingrese la Descripcion de la Noticia" />
-							</cell>
-						</row>
-						<row>
-							<hbox>
-								<label class="etiqueta" value="Fecha Noticia:" />
-								<space />
-								<label value="*" style="font-weight:bold;color:red">
-								</label>
-							</hbox>
-							<datebox readonly="true" width="100%" id="dtbFecha"
-								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Noticia" />
-							<fileupload label="Cargar Imagen" width="150px"
-								image="/public/imagenes/botones/cargar.png" id="fudImagenUsuario">
-							</fileupload>
-							<image id="imagen" width="50px" height="50px" />
-						</row>
-					</rows>
-				</grid>
+				<tabbox width="auto" height="auto" orient="horizontal">
+					<tabs id="tbsNorma" width="auto">
+						<tab label="Foto, Titulo y Fecha" id="tab1" />
+						<tab label="Noticia" id="tab2" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<grid width="100%">
+								<columns visible="false">
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+									<column label="" width="25%" />
+								</columns>
+								<rows>
+									<row>
+										<hbox>
+											<label class="etiqueta" value="Titulo:" />
+											<space />
+											<label value="*" style="font-weight:bold;color:red" />
+										</hbox>
+										<cell colspan="3">
+											<textbox class="multilinea" multiline="true" id="txtNombre"
+												hflex="1" maxlength="250" tooltiptext="Ingrese el Titulo de la Noticia" />
+										</cell>
+									</row>
+									<row>
+										<hbox>
+											<label class="etiqueta" value="Fecha Noticia:" />
+											<space />
+											<label value="*" style="font-weight:bold;color:red">
+											</label>
+										</hbox>
+										<datebox readonly="true" width="100%" id="dtbFecha"
+											onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Noticia" />
+										<fileupload
+											style="	background: #800400;font-size: 11px;color: white;cursor: pointer;width: 95px;height: 35px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;font-family: sans-serif;	text-shadow: 0 0 0;"
+											label="Cargar Imagen" width="150px"
+											image="/public/imagenes/botones/cargar.png" id="fudImagenUsuario">
+										</fileupload>
+										<image id="imagen" width="50px" height="50px" />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel>
+							<ckeditor toolbar="emptyToolbar" id="txtDescripcion"
+								width="950px" height="300px">
+								<attribute name="value" />
+							</ckeditor>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
 			</groupbox>
 			<separator />
 			<groupbox class="azul" id="gpxDatos" width="auto" title="">

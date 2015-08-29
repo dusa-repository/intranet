@@ -9,19 +9,13 @@
 
 	<div height="100%" width="100%" class="bs-example"
 		apply="controlador.portal.CCumpleannosPortal">
-
-		<hbox width="100%" widths="50%,50%">
-			<div>
-				<n:p><![CDATA[Seleccione mes]]></n:p>
-				<datebox readonly="true" lenient="true" format="MMMM" id="dtbFecha" sclass="input-group" onCreate="self.value = new Date()" />
-			</div>
-			<div align="right">
-				<image id="imagen" width="200px" height="70px"
-					src="/public/imagenes/generales/cumpleannos.jpg" />
-			</div>
-		</hbox>
-		<listbox mold="paging" pageSize="10" id="ltbCumpleanios" height="auto" width="auto"
-			emptyMessage="No Hay Cumpleañeros en el dia Seleccionado">
+		<div>
+			<datebox width="200px" readonly="true" lenient="true" format="MMMM"
+				id="dtbFecha" sclass="input-group" onCreate="self.value = new Date()" />
+			<separator />
+		</div>
+		<listbox mold="paging" pageSize="10" id="ltbCumpleanios"
+			height="auto" width="auto" emptyMessage="No Hay Cumpleañeros en el dia Seleccionado">
 			<template name="model">
 				<listitem>
 					<listcell>

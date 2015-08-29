@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 
 import modelo.maestros.Noticia;
 
+import org.zkforge.ckez.CKeditor;
 import org.zkoss.image.AImage;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Sessions;
@@ -46,7 +47,7 @@ public class CNoticia extends CGenerico {
 	@Wire
 	private Textbox txtNombre;
 	@Wire
-	private Textbox txtDescripcion;
+	private CKeditor txtDescripcion;
 	@Wire
 	private Datebox dtbFecha;
 	@Wire
@@ -249,7 +250,7 @@ public class CNoticia extends CGenerico {
 
 	private boolean camposLLenos() {
 		if (txtNombre.getText().compareTo("") == 0
-				|| txtDescripcion.getText().compareTo("") == 0
+				|| txtDescripcion.getValue().compareTo("") == 0
 				|| imagen.getContent() == null) {
 			return false;
 		} else
@@ -258,7 +259,7 @@ public class CNoticia extends CGenerico {
 
 	public boolean camposEditando() {
 		if (txtNombre.getText().compareTo("") != 0
-				|| txtDescripcion.getText().compareTo("") != 0) {
+				|| txtDescripcion.getValue().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
@@ -279,8 +280,8 @@ public class CNoticia extends CGenerico {
 	private void mostrarCatalogo() {
 		listaGeneral = servicioNoticia.buscarTodosOrdenados();
 		catalogo = new Catalogo<Noticia>(catalogoNoticia, "Noticias",
-				listaGeneral, false, false, false, "Titulo", "Fecha",
-				"Descripcion") {
+				listaGeneral, false, false, false, "Titulo", "Fecha"
+				) {
 
 			@Override
 			protected List<Noticia> buscar(List<String> valores) {
@@ -291,9 +292,7 @@ public class CNoticia extends CGenerico {
 					if (objeto.getTitulo().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
 							&& formatoFecha.format(objeto.getFecha()).toLowerCase()
-									.contains(valores.get(1).toLowerCase())
-							&& objeto.getTexto().toLowerCase()
-									.contains(valores.get(2).toLowerCase())) {
+									.contains(valores.get(1).toLowerCase())) {
 						lista.add(objeto);
 					}
 				}
@@ -302,10 +301,9 @@ public class CNoticia extends CGenerico {
 
 			@Override
 			protected String[] crearRegistros(Noticia objeto) {
-				String[] registros = new String[3];
+				String[] registros = new String[2];
 				registros[0] = objeto.getTitulo();
 				registros[1] = formatoFecha.format(objeto.getFecha());
-				registros[2] = objeto.getTexto();
 				return registros;
 			}
 		};
@@ -354,6 +352,15 @@ public class CNoticia extends CGenerico {
 		if (media != null)
 			if (validarMedia(media))
 				imagen.setContent((org.zkoss.image.Image) media);
+	}
+	
+	@Listen("onChange = #txtDescripcion")
+	public boolean validarMax1() {
+		if (txtDescripcion.getValue().length() > 4999) {
+			msj.mensajeAlerta("Longitud maxima excedida (5000 caracteres)");
+			return false;
+		}
+		return true;
 	}
 
 }

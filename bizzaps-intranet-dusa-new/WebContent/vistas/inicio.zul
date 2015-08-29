@@ -32,7 +32,7 @@
 	<script src="/public/progress.js" />
 	<window title="" border="0" height="100%" width="100%" apply="security.controlador.CArbol">
 		<borderlayout height="100%" style="background-color:#fff;">
-			<north height="10%" class="banner">
+			<north height="12%" class="banner">
 				<hbox width="100%" widths="8%,45%,47%">
 					<vbox width="100%">
 						<image src="../public/imagenes/generales/LogoInicio.jpg" />

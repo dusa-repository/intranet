@@ -41,7 +41,7 @@ public class Noticia implements Serializable {
 	@Lob
 	private byte[] imagen;
 	
-	@Column(length = 1000)
+	@Column(length = 5000)
 	private String texto;
 	
 	@Column(name = "fecha")
