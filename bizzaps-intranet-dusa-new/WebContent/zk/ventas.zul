@@ -1,84 +1,35 @@
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="public/bootstrap-slate.min.css" />
-	<div height="100%" width="100%" class="bs-example">
-		<listbox id="listaVentas" width="auto"
+	<div height="100%" width="100%" class="bs-example"
+		apply="controlador.portal.CVentaPortal">
+		<listbox mold="paging" pageSize="10" id="listaVentas" width="auto"
 			emptyMessage="No hay Ventas Para Mostrar">
 			<listhead>
-				<listheader label="Marca" width="20%" />
+				<listheader label="Marca" width="40%" />
 				<listheader label="Diaria" width="15%" />
-				<listheader label="Acumulada" width="20%" />
-				<listheader label="Planificada" width="20%" />
+				<listheader label="Acumulada" width="15%" />
+				<listheader label="Planificada" width="15%" />
+				<listheader label="% Cumplimiento" width="15%" />
 			</listhead>
-			<listitem>
-				<listcell>
-					<label value="Cacique" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="100" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="1500" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="4000" sclass="heavy" />
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Diplomatico" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="200" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="2000" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="5000" sclass="heavy" />
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Glacial" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="300" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="2500" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="2800" sclass="heavy" />
-				</listcell>
-			</listitem>
-						<listitem>
-				<listcell>
-					<label value="Stanislaff" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="100" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="3500" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="6000" sclass="heavy" />
-				</listcell>
-			</listitem>
-					<listitem>
-				<listcell>
-					<label value="Naiguata" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="400" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="4000" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="6500" sclass="heavy" />
-				</listcell>
-			</listitem>
+			<template name="model">
+				<listitem>
+					<listcell>
+						<label value="${each.marca}" sclass="titulo" />
+					</listcell>
+					<listcell>
+						<label value="${each.diaria}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.acumulada}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.planificada}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.porcentaje()}" sclass="heavy" />
+					</listcell>
+				</listitem>
+			</template>
 		</listbox>
 	</div>
 </zk>

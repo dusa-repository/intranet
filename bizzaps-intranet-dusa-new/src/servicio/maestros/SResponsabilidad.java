@@ -1,11 +1,10 @@
 package servicio.maestros;
 
-import java.util.List;
-
 import interfacedao.maestros.IResponsabilidadDAO;
 
+import java.util.List;
+
 import modelo.maestros.Responsabilidad;
-import modelo.portal.Norma;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

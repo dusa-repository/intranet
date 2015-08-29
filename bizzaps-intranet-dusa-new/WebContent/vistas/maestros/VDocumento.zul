@@ -1,0 +1,65 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divDocumento" width="100%" apply="controlador.maestros.CDocumento">
+		<groupbox mold="3d" width="auto" title="Noticia">
+			<div id="botoneraDocumento" />
+			<groupbox id="gpxRegistro" class="azul" width="auto" title="">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para ingresar los Documentos" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Nombre:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox class="multilinea" multiline="true" id="txtNombre"
+								hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre del Documento" />
+							<hbox>
+								<label class="etiqueta" value="Tipo Doc.:" />
+								<space />
+								<label value="" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox readonly="true" id="txtTipo" hflex="1"
+								tooltiptext="Tipo del Documento" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Descripcion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<cell colspan="3">
+								<textbox class="multilinea" multiline="true" id="txtDescripcion"
+									hflex="1" maxlength="500" tooltiptext="Ingrese la Descripcion del Documento" />
+							</cell>
+						</row>
+						<row id="row">
+							<label id="lblNombre" class="etiqueta" value="Seleccione el Archivo:" />
+							<button autodisable="self" id="btnImportar"
+								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+								upload="true" label="Buscar" tooltiptext="Importar Data"
+								image="/public/imagenes/botones/importar.png" />
+							<label id="lblDescripcion" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para ver las Noticias" />
+				<separator />
+				<div id="catalogoDocumento" tooltiptext="Seleccione el Documento para Realizar una Accion" />
+			</groupbox>
+		</groupbox>
+	</div>
+</zk>

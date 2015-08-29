@@ -18,6 +18,11 @@ import javax.persistence.Table;
 @NamedQuery(name="Responsabilidad.findAll", query="SELECT t FROM Responsabilidad t")
 public class Responsabilidad implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_responsabilidad")

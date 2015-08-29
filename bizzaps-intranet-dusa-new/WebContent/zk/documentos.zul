@@ -2,55 +2,33 @@
 	<style src="public/bootstrap-slate.min.css" />
 	<div height="100%" width="100%" class="bs-example">
 		<listbox id="listaDocumentos" width="auto"
-			emptyMessage="No hay Documentos Para Mostrar">
+			emptyMessage="No hay Documentos Para Mostrar" apply="controlador.portal.CDocumentoPortal">
 			<listhead>
 				<listheader label="Nombre" width="35%" />
 				<listheader label="Descripcion" width="35%" />
 				<listheader label="Tipo" width="13%" />
 				<listheader label="" width="17%" />
 			</listhead>
-			<listitem>
-				<listcell>
-					<label value="Formato 1" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="Formato que muestra...." sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="Excel" sclass="heavy" />
-				</listcell>
-				<listcell>
-				<button sclass="btn-primary">Descargar</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Constancia" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="Constancia con detalles... " sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="Word" sclass="heavy" />
-				</listcell>
-				<listcell>
-				<button sclass="btn-primary">Descargar</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Solicitud de Fideicomiso" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="Solicitud para...." sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="Word" sclass="heavy" />
-				</listcell>
-				<listcell>
-				<button sclass="btn-primary">Descargar</button>
-				</listcell>
-			</listitem>
+			<template name="model">
+				<listitem>
+					<listcell>
+						<label value="${each.nombre}" sclass="titulo" />
+					</listcell>
+					<listcell>
+						<label value="${each.descripcion}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.nombreReal()}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<button sclass="btn-primary" autodisable="true"
+							onClick="$composer.ventana(self)">Descargar</button>
+					</listcell>
+					<listcell>
+						<label value="${each.idDocumento}" sclass="heavy" />
+					</listcell>
+				</listitem>
+			</template>
 		</listbox>
 	</div>
 </zk>

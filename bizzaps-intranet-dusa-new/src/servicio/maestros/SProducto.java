@@ -1,9 +1,9 @@
 package servicio.maestros;
 
-import java.util.Collection;
+import interfacedao.maestros.IProductoDAO;
+
 import java.util.List;
 
-import interfacedao.maestros.IProductoDAO;
 import modelo.maestros.Producto;
 
 import org.springframework.beans.factory.annotation.Autowired;

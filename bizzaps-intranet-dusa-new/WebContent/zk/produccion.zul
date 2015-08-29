@@ -1,8 +1,9 @@
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="public/bootstrap-slate.min.css" />
-	<div height="100%" width="100%" class="bs-example">
-		<listbox id="listaProduccion" width="auto"
-			emptyMessage="No hay Produccion Para Mostrar">
+	<div height="100%" width="100%" class="bs-example"
+		apply="controlador.portal.CProduccionPortal">
+		<listbox mold="paging" pageSize="10" id="listaProduccion"
+			width="auto" emptyMessage="No hay Produccion Para Mostrar">
 			<listhead>
 				<listheader label="Empresa" width="19%" />
 				<listheader label="Tipo" width="10%" />
@@ -11,34 +12,28 @@
 				<listheader label="Planificada" width="18%" />
 				<listheader label="% Cumplimiento" width="24%" />
 			</listhead>
-			<listitem>
-				<listcell><label value="DUSA" sclass="titulo"/>
-				</listcell>
-				<listcell><label value="Tipo" sclass="heavy"/>
-				</listcell>
-				<listcell><label value="150" sclass="heavy" />
-				</listcell>
-				<listcell><label value="1000" sclass="heavy" />
-				</listcell>
-				<listcell><label value="2000" sclass="heavy" />
-				</listcell>
-				<listcell><label value="50%" sclass="heavy" />
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell><label value="DIAGEO" sclass="titulo"/>
-				</listcell>
-				<listcell><label value="Tipo" sclass="heavy" />
-				</listcell>
-				<listcell><label value="3000" sclass="heavy" />
-				</listcell>
-				<listcell><label value="3000" sclass="heavy" />
-				</listcell>
-				<listcell><label value="2000" sclass="heavy" />
-				</listcell>
-				<listcell><label value="1000%" sclass="heavy" />
-				</listcell>
-			</listitem>
+			<template name="model">
+				<listitem>
+					<listcell>
+						<label value="${each.empresa}" sclass="titulo" />
+					</listcell>
+					<listcell>
+						<label value="${each.tipo}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.diaria}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.acumulada}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.planificada}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.porcentaje()}" sclass="heavy" />
+					</listcell>
+				</listitem>
+			</template>
 		</listbox>
 	</div>
 </zk>

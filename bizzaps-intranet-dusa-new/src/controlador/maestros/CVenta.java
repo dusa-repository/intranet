@@ -1,28 +1,20 @@
 package controlador.maestros;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.imageio.ImageIO;
+import modelo.maestros.Venta;
 
-import modelo.portal.Noticia;
-
-import org.zkoss.image.AImage;
-import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Doublebox;
+import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
-import org.zkoss.zul.Image;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
@@ -31,35 +23,35 @@ import componente.Botonera;
 import componente.Catalogo;
 import componente.Mensaje;
 
-public class CNoticia extends CGenerico {
+public class CVenta extends CGenerico {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Wire
-	private Div divNoticia;
+	private Div divVenta;
 	@Wire
-	private Div botoneraNoticia;
+	private Div botoneraVenta;
 	@Wire
-	private Div catalogoNoticia;
+	private Div catalogoVenta;
 	@Wire
-	private Textbox txtNombre;
+	private Textbox txtMarca;
 	@Wire
-	private Textbox txtDescripcion;
+	private Doublebox txtPorcentaje;
 	@Wire
-	private Datebox dtbFecha;
+	private Doublespinner spnPlanificada;
+	@Wire
+	private Doublespinner spnAcumulada;
+	@Wire
+	private Doublespinner spnDiaria;
 	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
-	@Wire
-	private Image imagen;
-	@Wire
-	private Media media;
 	Long clave = null;
-	Catalogo<Noticia> catalogo;
-	protected List<Noticia> listaGeneral = new ArrayList<Noticia>();
+	Catalogo<Venta> catalogo;
+	protected List<Venta> listaGeneral = new ArrayList<Venta>();
 	Botonera botonera;
 
 	@Override
@@ -74,11 +66,6 @@ public class CNoticia extends CGenerico {
 				map = null;
 			}
 		}
-		try {
-			imagen.setContent(new AImage(url));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
 		gpxRegistro.setOpen(false);
 		mostrarCatalogo();
 		botonera = new Botonera() {
@@ -89,21 +76,15 @@ public class CNoticia extends CGenerico {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
 						mostrarBotones(botonera, false);
 						abrirRegistro();
-						Noticia producto = catalogo
+						Venta producto = catalogo
 								.objetoSeleccionadoDelCatalogo();
-						clave = producto.getIdNoticia();
-						txtNombre.setValue(producto.getTitulo());
-						txtDescripcion.setValue(producto.getTexto());
-						BufferedImage imag;
-						if (producto.getImagen() != null) {
-							try {
-								imag = ImageIO.read(new ByteArrayInputStream(
-										producto.getImagen()));
-								imagen.setContent(imag);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
+						clave = producto.getIdVenta();
+						txtMarca.setValue(producto.getMarca());
+						txtPorcentaje.setValue(producto.getAcumulada()
+								/ producto.getPlanificada() * 100);
+						spnAcumulada.setValue(producto.getAcumulada());
+						spnDiaria.setValue(producto.getDiaria());
+						spnPlanificada.setValue(producto.getPlanificada());
 					} else
 						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -111,7 +92,7 @@ public class CNoticia extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divNoticia, cerrar, tabs);
+				cerrarVentana(divVenta, cerrar, tabs);
 			}
 
 			@Override
@@ -130,28 +111,16 @@ public class CNoticia extends CGenerico {
 			@Override
 			public void guardar() {
 				if (validar()) {
-					byte[] imagenUsuario = null;
-					if (media instanceof org.zkoss.image.Image) {
-						imagenUsuario = imagen.getContent().getByteData();
-
-					} else {
-						try {
-							imagen.setContent(new AImage(url));
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						imagenUsuario = imagen.getContent().getByteData();
-					}
 					if (clave == null)
 						clave = (long) 0;
-					Noticia noticia = new Noticia(clave, txtNombre.getValue(),
-							imagenUsuario, txtDescripcion.getValue(),
-							new Timestamp(dtbFecha.getValue().getTime()),
-							fechaHora, horaAuditoria, nombreUsuarioSesion());
-					servicioNoticia.guardar(noticia);
+					Venta venta = new Venta(clave, txtMarca.getValue(),
+							spnDiaria.getValue(), spnAcumulada.getValue(),
+							spnPlanificada.getValue(), fechaHora,
+							horaAuditoria, nombreUsuarioSesion(), "", "");
+					servicioVenta.guardar(venta);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					listaGeneral = servicioNoticia.buscarTodosOrdenados();
+					listaGeneral = servicioVenta.buscarTodosOrdenados();
 					catalogo.actualizarLista(listaGeneral, true);
 				}
 			}
@@ -161,7 +130,7 @@ public class CNoticia extends CGenerico {
 				if (gpxDatos.isOpen()) {
 					/* Elimina Varios Registros */
 					if (validarSeleccion(catalogo)) {
-						final List<Noticia> eliminarLista = catalogo
+						final List<Venta> eliminarLista = catalogo
 								.obtenerSeleccionados();
 						Messagebox
 								.show("¿Desea Eliminar los "
@@ -174,10 +143,10 @@ public class CNoticia extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioNoticia
+													servicioVenta
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													listaGeneral = servicioNoticia
+													listaGeneral = servicioVenta
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(
 															listaGeneral, true);
@@ -198,11 +167,11 @@ public class CNoticia extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioNoticia
+													servicioVenta
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													listaGeneral = servicioNoticia
+													listaGeneral = servicioVenta
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(
 															listaGeneral, true);
@@ -236,64 +205,69 @@ public class CNoticia extends CGenerico {
 		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
-		botoneraNoticia.appendChild(botonera);
+		botoneraVenta.appendChild(botonera);
+
 	}
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
 			msj.mensajeError(Mensaje.camposVacios);
 			return false;
-		} else
-			return true;
+		} else {
+				if (!validarFicha())
+					return false;
+				else
+					return true;
+		}
 	}
 
 	private boolean camposLLenos() {
-		if (txtNombre.getText().compareTo("") == 0
-				|| txtDescripcion.getText().compareTo("") == 0
-				|| imagen.getContent() == null) {
+		if (txtMarca.getText().compareTo("") == 0
+				|| txtPorcentaje.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
 	}
 
 	public boolean camposEditando() {
-		if (txtNombre.getText().compareTo("") != 0
-				|| txtDescripcion.getText().compareTo("") != 0) {
+		if (txtMarca.getText().compareTo("") != 0
+				|| txtPorcentaje.getText().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
 	}
 
 	protected void limpiarCampos() {
-		txtNombre.setValue("");
-		txtDescripcion.setValue("");
-		dtbFecha.setValue(fecha);
-		try {
-			imagen.setContent(new AImage(url));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		txtMarca.setValue("");
+		txtPorcentaje.setValue((double) 0);
+		spnAcumulada.setValue((double) 0);
+		spnDiaria.setValue((double) 0);
+		spnPlanificada.setValue((double) 0);
 		clave = null;
 	}
 
 	private void mostrarCatalogo() {
-		listaGeneral = servicioNoticia.buscarTodosOrdenados();
-		catalogo = new Catalogo<Noticia>(catalogoNoticia, "Noticias",
-				listaGeneral, false, false, false, "Titulo", "Fecha",
-				"Descripcion") {
+		listaGeneral = servicioVenta.buscarTodosOrdenados();
+		catalogo = new Catalogo<Venta>(catalogoVenta, "Ventas", listaGeneral,
+				false, false, false, "Marca", "Diaria", "Acumulada",
+				"Planificada") {
 
 			@Override
-			protected List<Noticia> buscar(List<String> valores) {
+			protected List<Venta> buscar(List<String> valores) {
 
-				List<Noticia> lista = new ArrayList<Noticia>();
+				List<Venta> lista = new ArrayList<Venta>();
 
-				for (Noticia objeto : listaGeneral) {
-					if (objeto.getTitulo().toLowerCase()
+				for (Venta objeto : listaGeneral) {
+					if (objeto.getMarca().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& formatoFecha.format(objeto.getFecha()).toLowerCase()
+							&& String.valueOf(objeto.getDiaria()).toLowerCase()
 									.contains(valores.get(1).toLowerCase())
-							&& objeto.getTexto().toLowerCase()
-									.contains(valores.get(2).toLowerCase())) {
+							&& String.valueOf(objeto.getAcumulada())
+									.toLowerCase()
+									.contains(valores.get(2).toLowerCase())
+							&& String.valueOf(objeto.getPlanificada())
+									.toLowerCase()
+									.contains(valores.get(3).toLowerCase())) {
 						lista.add(objeto);
 					}
 				}
@@ -301,15 +275,16 @@ public class CNoticia extends CGenerico {
 			}
 
 			@Override
-			protected String[] crearRegistros(Noticia objeto) {
-				String[] registros = new String[3];
-				registros[0] = objeto.getTitulo();
-				registros[1] = formatoFecha.format(objeto.getFecha());
-				registros[2] = objeto.getTexto();
+			protected String[] crearRegistros(Venta objeto) {
+				String[] registros = new String[4];
+				registros[0] = objeto.getMarca();
+				registros[1] = String.valueOf(objeto.getDiaria());
+				registros[2] = String.valueOf(objeto.getAcumulada());
+				registros[3] = String.valueOf(objeto.getPlanificada());
 				return registros;
 			}
 		};
-		catalogo.setParent(catalogoNoticia);
+		catalogo.setParent(catalogoVenta);
 	}
 
 	@Listen("onOpen = #gpxDatos")
@@ -348,12 +323,30 @@ public class CNoticia extends CGenerico {
 		mostrarBotones(botonera, false);
 	}
 
-	@Listen("onUpload = #fudImagenUsuario")
-	public void processMedia(UploadEvent event) {
-		media = event.getMedia();
-		if (media != null)
-			if (validarMedia(media))
-				imagen.setContent((org.zkoss.image.Image) media);
+	/* Valida la Ficha */
+	@Listen("onChange = #txtMarca; onOK = #txtMarca")
+	public boolean validarFicha() {
+		List<Venta> validador = servicioVenta.buscarPorMarca(txtMarca
+				.getValue());
+		if (!validador.isEmpty()) {
+			if (clave != null) {
+				Venta em = servicioVenta.buscar(clave);
+				if (em.getMarca().equals(validador.get(0).getMarca()))
+					return true;
+			}
+			Mensaje.mensajeAlerta("Ya Existe una Venta para esta Marca");
+			return false;
+		}
+		return true;
+	}
+
+	@Listen("onChange = #spnPlanificada, #spnAcumulada")
+	public void settear() {
+		if (spnPlanificada.getValue() != 0) {
+			txtPorcentaje.setValue(spnAcumulada.getValue()
+					/ spnPlanificada.getValue() * 100);
+		} else
+			txtPorcentaje.setValue(0);
 	}
 
 }

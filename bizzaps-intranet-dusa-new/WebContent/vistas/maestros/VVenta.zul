@@ -1,0 +1,76 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divVenta" width="100%" apply="controlador.maestros.CVenta">
+		<groupbox mold="3d" width="auto" title="Venta">
+			<div id="botoneraVenta" />
+			<groupbox id="gpxRegistro" class="azul" width="auto" title="">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para ingresar las Ventas" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Marca:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox id="txtMarca"
+								hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre de la Marca" />
+							<hbox>
+								<label class="etiqueta" value="Diaria:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<doublespinner id="spnDiaria" width="100%" step="1" value="0"
+								constraint="min 0 max 99999999" tooltiptext="Ingrese las Ventas Diarias" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Acumulada:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<doublespinner id="spnAcumulada" width="100%" step="1" value="0"
+								constraint="min 0 max 99999999" tooltiptext="Ingrese las Ventas acumuladas" />
+							<hbox>
+								<label class="etiqueta" value="Planificada:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<doublespinner id="spnPlanificada" width="100%" step="1" value="0"
+								constraint="min 0 max 99999999" tooltiptext="Ingrese las Ventas Planificadas" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="% Cumplido:" />
+								<space />
+								<label value="" style="font-weight:bold;color:red" />
+							</hbox>
+							<doublebox value="0" readonly="true" id="txtPorcentaje" hflex="1"
+								tooltiptext="Porcentaje de Cumplimiento de las ventas" />
+							<hbox />
+							<hbox />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para ver las Ventas" />
+				<separator />
+				<div id="catalogoVenta" tooltiptext="Seleccione la Venta para Realizar una Accion" />
+			</groupbox>
+		</groupbox>
+	</div>
+</zk>

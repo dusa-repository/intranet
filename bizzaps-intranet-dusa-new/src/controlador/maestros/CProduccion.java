@@ -1,28 +1,20 @@
 package controlador.maestros;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.imageio.ImageIO;
+import modelo.maestros.Produccion;
 
-import modelo.portal.Noticia;
-
-import org.zkoss.image.AImage;
-import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Doublebox;
+import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Groupbox;
-import org.zkoss.zul.Image;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
@@ -31,35 +23,37 @@ import componente.Botonera;
 import componente.Catalogo;
 import componente.Mensaje;
 
-public class CNoticia extends CGenerico {
+public class CProduccion extends CGenerico {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Wire
-	private Div divNoticia;
+	private Div divProduccion;
 	@Wire
-	private Div botoneraNoticia;
+	private Div botoneraProduccion;
 	@Wire
-	private Div catalogoNoticia;
+	private Div catalogoProduccion;
 	@Wire
-	private Textbox txtNombre;
+	private Textbox txtEmpresa;
 	@Wire
-	private Textbox txtDescripcion;
+	private Textbox txtTipo;
 	@Wire
-	private Datebox dtbFecha;
+	private Doublebox txtPorcentaje;
+	@Wire
+	private Doublespinner spnPlanificada;
+	@Wire
+	private Doublespinner spnAcumulada;
+	@Wire
+	private Doublespinner spnDiaria;
 	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
-	@Wire
-	private Image imagen;
-	@Wire
-	private Media media;
 	Long clave = null;
-	Catalogo<Noticia> catalogo;
-	protected List<Noticia> listaGeneral = new ArrayList<Noticia>();
+	Catalogo<Produccion> catalogo;
+	protected List<Produccion> listaGeneral = new ArrayList<Produccion>();
 	Botonera botonera;
 
 	@Override
@@ -74,11 +68,6 @@ public class CNoticia extends CGenerico {
 				map = null;
 			}
 		}
-		try {
-			imagen.setContent(new AImage(url));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
 		gpxRegistro.setOpen(false);
 		mostrarCatalogo();
 		botonera = new Botonera() {
@@ -89,21 +78,16 @@ public class CNoticia extends CGenerico {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
 						mostrarBotones(botonera, false);
 						abrirRegistro();
-						Noticia producto = catalogo
+						Produccion producto = catalogo
 								.objetoSeleccionadoDelCatalogo();
-						clave = producto.getIdNoticia();
-						txtNombre.setValue(producto.getTitulo());
-						txtDescripcion.setValue(producto.getTexto());
-						BufferedImage imag;
-						if (producto.getImagen() != null) {
-							try {
-								imag = ImageIO.read(new ByteArrayInputStream(
-										producto.getImagen()));
-								imagen.setContent(imag);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
+						clave = producto.getIdProduccion();
+						txtEmpresa.setValue(producto.getEmpresa());
+						txtTipo.setValue(producto.getTipo());
+						txtPorcentaje.setValue(producto.getAcumulada()
+								/ producto.getPlanificada() * 100);
+						spnAcumulada.setValue(producto.getAcumulada());
+						spnDiaria.setValue(producto.getDiaria());
+						spnPlanificada.setValue(producto.getPlanificada());
 					} else
 						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -111,7 +95,7 @@ public class CNoticia extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divNoticia, cerrar, tabs);
+				cerrarVentana(divProduccion, cerrar, tabs);
 			}
 
 			@Override
@@ -130,28 +114,17 @@ public class CNoticia extends CGenerico {
 			@Override
 			public void guardar() {
 				if (validar()) {
-					byte[] imagenUsuario = null;
-					if (media instanceof org.zkoss.image.Image) {
-						imagenUsuario = imagen.getContent().getByteData();
-
-					} else {
-						try {
-							imagen.setContent(new AImage(url));
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						imagenUsuario = imagen.getContent().getByteData();
-					}
 					if (clave == null)
 						clave = (long) 0;
-					Noticia noticia = new Noticia(clave, txtNombre.getValue(),
-							imagenUsuario, txtDescripcion.getValue(),
-							new Timestamp(dtbFecha.getValue().getTime()),
-							fechaHora, horaAuditoria, nombreUsuarioSesion());
-					servicioNoticia.guardar(noticia);
+					Produccion produccion = new Produccion(clave,
+							txtEmpresa.getValue(), txtTipo.getValue(),
+							spnDiaria.getValue(), spnAcumulada.getValue(),
+							spnPlanificada.getValue(), fechaHora,
+							horaAuditoria, nombreUsuarioSesion(), "", "");
+					servicioProduccion.guardar(produccion);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					listaGeneral = servicioNoticia.buscarTodosOrdenados();
+					listaGeneral = servicioProduccion.buscarTodosOrdenados();
 					catalogo.actualizarLista(listaGeneral, true);
 				}
 			}
@@ -161,7 +134,7 @@ public class CNoticia extends CGenerico {
 				if (gpxDatos.isOpen()) {
 					/* Elimina Varios Registros */
 					if (validarSeleccion(catalogo)) {
-						final List<Noticia> eliminarLista = catalogo
+						final List<Produccion> eliminarLista = catalogo
 								.obtenerSeleccionados();
 						Messagebox
 								.show("¿Desea Eliminar los "
@@ -174,10 +147,10 @@ public class CNoticia extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioNoticia
+													servicioProduccion
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													listaGeneral = servicioNoticia
+													listaGeneral = servicioProduccion
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(
 															listaGeneral, true);
@@ -198,11 +171,11 @@ public class CNoticia extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioNoticia
+													servicioProduccion
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													listaGeneral = servicioNoticia
+													listaGeneral = servicioProduccion
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(
 															listaGeneral, true);
@@ -236,64 +209,74 @@ public class CNoticia extends CGenerico {
 		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
-		botoneraNoticia.appendChild(botonera);
+		botoneraProduccion.appendChild(botonera);
+
 	}
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
 			msj.mensajeError(Mensaje.camposVacios);
 			return false;
-		} else
-			return true;
+		} else {
+				if (!validarFicha())
+					return false;
+				else
+					return true;
+		}
 	}
 
 	private boolean camposLLenos() {
-		if (txtNombre.getText().compareTo("") == 0
-				|| txtDescripcion.getText().compareTo("") == 0
-				|| imagen.getContent() == null) {
+		if (txtEmpresa.getText().compareTo("") == 0
+				|| txtPorcentaje.getText().compareTo("") == 0
+				|| txtTipo.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
 	}
 
 	public boolean camposEditando() {
-		if (txtNombre.getText().compareTo("") != 0
-				|| txtDescripcion.getText().compareTo("") != 0) {
+		if (txtEmpresa.getText().compareTo("") != 0
+				|| txtPorcentaje.getText().compareTo("") != 0
+				|| txtTipo.getText().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
 	}
 
 	protected void limpiarCampos() {
-		txtNombre.setValue("");
-		txtDescripcion.setValue("");
-		dtbFecha.setValue(fecha);
-		try {
-			imagen.setContent(new AImage(url));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		txtEmpresa.setValue("");
+		txtTipo.setValue("");
+		txtPorcentaje.setValue((double) 0);
+		spnAcumulada.setValue((double) 0);
+		spnDiaria.setValue((double) 0);
+		spnPlanificada.setValue((double) 0);
 		clave = null;
 	}
 
 	private void mostrarCatalogo() {
-		listaGeneral = servicioNoticia.buscarTodosOrdenados();
-		catalogo = new Catalogo<Noticia>(catalogoNoticia, "Noticias",
-				listaGeneral, false, false, false, "Titulo", "Fecha",
-				"Descripcion") {
+		listaGeneral = servicioProduccion.buscarTodosOrdenados();
+		catalogo = new Catalogo<Produccion>(catalogoProduccion, "Producciones",
+				listaGeneral, false, false, false, "Empresa", "Tipo", "Diaria",
+				"Acumulada", "Planificada") {
 
 			@Override
-			protected List<Noticia> buscar(List<String> valores) {
+			protected List<Produccion> buscar(List<String> valores) {
 
-				List<Noticia> lista = new ArrayList<Noticia>();
+				List<Produccion> lista = new ArrayList<Produccion>();
 
-				for (Noticia objeto : listaGeneral) {
-					if (objeto.getTitulo().toLowerCase()
+				for (Produccion objeto : listaGeneral) {
+					if (objeto.getEmpresa().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& formatoFecha.format(objeto.getFecha()).toLowerCase()
+							&& objeto.getTipo().toLowerCase()
 									.contains(valores.get(1).toLowerCase())
-							&& objeto.getTexto().toLowerCase()
-									.contains(valores.get(2).toLowerCase())) {
+							&& String.valueOf(objeto.getDiaria()).toLowerCase()
+									.contains(valores.get(2).toLowerCase())
+							&& String.valueOf(objeto.getAcumulada())
+									.toLowerCase()
+									.contains(valores.get(3).toLowerCase())
+							&& String.valueOf(objeto.getPlanificada())
+									.toLowerCase()
+									.contains(valores.get(4).toLowerCase())) {
 						lista.add(objeto);
 					}
 				}
@@ -301,15 +284,17 @@ public class CNoticia extends CGenerico {
 			}
 
 			@Override
-			protected String[] crearRegistros(Noticia objeto) {
-				String[] registros = new String[3];
-				registros[0] = objeto.getTitulo();
-				registros[1] = formatoFecha.format(objeto.getFecha());
-				registros[2] = objeto.getTexto();
+			protected String[] crearRegistros(Produccion objeto) {
+				String[] registros = new String[5];
+				registros[0] = objeto.getEmpresa();
+				registros[1] = objeto.getTipo();
+				registros[2] = String.valueOf(objeto.getDiaria());
+				registros[3] = String.valueOf(objeto.getAcumulada());
+				registros[4] = String.valueOf(objeto.getPlanificada());
 				return registros;
 			}
 		};
-		catalogo.setParent(catalogoNoticia);
+		catalogo.setParent(catalogoProduccion);
 	}
 
 	@Listen("onOpen = #gpxDatos")
@@ -348,12 +333,30 @@ public class CNoticia extends CGenerico {
 		mostrarBotones(botonera, false);
 	}
 
-	@Listen("onUpload = #fudImagenUsuario")
-	public void processMedia(UploadEvent event) {
-		media = event.getMedia();
-		if (media != null)
-			if (validarMedia(media))
-				imagen.setContent((org.zkoss.image.Image) media);
+	/* Valida la Ficha */
+	@Listen("onChange = #txtEmpresa; onOK = #txtEmpresa")
+	public boolean validarFicha() {
+		List<Produccion> validador = servicioProduccion
+				.buscarPorEmpresa(txtEmpresa.getValue());
+		if (!validador.isEmpty()) {
+			if (clave != null) {
+				Produccion em = servicioProduccion.buscar(clave);
+				if (em.getEmpresa().equals(validador.get(0).getEmpresa()))
+					return true;
+			}
+			Mensaje.mensajeAlerta("Ya se ha establecido la produccion para esta empresa");
+			return false;
+		}
+		return true;
+	}
+
+	@Listen("onChange = #spnPlanificada, #spnAcumulada")
+	public void settear() {
+		if (spnPlanificada.getValue() != 0) {
+			txtPorcentaje.setValue(spnAcumulada.getValue()
+					/ spnPlanificada.getValue() * 100);
+		} else
+			txtPorcentaje.setValue(0);
 	}
 
 }

@@ -17,6 +17,11 @@ import javax.persistence.Table;
 @NamedQuery(name="Norma.findAll", query="SELECT t FROM Norma t")
 public class Norma implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_norma")

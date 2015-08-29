@@ -1,101 +1,52 @@
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="public/bootstrap-slate.min.css" />
-	<div height="100%" width="100%" class="bs-example">
+	<div height="100%" width="100%" class="bs-example"
+		apply="controlador.portal.CEnlacePortal">
 		<listbox id="listaEnlaces" width="auto" emptyMessage="No hay Enlaces Para Mostrar">
 			<listhead>
 				<listheader label="Sistema" width="50%" />
 				<listheader label="Link" width="35%" />
 				<listheader label="" width="15%" />
 			</listhead>
-			<listitem>
-				<listcell>
-					<label value="Sistema Integral Medico y de Seguridad" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="http://www.dusanet.com:8029/SIMS/" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<button sclass="btn-primary">Ir</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Sistema de Formato de Actividades" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="http://www.dusanet.com:8029/fac/" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<button sclass="btn-primary">Ir</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Sistema de Inventario" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="http://www.dusanet.com:8029/inventario/"
-						sclass="heavy" />
-				</listcell>
-				<listcell>
-					<button sclass="btn-primary">Ir</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Sistema de Pesaje" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="http://www.dusanet.com:8029/pesaje/" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<button sclass="btn-primary">Ir</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Sistema de Reporte de Gastos" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="http://www.dusanet.com:8029/gastos/" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<button sclass="btn-primary">Ir</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Sistema de Pedidos" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="http://www.dusanet.com:8029/pedidos/" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<button sclass="btn-primary">Ir</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Sistema de Control de Asistencia" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="http://www.dusanet.com:8029/sca/" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<button sclass="btn-primary">Ir</button>
-				</listcell>
-			</listitem>
-			<listitem>
-				<listcell>
-					<label value="Sistema de Venta de Aliados" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="http://www.dusanet.com:8029/sevadu/" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<button sclass="btn-primary">Ir</button>
-				</listcell>
-			</listitem>
+			<template name="model">
+				<listitem>
+					<listcell>
+						<label value="${each.nombre}" sclass="titulo" />
+					</listcell>
+					<listcell>
+						<label value="${each.url}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<button autodisable="true" sclass="btn-primary"
+							onClick="$composer.ventanaBoton(self)">Ir</button>
+					</listcell>
+				</listitem>
+			</template>
+			<!-- <listcell> <label value="Sistema Integral Medico y de Seguridad" 
+				sclass="titulo" /> </listcell> <listcell> <label value="http://www.dusanet.com:8029/SIMS/" 
+				sclass="heavy" /> </listcell> <listcell> <button sclass="btn-primary">Ir</button> 
+				</listcell> </listitem> <listitem> <listcell> <label value="Sistema de Formato 
+				de Actividades" sclass="titulo" /> </listcell> <listcell> <label value="http://www.dusanet.com:8029/fac/" 
+				sclass="heavy" /> </listcell> <listcell> <button sclass="btn-primary">Ir</button> 
+				</listcell> </listitem> <listitem> <listcell> <label value="Sistema de Inventario" 
+				sclass="titulo" /> </listcell> <listcell> <label value="http://www.dusanet.com:8029/inventario/" 
+				sclass="heavy" /> </listcell> <listcell> <button sclass="btn-primary">Ir</button> 
+				</listcell> </listitem> <listitem> <listcell> <label value="Sistema de Pesaje" 
+				sclass="titulo" /> </listcell> <listcell> <label value="http://www.dusanet.com:8029/pesaje/" 
+				sclass="heavy" /> </listcell> <listcell> <button sclass="btn-primary">Ir</button> 
+				</listcell> </listitem> <listitem> <listcell> <label value="Sistema de Reporte 
+				de Gastos" sclass="titulo" /> </listcell> <listcell> <label value="http://www.dusanet.com:8029/gastos/" 
+				sclass="heavy" /> </listcell> <listcell> <button sclass="btn-primary">Ir</button> 
+				</listcell> </listitem> <listitem> <listcell> <label value="Sistema de Pedidos" 
+				sclass="titulo" /> </listcell> <listcell> <label value="http://www.dusanet.com:8029/pedidos/" 
+				sclass="heavy" /> </listcell> <listcell> <button sclass="btn-primary">Ir</button> 
+				</listcell> </listitem> <listitem> <listcell> <label value="Sistema de Control 
+				de Asistencia" sclass="titulo" /> </listcell> <listcell> <label value="http://www.dusanet.com:8029/sca/" 
+				sclass="heavy" /> </listcell> <listcell> <button sclass="btn-primary">Ir</button> 
+				</listcell> </listitem> <listitem> <listcell> <label value="Sistema de Venta 
+				de Aliados" sclass="titulo" /> </listcell> <listcell> <label value="http://www.dusanet.com:8029/sevadu/" 
+				sclass="heavy" /> </listcell> <listcell> <button sclass="btn-primary">Ir</button> 
+				</listcell> </listitem> -->
 		</listbox>
 	</div>
 </zk>

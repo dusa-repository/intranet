@@ -5,12 +5,13 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import modelo.portal.Noticia;
+import modelo.maestros.Empleado;
 
 import org.zkoss.image.AImage;
 import org.zkoss.util.media.Media;
@@ -30,23 +31,32 @@ import org.zkoss.zul.Textbox;
 import componente.Botonera;
 import componente.Catalogo;
 import componente.Mensaje;
+import componente.Validador;
 
-public class CNoticia extends CGenerico {
+public class CEmpleado extends CGenerico {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Wire
-	private Div divNoticia;
+	private Div divEmpleado;
 	@Wire
-	private Div botoneraNoticia;
+	private Div botoneraEmpleado;
 	@Wire
-	private Div catalogoNoticia;
+	private Div catalogoEmpleado;
 	@Wire
 	private Textbox txtNombre;
 	@Wire
-	private Textbox txtDescripcion;
+	private Textbox txtApellido;
+	@Wire
+	private Textbox txtTelefonoFijo;
+	@Wire
+	private Textbox txtTelefonoCedular;
+	@Wire
+	private Textbox txtDireccion;
+	@Wire
+	private Textbox txtFicha;
 	@Wire
 	private Datebox dtbFecha;
 	@Wire
@@ -58,8 +68,8 @@ public class CNoticia extends CGenerico {
 	@Wire
 	private Media media;
 	Long clave = null;
-	Catalogo<Noticia> catalogo;
-	protected List<Noticia> listaGeneral = new ArrayList<Noticia>();
+	Catalogo<Empleado> catalogo;
+	protected List<Empleado> listaGeneral = new ArrayList<Empleado>();
 	Botonera botonera;
 
 	@Override
@@ -89,11 +99,17 @@ public class CNoticia extends CGenerico {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
 						mostrarBotones(botonera, false);
 						abrirRegistro();
-						Noticia producto = catalogo
+						Empleado producto = catalogo
 								.objetoSeleccionadoDelCatalogo();
-						clave = producto.getIdNoticia();
-						txtNombre.setValue(producto.getTitulo());
-						txtDescripcion.setValue(producto.getTexto());
+						clave = producto.getIdEmpleado();
+						txtNombre.setValue(producto.getNombre());
+						txtApellido.setValue(producto.getApellido());
+						txtDireccion.setValue(producto.getDireccion());
+						txtFicha.setValue(producto.getFicha());
+						txtTelefonoCedular.setValue(producto
+								.getTelefonoCelular());
+						txtTelefonoFijo.setValue(producto.getTelefonoFijo());
+						dtbFecha.setValue(producto.getFechaNacimiento());
 						BufferedImage imag;
 						if (producto.getImagen() != null) {
 							try {
@@ -111,7 +127,7 @@ public class CNoticia extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divNoticia, cerrar, tabs);
+				cerrarVentana(divEmpleado, cerrar, tabs);
 			}
 
 			@Override
@@ -144,14 +160,18 @@ public class CNoticia extends CGenerico {
 					}
 					if (clave == null)
 						clave = (long) 0;
-					Noticia noticia = new Noticia(clave, txtNombre.getValue(),
-							imagenUsuario, txtDescripcion.getValue(),
+					Empleado empleado = new Empleado(clave,
+							txtFicha.getValue(), txtNombre.getValue(),
+							txtApellido.getValue(), txtDireccion.getValue(),
+							txtTelefonoFijo.getValue(),
+							txtTelefonoCedular.getValue(), imagenUsuario,
 							new Timestamp(dtbFecha.getValue().getTime()),
-							fechaHora, horaAuditoria, nombreUsuarioSesion());
-					servicioNoticia.guardar(noticia);
+							fechaHora, horaAuditoria, nombreUsuarioSesion(),
+							"", "");
+					servicioEmpleado.guardar(empleado);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					listaGeneral = servicioNoticia.buscarTodosOrdenados();
+					listaGeneral = servicioEmpleado.buscarTodosOrdenados();
 					catalogo.actualizarLista(listaGeneral, true);
 				}
 			}
@@ -161,7 +181,7 @@ public class CNoticia extends CGenerico {
 				if (gpxDatos.isOpen()) {
 					/* Elimina Varios Registros */
 					if (validarSeleccion(catalogo)) {
-						final List<Noticia> eliminarLista = catalogo
+						final List<Empleado> eliminarLista = catalogo
 								.obtenerSeleccionados();
 						Messagebox
 								.show("¿Desea Eliminar los "
@@ -174,10 +194,10 @@ public class CNoticia extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioNoticia
+													servicioEmpleado
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													listaGeneral = servicioNoticia
+													listaGeneral = servicioEmpleado
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(
 															listaGeneral, true);
@@ -198,11 +218,11 @@ public class CNoticia extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioNoticia
+													servicioEmpleado
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													listaGeneral = servicioNoticia
+													listaGeneral = servicioEmpleado
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(
 															listaGeneral, true);
@@ -236,21 +256,33 @@ public class CNoticia extends CGenerico {
 		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
-		botoneraNoticia.appendChild(botonera);
+		botoneraEmpleado.appendChild(botonera);
 	}
 
 	protected boolean validar() {
 		if (!camposLLenos()) {
 			msj.mensajeError(Mensaje.camposVacios);
 			return false;
-		} else
-			return true;
+		} else {
+			if (!Validador.validarTelefono(txtTelefonoCedular.getValue())
+					|| (txtTelefonoFijo.getText().compareTo("") != 0 && !Validador
+							.validarTelefono(txtTelefonoFijo.getValue()))) {
+				msj.mensajeError(Mensaje.telefonoInvalido);
+				return false;
+			} else {
+				if (!validarFicha())
+					return false;
+				else
+					return true;
+			}
+		}
 	}
 
 	private boolean camposLLenos() {
 		if (txtNombre.getText().compareTo("") == 0
-				|| txtDescripcion.getText().compareTo("") == 0
-				|| imagen.getContent() == null) {
+				|| txtApellido.getText().compareTo("") == 0
+				|| txtDireccion.getText().compareTo("") == 0
+				|| txtTelefonoCedular.getText().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
@@ -258,7 +290,11 @@ public class CNoticia extends CGenerico {
 
 	public boolean camposEditando() {
 		if (txtNombre.getText().compareTo("") != 0
-				|| txtDescripcion.getText().compareTo("") != 0) {
+				|| txtApellido.getText().compareTo("") != 0
+				|| txtDireccion.getText().compareTo("") != 0
+				|| txtFicha.getText().compareTo("") != 0
+				|| txtTelefonoCedular.getText().compareTo("") != 0
+				|| txtTelefonoFijo.getText().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
@@ -266,8 +302,12 @@ public class CNoticia extends CGenerico {
 
 	protected void limpiarCampos() {
 		txtNombre.setValue("");
-		txtDescripcion.setValue("");
-		dtbFecha.setValue(fecha);
+		txtApellido.setValue("");
+		txtDireccion.setValue("");
+		txtFicha.setValue("");
+		txtTelefonoCedular.setValue("");
+		txtTelefonoFijo.setValue("");
+		dtbFecha.setValue(new Date());
 		try {
 			imagen.setContent(new AImage(url));
 		} catch (IOException e1) {
@@ -277,23 +317,30 @@ public class CNoticia extends CGenerico {
 	}
 
 	private void mostrarCatalogo() {
-		listaGeneral = servicioNoticia.buscarTodosOrdenados();
-		catalogo = new Catalogo<Noticia>(catalogoNoticia, "Noticias",
-				listaGeneral, false, false, false, "Titulo", "Fecha",
-				"Descripcion") {
+		listaGeneral = servicioEmpleado.buscarTodosOrdenados();
+		catalogo = new Catalogo<Empleado>(catalogoEmpleado, "Empleados",
+				listaGeneral, false, false, false, "Ficha", "Nombre",
+				"Apellido", "Fecha Nacimiento", "Tlf. Cedular", "Tlf. Fijo") {
 
 			@Override
-			protected List<Noticia> buscar(List<String> valores) {
+			protected List<Empleado> buscar(List<String> valores) {
 
-				List<Noticia> lista = new ArrayList<Noticia>();
+				List<Empleado> lista = new ArrayList<Empleado>();
 
-				for (Noticia objeto : listaGeneral) {
-					if (objeto.getTitulo().toLowerCase()
+				for (Empleado objeto : listaGeneral) {
+					if (objeto.getFicha().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& formatoFecha.format(objeto.getFecha()).toLowerCase()
+							&& objeto.getNombre().toLowerCase()
 									.contains(valores.get(1).toLowerCase())
-							&& objeto.getTexto().toLowerCase()
-									.contains(valores.get(2).toLowerCase())) {
+							&& objeto.getApellido().toLowerCase()
+									.contains(valores.get(2).toLowerCase())
+							&& formatoFecha.format(objeto.getFechaNacimiento())
+									.toLowerCase()
+									.contains(valores.get(3).toLowerCase())
+							&& objeto.getTelefonoCelular().toLowerCase()
+									.contains(valores.get(4).toLowerCase())
+							&& objeto.getTelefonoFijo().toLowerCase()
+									.contains(valores.get(5).toLowerCase())) {
 						lista.add(objeto);
 					}
 				}
@@ -301,15 +348,18 @@ public class CNoticia extends CGenerico {
 			}
 
 			@Override
-			protected String[] crearRegistros(Noticia objeto) {
-				String[] registros = new String[3];
-				registros[0] = objeto.getTitulo();
-				registros[1] = formatoFecha.format(objeto.getFecha());
-				registros[2] = objeto.getTexto();
+			protected String[] crearRegistros(Empleado objeto) {
+				String[] registros = new String[6];
+				registros[0] = objeto.getFicha();
+				registros[1] = objeto.getNombre();
+				registros[2] = objeto.getApellido();
+				registros[3] = formatoFecha.format(objeto.getFechaNacimiento());
+				registros[4] = objeto.getTelefonoCelular();
+				registros[5] = objeto.getTelefonoFijo();
 				return registros;
 			}
 		};
-		catalogo.setParent(catalogoNoticia);
+		catalogo.setParent(catalogoEmpleado);
 	}
 
 	@Listen("onOpen = #gpxDatos")
@@ -354,6 +404,39 @@ public class CNoticia extends CGenerico {
 		if (media != null)
 			if (validarMedia(media))
 				imagen.setContent((org.zkoss.image.Image) media);
+	}
+
+	/* Valida la Ficha */
+	@Listen("onChange = #txtFicha; onOK = #txtFicha")
+	public boolean validarFicha() {
+		List<Empleado> validador = servicioEmpleado.buscarPorFicha(txtFicha
+				.getValue());
+		if (!validador.isEmpty()) {
+			if (clave != null) {
+				Empleado em = servicioEmpleado.buscar(clave);
+				if (em.getFicha().equals(validador.get(0).getFicha()))
+					return true;
+			}
+			Mensaje.mensajeAlerta("La ficha que ha ingresado pertenece a otro Empleado");
+			return false;
+		}
+		return true;
+	}
+
+	/* Metodo que valida el formmato del telefono ingresado */
+	@Listen("onChange = #txtTelefonoCedular")
+	public void validarTelefono() throws IOException {
+		if (Validador.validarTelefono(txtTelefonoCedular.getValue()) == false) {
+			Mensaje.mensajeAlerta(Mensaje.telefonoInvalido);
+		}
+	}
+
+	/* Metodo que valida el formmato del telefono ingresado */
+	@Listen("onChange = #txtTelefonoFijo")
+	public void validarTelefono2() throws IOException {
+		if (Validador.validarTelefono(txtTelefonoFijo.getValue()) == false) {
+			Mensaje.mensajeAlerta(Mensaje.telefonoInvalido);
+		}
 	}
 
 }

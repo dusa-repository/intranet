@@ -1,8 +1,8 @@
 package servicio.portal;
 
-import java.util.List;
-
 import interfacedao.portal.INormaDAO;
+
+import java.util.List;
 
 import modelo.portal.Norma;
 

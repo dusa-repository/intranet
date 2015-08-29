@@ -8,77 +8,49 @@
 	<style src="public/bootstrap-slate.min.css" />
 
 	<div height="100%" width="100%" class="bs-example">
-		<listbox height="auto" width="auto"
-			emptyMessage="No Hay Cumpleañeros en el dia Seleccionado">
+		<listbox mold="paging" pageSize="10" height="auto" width="auto" apply="controlador.portal.CDirectorio"
+			emptyMessage="No Hay Directorio Registrado" id="ltbDirectorio">
 			<listhead>
 				<listheader label="" width="18%" />
 				<listheader label="" width="22%">
-					<textbox class="form-control input-sm" placeholder="Nombre" />
+					<textbox class="form-control input-sm" placeholder="Nombre"
+						id="txtNombre" />
 				</listheader>
 				<listheader label="" width="17%">
-					<textbox class="form-control input-sm" placeholder="Telefono Movil" />
+					<textbox class="form-control input-sm" placeholder="Telefono Movil"
+						id="txtCelular" />
 				</listheader>
 				<listheader label="" width="17%">
-					<textbox class="form-control input-sm" placeholder="Telefono Fijo" />
+					<textbox class="form-control input-sm" placeholder="Telefono Fijo"
+						id="txtFijo" />
 				</listheader>
-				<listheader label="" width="26%" >
-					<textbox class="form-control input-sm" placeholder="Direccion" />
+				<listheader label="" width="26%">
+					<textbox class="form-control input-sm" placeholder="Direccion"
+						id="txtDireccion" />
 				</listheader>
 			</listhead>
-			<listitem>
-				<listcell>
-					<image width="100px" height="100px"
-						src="/public/imagenes/generales/cumple1.jpg" />
-				</listcell>
-				<listcell>
-					<label value="Maria Jose Parra" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="0416-8765555" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="0251-6876666" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="Barquisimeto, Estado Lara" sclass="heavy" />
-				</listcell>
-			</listitem>
-					<listitem>
-				<listcell>
-					<image width="100px" height="100px"
-						src="/public/imagenes/generales/cumple2.jpg" />
-				</listcell>
-				<listcell>
-					<label value="Miguel Antonio Perez" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="0416-5465768" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="0251-3253456" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="Barquisimeto, Estado Lara" sclass="heavy" />
-				</listcell>
-			</listitem>
-					<listitem>
-				<listcell>
-					<image width="100px" height="100px"
-						src="/public/imagenes/generales/cumple3.jpg" />
-				</listcell>
-				<listcell>
-					<label value="Mariana Adriana Rodriguez" sclass="titulo" />
-				</listcell>
-				<listcell>
-					<label value="0424-5435456" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="0251-3567456" sclass="heavy" />
-				</listcell>
-				<listcell>
-					<label value="Barquisimeto, Estado Lara" sclass="heavy" />
-				</listcell>
-			</listitem>
+			<template name="model">
+				<listitem>
+					<listcell>
+						<image width="100px" height="100px" content="${each.traerImagen()}" />
+					</listcell>
+					<listcell>
+						<vlayout>
+							<label value="${each.nombre} ${each.apellido}" sclass="titulo" />
+							<label value="(${each.ficha})" sclass="titulo" />
+						</vlayout>
+					</listcell>
+					<listcell>
+						<label value="${each.telefonoCelular}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.telefonoFijo}" sclass="heavy" />
+					</listcell>
+					<listcell>
+						<label value="${each.direccion}" sclass="heavy" />
+					</listcell>
+				</listitem>
+			</template>
 		</listbox>
 	</div>
 </zk>

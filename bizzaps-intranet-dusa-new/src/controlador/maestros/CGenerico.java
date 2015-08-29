@@ -26,9 +26,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.util.media.Media;
@@ -38,14 +35,19 @@ import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Div;
-import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Tab;
 
+import servicio.maestros.SDocumento;
+import servicio.maestros.SEmpleado;
+import servicio.maestros.SEnlace;
 import servicio.maestros.SNoticia;
+import servicio.maestros.SProduccion;
 import servicio.maestros.SProducto;
 import servicio.maestros.SResponsabilidad;
+import servicio.maestros.SVenta;
 import servicio.portal.SCarrusel;
 import servicio.portal.SNorma;
+
 import componente.Botonera;
 import componente.Catalogo;
 import componente.Mensaje;
@@ -65,6 +67,16 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SNorma servicioNorma;
 	@WireVariable("SResponsabilidad")
 	protected SResponsabilidad servicioResponsabilidad;
+	@WireVariable("SEmpleado")
+	protected SEmpleado servicioEmpleado;
+	@WireVariable("SDocumento")
+	protected SDocumento servicioDocumento;
+	@WireVariable("SEnlace")
+	protected SEnlace servicioEnlace;
+	@WireVariable("SVenta")
+	protected SVenta servicioVenta;
+	@WireVariable("SProduccion")
+	protected SProduccion servicioProduccion;
 	
 
 	protected static SimpleDateFormat formatoFecha = new SimpleDateFormat(

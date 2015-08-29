@@ -86,11 +86,12 @@ public abstract class Validador {
 		else
 			return false;
 	}
-	
 
-	public static boolean validarExcel(Media media) {
+	public static boolean validarDocumento(Media media) {
 		String extencion = media.getFormat();
-		if (extencion.equals("xlsx"))
+		if (extencion.equals("xlsx") || extencion.equals("pdf")
+				|| extencion.equals("docx") || extencion.equals("doc")
+				|| extencion.equals("xls"))
 			return true;
 		else
 			return false;

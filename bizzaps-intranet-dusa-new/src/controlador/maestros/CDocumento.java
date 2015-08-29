@@ -1,28 +1,24 @@
 package controlador.maestros;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.imageio.ImageIO;
+import modelo.maestros.Documento;
 
-import modelo.portal.Noticia;
-
-import org.zkoss.image.AImage;
+import org.zkoss.util.media.AMedia;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Datebox;
+import org.zkoss.zul.A;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
-import org.zkoss.zul.Image;
+import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
@@ -30,36 +26,41 @@ import org.zkoss.zul.Textbox;
 import componente.Botonera;
 import componente.Catalogo;
 import componente.Mensaje;
+import componente.Validador;
 
-public class CNoticia extends CGenerico {
+public class CDocumento extends CGenerico {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Wire
-	private Div divNoticia;
+	private Div divDocumento;
 	@Wire
-	private Div botoneraNoticia;
+	private Div botoneraDocumento;
 	@Wire
-	private Div catalogoNoticia;
+	private Div catalogoDocumento;
 	@Wire
 	private Textbox txtNombre;
 	@Wire
 	private Textbox txtDescripcion;
 	@Wire
-	private Datebox dtbFecha;
+	private Textbox txtTipo;
 	@Wire
 	private Groupbox gpxDatos;
 	@Wire
 	private Groupbox gpxRegistro;
 	@Wire
-	private Image imagen;
-	@Wire
 	private Media media;
+	@Wire
+	private Label lblNombre;
+	@Wire
+	private org.zkoss.zul.Row row;
+	@Wire
+	private Label lblDescripcion;
 	Long clave = null;
-	Catalogo<Noticia> catalogo;
-	protected List<Noticia> listaGeneral = new ArrayList<Noticia>();
+	Catalogo<Documento> catalogo;
+	protected List<Documento> listaGeneral = new ArrayList<Documento>();
 	Botonera botonera;
 
 	@Override
@@ -74,11 +75,6 @@ public class CNoticia extends CGenerico {
 				map = null;
 			}
 		}
-		try {
-			imagen.setContent(new AImage(url));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
 		gpxRegistro.setOpen(false);
 		mostrarCatalogo();
 		botonera = new Botonera() {
@@ -89,21 +85,45 @@ public class CNoticia extends CGenerico {
 					if (catalogo.obtenerSeleccionados().size() == 1) {
 						mostrarBotones(botonera, false);
 						abrirRegistro();
-						Noticia producto = catalogo
+						Documento producto = catalogo
 								.objetoSeleccionadoDelCatalogo();
-						clave = producto.getIdNoticia();
-						txtNombre.setValue(producto.getTitulo());
-						txtDescripcion.setValue(producto.getTexto());
-						BufferedImage imag;
-						if (producto.getImagen() != null) {
-							try {
-								imag = ImageIO.read(new ByteArrayInputStream(
-										producto.getImagen()));
-								imagen.setContent(imag);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
+						clave = producto.getIdDocumento();
+						txtNombre.setValue(producto.getNombre());
+						txtDescripcion.setValue(producto.getDescripcion());
+						lblDescripcion.setValue(producto
+								.getDescripcionDocumento());
+						txtTipo.setValue(producto.getTipo());
+						String formato = "";
+						switch (producto.getTipo()) {
+						case "application/pdf":
+							formato = "pdf";
+						case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+							formato = "xlsx";
+						case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+							formato = "docx";
+						case "application/vnd.ms-excel":
+							formato = "xls";
+						case "application/msword":
+							formato = "doc";
+						default:
+							formato = "N/A";
 						}
+						media = new AMedia(producto.getDescripcionDocumento(),
+								formato, producto.getTipo(),
+								producto.getContenido());
+						final A rm = new A("Remover");
+						rm.addEventListener(
+								Events.ON_CLICK,
+								new org.zkoss.zk.ui.event.EventListener<Event>() {
+									public void onEvent(Event event)
+											throws Exception {
+										lblDescripcion.setValue("");
+										txtTipo.setValue("");
+										rm.detach();
+										media = null;
+									}
+								});
+						row.appendChild(rm);
 					} else
 						Mensaje.mensajeAlerta(Mensaje.editarSoloUno);
 				}
@@ -111,7 +131,7 @@ public class CNoticia extends CGenerico {
 
 			@Override
 			public void salir() {
-				cerrarVentana(divNoticia, cerrar, tabs);
+				cerrarVentana(divDocumento, cerrar, tabs);
 			}
 
 			@Override
@@ -125,33 +145,26 @@ public class CNoticia extends CGenerico {
 				mostrarBotones(botonera, false);
 				limpiarCampos();
 				clave = null;
+				if (row.getChildren().size() == 4) {
+					A linea = (A) row.getChildren().get(3);
+					Events.postEvent("onClick", linea, null);
+				}
 			}
 
 			@Override
 			public void guardar() {
 				if (validar()) {
-					byte[] imagenUsuario = null;
-					if (media instanceof org.zkoss.image.Image) {
-						imagenUsuario = imagen.getContent().getByteData();
-
-					} else {
-						try {
-							imagen.setContent(new AImage(url));
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						imagenUsuario = imagen.getContent().getByteData();
-					}
 					if (clave == null)
 						clave = (long) 0;
-					Noticia noticia = new Noticia(clave, txtNombre.getValue(),
-							imagenUsuario, txtDescripcion.getValue(),
-							new Timestamp(dtbFecha.getValue().getTime()),
-							fechaHora, horaAuditoria, nombreUsuarioSesion());
-					servicioNoticia.guardar(noticia);
+					Documento documento = new Documento(clave,
+							txtNombre.getValue(), txtDescripcion.getValue(),
+							lblDescripcion.getValue(), txtTipo.getValue(),
+							media.getByteData(), fechaHora, horaAuditoria,
+							nombreUsuarioSesion(), "", "");
+					servicioDocumento.guardar(documento);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
-					listaGeneral = servicioNoticia.buscarTodosOrdenados();
+					listaGeneral = servicioDocumento.buscarTodosOrdenados();
 					catalogo.actualizarLista(listaGeneral, true);
 				}
 			}
@@ -161,7 +174,7 @@ public class CNoticia extends CGenerico {
 				if (gpxDatos.isOpen()) {
 					/* Elimina Varios Registros */
 					if (validarSeleccion(catalogo)) {
-						final List<Noticia> eliminarLista = catalogo
+						final List<Documento> eliminarLista = catalogo
 								.obtenerSeleccionados();
 						Messagebox
 								.show("¿Desea Eliminar los "
@@ -174,10 +187,10 @@ public class CNoticia extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioNoticia
+													servicioDocumento
 															.eliminarVarios(eliminarLista);
 													msj.mensajeInformacion(Mensaje.eliminado);
-													listaGeneral = servicioNoticia
+													listaGeneral = servicioDocumento
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(
 															listaGeneral, true);
@@ -198,11 +211,11 @@ public class CNoticia extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioNoticia
+													servicioDocumento
 															.eliminarUno(clave);
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
-													listaGeneral = servicioNoticia
+													listaGeneral = servicioDocumento
 															.buscarTodosOrdenados();
 													catalogo.actualizarLista(
 															listaGeneral, true);
@@ -236,7 +249,8 @@ public class CNoticia extends CGenerico {
 		botonera.getChildren().get(1).setVisible(false);
 		botonera.getChildren().get(3).setVisible(false);
 		botonera.getChildren().get(5).setVisible(false);
-		botoneraNoticia.appendChild(botonera);
+		botoneraDocumento.appendChild(botonera);
+
 	}
 
 	protected boolean validar() {
@@ -250,7 +264,7 @@ public class CNoticia extends CGenerico {
 	private boolean camposLLenos() {
 		if (txtNombre.getText().compareTo("") == 0
 				|| txtDescripcion.getText().compareTo("") == 0
-				|| imagen.getContent() == null) {
+				|| lblDescripcion.getValue().compareTo("") == 0) {
 			return false;
 		} else
 			return true;
@@ -258,7 +272,9 @@ public class CNoticia extends CGenerico {
 
 	public boolean camposEditando() {
 		if (txtNombre.getText().compareTo("") != 0
-				|| txtDescripcion.getText().compareTo("") != 0) {
+				|| txtDescripcion.getText().compareTo("") != 0
+				|| txtTipo.getText().compareTo("") != 0
+				|| lblDescripcion.getValue().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
@@ -267,32 +283,27 @@ public class CNoticia extends CGenerico {
 	protected void limpiarCampos() {
 		txtNombre.setValue("");
 		txtDescripcion.setValue("");
-		dtbFecha.setValue(fecha);
-		try {
-			imagen.setContent(new AImage(url));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		txtTipo.setValue("");
 		clave = null;
 	}
 
 	private void mostrarCatalogo() {
-		listaGeneral = servicioNoticia.buscarTodosOrdenados();
-		catalogo = new Catalogo<Noticia>(catalogoNoticia, "Noticias",
-				listaGeneral, false, false, false, "Titulo", "Fecha",
-				"Descripcion") {
+		listaGeneral = servicioDocumento.buscarTodosOrdenados();
+		catalogo = new Catalogo<Documento>(catalogoDocumento, "Documentos",
+				listaGeneral, false, false, false, "Nombre", "Descripcion",
+				"Tipo Doc.") {
 
 			@Override
-			protected List<Noticia> buscar(List<String> valores) {
+			protected List<Documento> buscar(List<String> valores) {
 
-				List<Noticia> lista = new ArrayList<Noticia>();
+				List<Documento> lista = new ArrayList<Documento>();
 
-				for (Noticia objeto : listaGeneral) {
-					if (objeto.getTitulo().toLowerCase()
+				for (Documento objeto : listaGeneral) {
+					if (objeto.getNombre().toLowerCase()
 							.contains(valores.get(0).toLowerCase())
-							&& formatoFecha.format(objeto.getFecha()).toLowerCase()
+							&& objeto.getDescripcion().toLowerCase()
 									.contains(valores.get(1).toLowerCase())
-							&& objeto.getTexto().toLowerCase()
+							&& objeto.getTipo().toLowerCase()
 									.contains(valores.get(2).toLowerCase())) {
 						lista.add(objeto);
 					}
@@ -301,15 +312,15 @@ public class CNoticia extends CGenerico {
 			}
 
 			@Override
-			protected String[] crearRegistros(Noticia objeto) {
+			protected String[] crearRegistros(Documento objeto) {
 				String[] registros = new String[3];
-				registros[0] = objeto.getTitulo();
-				registros[1] = formatoFecha.format(objeto.getFecha());
-				registros[2] = objeto.getTexto();
+				registros[0] = objeto.getNombre();
+				registros[1] = objeto.getDescripcion();
+				registros[2] = objeto.getTipo();
 				return registros;
 			}
 		};
-		catalogo.setParent(catalogoNoticia);
+		catalogo.setParent(catalogoDocumento);
 	}
 
 	@Listen("onOpen = #gpxDatos")
@@ -348,12 +359,25 @@ public class CNoticia extends CGenerico {
 		mostrarBotones(botonera, false);
 	}
 
-	@Listen("onUpload = #fudImagenUsuario")
-	public void processMedia(UploadEvent event) {
+	@Listen("onUpload = #btnImportar")
+	public void cargar(UploadEvent event) {
 		media = event.getMedia();
-		if (media != null)
-			if (validarMedia(media))
-				imagen.setContent((org.zkoss.image.Image) media);
+		if (media != null && Validador.validarDocumento(media)) {
+			lblDescripcion.setValue(media.getName());
+			txtTipo.setValue(media.getContentType());
+			final A rm = new A("Remover");
+			rm.addEventListener(Events.ON_CLICK,
+					new org.zkoss.zk.ui.event.EventListener<Event>() {
+						public void onEvent(Event event) throws Exception {
+							lblDescripcion.setValue("");
+							txtTipo.setValue("");
+							rm.detach();
+							media = null;
+						}
+					});
+			row.appendChild(rm);
+		} else
+			msj.mensajeError(Mensaje.archivoExcel);
 	}
 
 }

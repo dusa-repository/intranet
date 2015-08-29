@@ -1,0 +1,57 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divEnlace" width="100%" apply="controlador.maestros.CEnlace">
+		<groupbox mold="3d" width="auto" title="Enlace">
+			<div id="botoneraEnlace" />
+			<groupbox id="gpxRegistro" class="azul" width="auto" title="">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para ingresar los Enlaces" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Nombre:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox class="multilinea" multiline="true" id="txtNombre"
+								hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre del enlace" />
+							<hbox>
+								<label class="etiqueta" value="URL:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox class="multilinea" multiline="true" id="txtURL"
+								hflex="1" maxlength="250" tooltiptext="Ingrese la URL del enlace (www.google.com)" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Descripcion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<cell colspan="3">
+								<textbox class="multilinea" multiline="true" id="txtDescripcion"
+									hflex="1" maxlength="500" tooltiptext="Ingrese la Descripcion del Enlace" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para ver los Enlaces" />
+				<separator />
+				<div id="catalogoEnlace" tooltiptext="Seleccione el Enlace para Realizar una Accion" />
+			</groupbox>
+		</groupbox>
+	</div>
+</zk>

@@ -1,0 +1,93 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divEmpleado" width="100%" apply="controlador.maestros.CEmpleado">
+		<groupbox mold="3d" width="auto" title="Empleado">
+			<div id="botoneraEmpleado" />
+			<groupbox id="gpxRegistro" class="azul" width="auto" title="">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para ingresar los Productos" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Ficha:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox id="txtFicha" hflex="1" maxlength="250"
+								tooltiptext="Ingrese la Ficha del Empleado" />
+							<hbox>
+								<label class="etiqueta" value="Fecha Nacimiento:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<datebox readonly="true" width="100%" id="dtbFecha"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de Nacimiento del Empleado" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Nombres:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox class="multilinea" multiline="true" id="txtNombre"
+								hflex="1" maxlength="250" tooltiptext="Ingrese los Nombres del Empleado" />
+							<hbox>
+								<label class="etiqueta" value="Apellidos:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox class="multilinea" multiline="true" id="txtApellido"
+								hflex="1" maxlength="250" tooltiptext="Ingrese los Apellidos del Empleado" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Tlf. Celular:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox id="txtTelefonoCedular" hflex="1" maxlength="250"
+								tooltiptext="Ingrese el Telefono Celular del Empleado" />
+							<hbox>
+								<label class="etiqueta" value="Tlf. Fijo:" />
+								<space />
+								<label value="" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox id="txtTelefonoFijo" hflex="1" maxlength="250"
+								tooltiptext="Ingrese el Telefono Fijo del Empleado" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Direccion:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox class="multilinea" multiline="true" id="txtDireccion"
+								hflex="1" maxlength="250"
+								tooltiptext="Ingrese la Direccion de Habitacion del Empleado" />
+							<fileupload label="Cargar Imagen" width="150px"
+								image="/public/imagenes/botones/cargar.png" id="fudImagenUsuario">
+							</fileupload>
+							<image id="imagen" width="50px" height="50px" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para ver los Empleados" />
+				<separator />
+				<div id="catalogoEmpleado" tooltiptext="Seleccione el Producto para Realizar una Accion" />
+			</groupbox>
+		</groupbox>
+	</div>
+</zk>

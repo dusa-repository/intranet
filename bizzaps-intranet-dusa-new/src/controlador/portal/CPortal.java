@@ -10,7 +10,6 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
-import org.zkoss.zul.Separator;
 
 import controlador.maestros.CGenerico;
 

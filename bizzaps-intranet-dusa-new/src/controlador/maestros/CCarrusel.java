@@ -3,14 +3,11 @@ package controlador.maestros;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import modelo.maestros.Producto;
 import modelo.portal.Carrusel;
 
 import org.zkoss.util.media.Media;
@@ -18,18 +15,13 @@ import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Button;
 import org.zkoss.zul.Div;
-import org.zkoss.zul.Doublespinner;
 import org.zkoss.zul.Fileupload;
-import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Image;
-import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
 import componente.Botonera;
-import componente.Catalogo;
 import componente.Mensaje;
 
 public class CCarrusel extends CGenerico {

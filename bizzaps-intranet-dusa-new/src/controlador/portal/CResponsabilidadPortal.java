@@ -7,7 +7,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import modelo.maestros.Responsabilidad;
-import modelo.portal.Norma;
 
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Html;

@@ -1,8 +1,9 @@
 package servicio.maestros;
 
+import interfacedao.maestros.INoticiaDAO;
+
 import java.util.List;
 
-import interfacedao.maestros.INoticiaDAO;
 import modelo.portal.Noticia;
 
 import org.springframework.beans.factory.annotation.Autowired;
