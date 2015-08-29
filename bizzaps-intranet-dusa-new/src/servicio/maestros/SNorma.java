@@ -1,10 +1,10 @@
-package servicio.portal;
+package servicio.maestros;
 
-import interfacedao.portal.INormaDAO;
+import interfacedao.maestros.INormaDAO;
 
 import java.util.List;
 
-import modelo.portal.Norma;
+import modelo.maestros.Norma;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

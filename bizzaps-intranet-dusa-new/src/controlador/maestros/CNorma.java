@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import modelo.portal.Norma;
+import modelo.maestros.Norma;
 
 import org.springframework.stereotype.Controller;
 import org.zkforge.ckez.CKeditor;

@@ -1,4 +1,4 @@
-package modelo.portal;
+package modelo.maestros;
 
 import java.io.Serializable;
 

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import controlador.maestros.CGenerico;
+
 @Entity
 @Table(name = "produccion")
 @NamedQuery(name = "Produccion.findAll", query = "SELECT t FROM Produccion t")
@@ -257,10 +259,11 @@ public class Produccion implements Serializable {
 
 	public String porcentaje() {
 		try {
-			return String.valueOf(acumulada / planificada * 100);
+			return String.valueOf(CGenerico.round(
+					acumulada / planificada * 100, 2));
 		} catch (Exception e) {
 			return "";
 		}
 	}
-	
+
 }

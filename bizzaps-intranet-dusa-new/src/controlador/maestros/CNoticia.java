@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import modelo.portal.Noticia;
+import modelo.maestros.Noticia;
 
 import org.zkoss.image.AImage;
 import org.zkoss.util.media.Media;

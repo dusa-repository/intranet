@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import modelo.portal.Norma;
+import modelo.maestros.Norma;
 
 import org.springframework.stereotype.Controller;
 import org.zkoss.zk.ui.select.annotation.Wire;

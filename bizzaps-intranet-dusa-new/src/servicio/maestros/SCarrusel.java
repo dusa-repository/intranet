@@ -1,10 +1,10 @@
-package servicio.portal;
+package servicio.maestros;
 
-import interfacedao.portal.ICarruselDAO;
+import interfacedao.maestros.ICarruselDAO;
 
 import java.util.List;
 
-import modelo.portal.Carrusel;
+import modelo.maestros.Carrusel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

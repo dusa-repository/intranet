@@ -37,17 +37,16 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 
+import servicio.maestros.SCarrusel;
 import servicio.maestros.SDocumento;
 import servicio.maestros.SEmpleado;
 import servicio.maestros.SEnlace;
+import servicio.maestros.SNorma;
 import servicio.maestros.SNoticia;
 import servicio.maestros.SProduccion;
 import servicio.maestros.SProducto;
 import servicio.maestros.SResponsabilidad;
 import servicio.maestros.SVenta;
-import servicio.portal.SCarrusel;
-import servicio.portal.SNorma;
-
 import componente.Botonera;
 import componente.Catalogo;
 import componente.Mensaje;

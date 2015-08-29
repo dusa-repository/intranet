@@ -1,6 +1,6 @@
 package interfacedao.maestros;
 
-import modelo.portal.Noticia;
+import modelo.maestros.Noticia;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

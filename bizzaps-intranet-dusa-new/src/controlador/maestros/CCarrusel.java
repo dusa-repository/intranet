@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import modelo.portal.Carrusel;
+import modelo.maestros.Carrusel;
 
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Sessions;

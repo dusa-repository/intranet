@@ -1,6 +1,6 @@
-package interfacedao.portal;
+package interfacedao.maestros;
 
-import modelo.portal.Norma;
+import modelo.maestros.Norma;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

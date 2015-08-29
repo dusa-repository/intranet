@@ -1,6 +1,6 @@
-package interfacedao.portal;
+package interfacedao.maestros;
 
-import modelo.portal.Carrusel;
+import modelo.maestros.Carrusel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
