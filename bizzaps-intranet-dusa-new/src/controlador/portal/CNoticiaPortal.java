@@ -34,7 +34,8 @@ public class CNoticiaPortal extends CGenerico {
 
 	public void ventanaBoton(A a) {
 		Label label = (Label) a.getParent().getParent().getParent().getParent()
-				.getParent().getChildren().get(1).getFirstChild();
+				.getParent().getParent().getParent().getChildren().get(1)
+				.getFirstChild();
 		Clients.evalJavaScript("window.open('zk/verNoticia.zul?type="
 				+ label.getValue() + "','_blank')");
 	}

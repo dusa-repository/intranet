@@ -161,10 +161,10 @@ public class Noticia implements Serializable {
 
 	public String truncar() {
 		if (texto != null) {
-			if (texto.length() <= 800)
+			if (texto.length() <= 400)
 				return texto;
 			else
-				for (int i = 800; i < texto.length(); i++)
+				for (int i = 400; i < texto.length(); i++)
 					if (texto.charAt(i) == ' ')
 						return texto.substring(0, i);
 		}

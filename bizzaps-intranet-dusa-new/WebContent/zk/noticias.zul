@@ -10,16 +10,24 @@
 						<vlayout>
 							<label value="${each.titulo}" sclass="titulo" />
 							<hlayout>
-								<vlayout>
-									<image width="300px" height="200px" content="${each.traerImagen()}" />
-									<label value="${each.fechaFormato()}" sclass="heavy" />
-								</vlayout>
-								<vlayout>
-									<html content="${each.truncar()}" sclass="heavy" />
-									<a onClick="$composer.ventanaBoton(self)">
-										<label style="color:#F2F5A9;font-size: 13px;" value="Ver mas..." sclass="heavy" />
-									</a>
-								</vlayout>
+								<hbox width="100%">
+									<cell width="30%">
+										<vlayout>
+											<image  width="100%" height="100%" content="${each.traerImagen()}" />
+											<label value="${each.fechaFormato()}" sclass="heavy" />
+										</vlayout>
+									</cell>
+									<cell width="70%">
+										<vlayout>
+											<html style="display: inline-block;" content="${each.truncar()}"
+												sclass="heavy" />
+											<a onClick="$composer.ventanaBoton(self)">
+												<label style="color:#F2F5A9;font-size: 13px;" value="Ver mas..."
+													sclass="heavy" />
+											</a>
+										</vlayout>
+									</cell>
+								</hbox>
 							</hlayout>
 						</vlayout>
 					</listcell>
