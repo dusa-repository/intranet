@@ -7,6 +7,8 @@ import java.util.List;
 import modelo.maestros.Noticia;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
@@ -32,5 +34,15 @@ public class SNoticia {
 
 	public void eliminarUno(Long clave) {
 		noticiaDAO.delete(clave);
+	}
+
+	public List<Noticia> buscarTodosPortal() {
+		Sort sort = new Sort(Direction.ASC, "fecha", "titulo");
+		Pageable topTen = new PageRequest(0, 3, sort);
+		return noticiaDAO.findByIdNoticiaGreaterThan((long)0, topTen);
+	}
+
+	public Noticia buscar(Long valueOf) {
+		return noticiaDAO.findOne(valueOf);
 	}
 }

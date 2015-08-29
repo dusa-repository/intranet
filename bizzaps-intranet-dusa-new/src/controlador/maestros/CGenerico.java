@@ -78,7 +78,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SProduccion servicioProduccion;
 	
 
-	protected static SimpleDateFormat formatoFecha = new SimpleDateFormat(
+	public static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
 	protected static SimpleDateFormat formatoFechaRara = new SimpleDateFormat(
 			"yyyyMMdd");

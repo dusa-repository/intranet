@@ -19,6 +19,8 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import controlador.maestros.CGenerico;
+
 @Entity
 @Table(name = "empleado")
 @NamedQuery(name = "Empleado.findAll", query = "SELECT t FROM Empleado t")
@@ -335,8 +337,7 @@ public class Empleado implements Serializable {
 	}
 
 	public String fechaCumple() {
-		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
-		return formatoFecha.format(fechaNacimiento);
+		return CGenerico.formatoFecha.format(fechaNacimiento);
 	}
 
 }

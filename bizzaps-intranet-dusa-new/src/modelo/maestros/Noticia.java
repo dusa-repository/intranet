@@ -1,8 +1,14 @@
 package modelo.maestros;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
+import javax.imageio.ImageIO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import controlador.maestros.CGenerico;
 
 @Entity
 @Table(name="noticia")
@@ -130,6 +138,25 @@ public class Noticia implements Serializable {
 	public void setUsuarioAuditoria(String usuarioAuditoria) {
 		this.usuarioAuditoria = usuarioAuditoria;
 	}
-	
+
+	public BufferedImage traerImagen() {
+		BufferedImage imag;
+		try {
+			if (imagen == null) {
+				URL url = getClass().getResource(
+						"/controlador/maestros/ohne.png");
+				return imag = ImageIO.read(url);
+			}
+			imag = ImageIO.read(new ByteArrayInputStream(imagen));
+			return imag;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public String fechaFormato() {
+		return CGenerico.formatoFecha.format(fecha);
+	}
 	
 }

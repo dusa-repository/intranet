@@ -1,7 +1,7 @@
 <zk xmlns:w="client" xmlns:n="native">
 
 	<div id="ven" height="100%" width="100%" class="bs-example"
-		apply="controlador.portal.CNoticiaPortal">
+		apply="controlador.portal.CVerNoticia">
 		<listbox id="ltbNoticiasPortal" height="auto" width="auto"
 			emptyMessage="No Hay Noticias Disponibles">
 			<template name="model">
@@ -14,7 +14,7 @@
 								<label value="${each.fechaFormato()}" sclass="heavy" />
 								<hlayout>
 									<label value="${each.texto}" sclass="heavy" />
-									<a onClick="$composer.ventanaBoton(self)">
+									<a onClick="$composer.ventana(self)">
 										<label style="color: blue" value=" mas..." sclass="heavy" />
 									</a>
 								</hlayout>
