@@ -8,16 +8,16 @@
 				<listitem>
 					<listcell>
 						<hlayout>
-							<image width="230px" height="150px" content="${each.traerImagen()}" />
 							<vlayout>
 								<label value="${each.titulo}" sclass="titulo" />
+								<image width="300px" height="200px" content="${each.traerImagen()}" />
 								<label value="${each.fechaFormato()}" sclass="heavy" />
-								<hlayout>
-									<label value="${each.texto}" sclass="heavy" />
-									<a onClick="$composer.ventanaBoton(self)">
-										<label style="color: blue" value=" mas..." sclass="heavy" />
-									</a>
-								</hlayout>
+							</vlayout>
+							<vlayout>
+								<html content="${each.truncar()}" sclass="heavy" />
+								<a onClick="$composer.ventanaBoton(self)">
+									<label style="color: blue" value=" mas..." sclass="heavy" />
+								</a>
 							</vlayout>
 						</hlayout>
 					</listcell>

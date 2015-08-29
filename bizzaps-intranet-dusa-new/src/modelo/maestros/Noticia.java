@@ -21,8 +21,8 @@ import javax.persistence.Table;
 import controlador.maestros.CGenerico;
 
 @Entity
-@Table(name="noticia")
-@NamedQuery(name="Noticia.findAll", query="SELECT t FROM Noticia t")
+@Table(name = "noticia")
+@NamedQuery(name = "Noticia.findAll", query = "SELECT t FROM Noticia t")
 public class Noticia implements Serializable {
 
 	/**
@@ -31,22 +31,22 @@ public class Noticia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_noticia")
 	private long idNoticia;
 
 	@Column(length = 250)
 	private String titulo;
-	
+
 	@Lob
 	private byte[] imagen;
-	
+
 	@Column(length = 5000)
 	private String texto;
-	
+
 	@Column(name = "fecha")
 	private Timestamp fecha;
-	
+
 	@Column(name = "fecha_auditoria")
 	private Timestamp fechaAuditoria;
 
@@ -158,5 +158,17 @@ public class Noticia implements Serializable {
 	public String fechaFormato() {
 		return CGenerico.formatoFecha.format(fecha);
 	}
-	
+
+	public String truncar() {
+		if (texto != null) {
+			if (texto.length() <= 500)
+				return texto;
+			else
+				for (int i = 500; i < texto.length(); i++)
+					if (texto.charAt(i) == ' ')
+						return texto.substring(0, i);
+		}
+		return "";
+	}
+
 }

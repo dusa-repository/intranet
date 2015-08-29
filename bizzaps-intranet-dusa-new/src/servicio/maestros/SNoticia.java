@@ -38,7 +38,7 @@ public class SNoticia {
 
 	public List<Noticia> buscarTodosPortal() {
 		Sort sort = new Sort(Direction.ASC, "fecha", "titulo");
-		Pageable topTen = new PageRequest(0, 3, sort);
+		Pageable topTen = new PageRequest(0, 2, sort);
 		return noticiaDAO.findByIdNoticiaGreaterThan((long)0, topTen);
 	}
 
