@@ -9,10 +9,10 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
+						<column label="" width="15%" />
+						<column label="" width="33%" />
+						<column label="" width="19%" />
+						<column label="" width="33%" />
 					</columns>
 					<rows>
 						<row>
@@ -73,10 +73,12 @@
 							<textbox class="multilinea" multiline="true" id="txtDireccion"
 								hflex="1" maxlength="250"
 								tooltiptext="Ingrese la Direccion de Habitacion del Empleado" />
-							<fileupload label="Cargar Imagen" width="150px"
+							<fileupload
+								style="	background: #800400;font-size: 11px;color: white;cursor: pointer;width: 95px;height: 35px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;font-family: sans-serif;	text-shadow: 0 0 0;"
+								label="Cargar Imagen" width="150px"
 								image="/public/imagenes/botones/cargar.png" id="fudImagenUsuario">
 							</fileupload>
-							<image id="imagen" width="50px" height="50px" />
+							<image id="imagen" width="100px" height="100px" />
 						</row>
 					</rows>
 				</grid>

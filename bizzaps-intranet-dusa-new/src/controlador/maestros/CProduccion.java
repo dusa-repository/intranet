@@ -83,8 +83,8 @@ public class CProduccion extends CGenerico {
 						clave = producto.getIdProduccion();
 						txtEmpresa.setValue(producto.getEmpresa());
 						txtTipo.setValue(producto.getTipo());
-						txtPorcentaje.setValue(producto.getAcumulada()
-								/ producto.getPlanificada() * 100);
+						txtPorcentaje.setValue(round(producto.getAcumulada()
+								/ producto.getPlanificada() * 100,2));
 						spnAcumulada.setValue(producto.getAcumulada());
 						spnDiaria.setValue(producto.getDiaria());
 						spnPlanificada.setValue(producto.getPlanificada());
@@ -246,7 +246,7 @@ public class CProduccion extends CGenerico {
 	protected void limpiarCampos() {
 		txtEmpresa.setValue("");
 		txtTipo.setValue("");
-		txtPorcentaje.setValue((double) 0);
+		txtPorcentaje.setValue(null);
 		spnAcumulada.setValue((double) 0);
 		spnDiaria.setValue((double) 0);
 		spnPlanificada.setValue((double) 0);
@@ -353,8 +353,9 @@ public class CProduccion extends CGenerico {
 	@Listen("onChange = #spnPlanificada, #spnAcumulada")
 	public void settear() {
 		if (spnPlanificada.getValue() != 0) {
-			txtPorcentaje.setValue(spnAcumulada.getValue()
-					/ spnPlanificada.getValue() * 100);
+			txtPorcentaje.setValue(round(spnAcumulada.getValue()
+					/ spnPlanificada.getValue()* 100, 2));
+			;
 		} else
 			txtPorcentaje.setValue(0);
 	}

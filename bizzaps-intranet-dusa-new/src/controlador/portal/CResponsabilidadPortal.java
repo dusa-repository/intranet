@@ -33,10 +33,10 @@ public class CResponsabilidadPortal extends CGenerico {
 			titulo.setValue(respon.getTitulo());
 			String texto = respon.getTexto();
 			if (texto != null) {
-				if (texto.length() <= 1499)
+				if (texto.length() <= 1299)
 					primeraA.setContent(texto);
 				else {
-					for (int i = 1500; i < texto.length(); i++) {
+					for (int i = 1300; i < texto.length(); i++) {
 
 						if (texto.charAt(i) == ' ') {
 							primeraA.setContent(texto.substring(0, i));

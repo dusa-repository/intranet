@@ -80,8 +80,8 @@ public class CVenta extends CGenerico {
 								.objetoSeleccionadoDelCatalogo();
 						clave = producto.getIdVenta();
 						txtMarca.setValue(producto.getMarca());
-						txtPorcentaje.setValue(producto.getAcumulada()
-								/ producto.getPlanificada() * 100);
+						txtPorcentaje.setValue(round(producto.getAcumulada()
+								/ producto.getPlanificada() * 100,2));
 						spnAcumulada.setValue(producto.getAcumulada());
 						spnDiaria.setValue(producto.getDiaria());
 						spnPlanificada.setValue(producto.getPlanificada());
@@ -239,7 +239,7 @@ public class CVenta extends CGenerico {
 
 	protected void limpiarCampos() {
 		txtMarca.setValue("");
-		txtPorcentaje.setValue((double) 0);
+		txtPorcentaje.setValue(null);
 		spnAcumulada.setValue((double) 0);
 		spnDiaria.setValue((double) 0);
 		spnPlanificada.setValue((double) 0);
@@ -343,8 +343,8 @@ public class CVenta extends CGenerico {
 	@Listen("onChange = #spnPlanificada, #spnAcumulada")
 	public void settear() {
 		if (spnPlanificada.getValue() != 0) {
-			txtPorcentaje.setValue(spnAcumulada.getValue()
-					/ spnPlanificada.getValue() * 100);
+			txtPorcentaje.setValue(round(spnAcumulada.getValue()
+					/ spnPlanificada.getValue()* 100, 2));
 		} else
 			txtPorcentaje.setValue(0);
 	}

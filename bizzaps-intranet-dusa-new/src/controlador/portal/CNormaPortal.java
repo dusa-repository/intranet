@@ -46,10 +46,10 @@ public class CNormaPortal extends CGenerico {
 			titulo2.setValue(normaa.getTituloSegunda());
 			String texto2 = normaa.getTextoSegunda();
 			if (texto != null) {
-				if (texto.length() <= 1499)
+				if (texto.length() <= 1299)
 					primeraA.setContent(texto);
 				else {
-					for (int i = 1500; i < texto.length(); i++) {
+					for (int i = 1300; i < texto.length(); i++) {
 
 						if (texto.charAt(i) == ' ') {
 							primeraA.setContent(texto.substring(0, i));
@@ -61,10 +61,10 @@ public class CNormaPortal extends CGenerico {
 				}
 			}
 			if (texto2 != null) {
-				if (texto2.length() <= 1499)
+				if (texto2.length() <= 1399)
 					segundaA.setContent(texto2);
 				else {
-					for (int i = 1500; i < texto2.length(); i++) {
+					for (int i = 1300; i < texto2.length(); i++) {
 
 						if (texto2.charAt(i) == ' ') {
 							segundaA.setContent(texto2.substring(0, i));

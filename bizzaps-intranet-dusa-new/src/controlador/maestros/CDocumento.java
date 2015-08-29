@@ -145,8 +145,8 @@ public class CDocumento extends CGenerico {
 				mostrarBotones(botonera, false);
 				limpiarCampos();
 				clave = null;
-				if (row.getChildren().size() == 4) {
-					A linea = (A) row.getChildren().get(3);
+				if (row.getChildren().size() == 3) {
+					A linea = (A) row.getChildren().get(2);
 					Events.postEvent("onClick", linea, null);
 				}
 			}
@@ -284,6 +284,7 @@ public class CDocumento extends CGenerico {
 		txtNombre.setValue("");
 		txtDescripcion.setValue("");
 		txtTipo.setValue("");
+		lblDescripcion.setValue("");
 		clave = null;
 	}
 

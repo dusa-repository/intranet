@@ -9,10 +9,10 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
+						<column label="" width="15%" />
+						<column label="" width="35%" />
+						<column label="" width="15%" />
+						<column label="" width="35%" />
 					</columns>
 					<rows>
 						<row>
@@ -23,13 +23,8 @@
 							</hbox>
 							<textbox class="multilinea" multiline="true" id="txtNombre"
 								hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre del Documento" />
-							<hbox>
-								<label class="etiqueta" value="Tipo Doc.:" />
-								<space />
-								<label value="" style="font-weight:bold;color:red" />
-							</hbox>
-							<textbox readonly="true" id="txtTipo" hflex="1"
-								tooltiptext="Tipo del Documento" />
+						<hbox/>
+						<hbox/>
 						</row>
 						<row>
 							<hbox>
@@ -42,12 +37,24 @@
 									hflex="1" maxlength="500" tooltiptext="Ingrese la Descripcion del Documento" />
 							</cell>
 						</row>
-						<row id="row">
+						<row>
 							<label id="lblNombre" class="etiqueta" value="Seleccione el Archivo:" />
+
 							<button autodisable="self" id="btnImportar"
 								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
-								upload="true" label="Buscar" tooltiptext="Importar Data"
+								upload="true" label="Buscar" tooltiptext="Buscar Archivo"
 								image="/public/imagenes/botones/importar.png" />
+							<hbox>
+								<label class="etiqueta" value="Tipo Doc.:" />
+								<space />
+								<label value="" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox readonly="true" id="txtTipo" hflex="1"
+								tooltiptext="Tipo del Documento" />
+
+						</row>
+						<row id="row">
+							<label class="etiqueta" value="Archivo:" />
 							<label id="lblDescripcion" />
 						</row>
 					</rows>

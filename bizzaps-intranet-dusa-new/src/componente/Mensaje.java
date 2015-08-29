@@ -51,7 +51,7 @@ public class Mensaje {
 	public static String limpiado = "Cupos Limpiados Exitosamente";
 	public static String consumidoMayor = "La cantidad total debe ser mayor a la cantidad consumida";
 	public static String fechasErroneas = "La fecha de Vigencia desde debe ser menor a la fecha de vigencia hasta";
-	public static String archivoExcel = "Los Archivos deben ser de Tipo .xlsx";
+	public static String archivoExcel = "Los Archivos deben ser de Tipo xlsx, doc, pdf, docx, xls ";
 	public static String usernameUsado  = "El Username esta siendo Usado por Otro Registro.";
 	public static String seleccionarStatus= "Debe Seleccionar un Status";
 	public static String fechaPosterior = "La Fecha de Inicio no puede ser posterior a la Fecha Fin";

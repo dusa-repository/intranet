@@ -9,10 +9,10 @@
 				<separator />
 				<grid width="100%">
 					<columns visible="false">
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
+						<column label="" width="15%" />
+						<column label="" width="35%" />
+						<column label="" width="15%" />
+						<column label="" width="35%" />
 					</columns>
 					<rows>
 						<row>
@@ -22,7 +22,7 @@
 								<label value="*" style="font-weight:bold;color:red" />
 							</hbox>
 							<textbox id="txtEmpresa" hflex="1" maxlength="250"
-								tooltiptext="Ingrese el Nombre del Producto" />
+								tooltiptext="Ingrese el Nombre de la Empresa" />
 							<hbox>
 								<label class="etiqueta" value="Tipo:" />
 								<space />
@@ -63,7 +63,7 @@
 								<space />
 								<label value="" style="font-weight:bold;color:red" />
 							</hbox>
-							<doublebox value="0" readonly="true" id="txtPorcentaje" hflex="1"
+							<doublebox  readonly="true" id="txtPorcentaje" hflex="1"
 								tooltiptext="Porcentaje de Cumplimiento de la Produccion" />
 						</row>
 					</rows>

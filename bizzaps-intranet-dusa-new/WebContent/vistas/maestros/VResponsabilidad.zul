@@ -2,7 +2,7 @@
 	<style src="../public/Estilo.css" />
 	<div height="100%" id="divResponsabilidad" apply="controlador.maestros.CResponsabilidad">
 		<groupbox height="100%" width="100%" mold="3d"
-			title="Responsabilidad Social (VResponsabilidad)">
+			title="Responsabilidad Social">
 			<div id="botoneraResponsabilidad" />
 			<separator />
 			<tabbox width="auto" height="auto" orient="horizontal">
@@ -15,17 +15,18 @@
 						<separator />
 						<separator />
 						<textbox class="multilinea" multiline="true" id="txtTitulo"
-							maxlength="250" tooltiptext="Ingrese el Titulo"
-							placeholder="Ingrese el Titulo" />
+							maxlength="250" tooltiptext="Ingrese el Titulo" placeholder="Ingrese el Titulo" />
 						<separator />
 						<separator />
 						<image
-							tooltiptext="Tamaños permitidos: Minimo 512KB y Maximo 2MB  &#x0d;Formatos permitidos: .png y .jpeg"
+							tooltiptext="Tamaños permitidos: Minimo 128KB y Maximo 2MB  &#x0d;Formatos permitidos: .png y .jpeg"
 							style="border: 1px outset #A0A0A0;" id="imagen1" width="250px"
 							height="230px" />
 						<space />
-						<fileupload image="/public/imagenes/botones/cargar.png"
-							id="fudImagen1" label="Cargar Imagen" width="160px">
+						<fileupload
+							style="	background: #800400;font-size: 11px;color: white;cursor: pointer;width: 95px;height: 35px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;font-family: sans-serif;	text-shadow: 0 0 0;"
+							image="/public/imagenes/botones/cargar.png" id="fudImagen1"
+							label="Cargar Imagen" width="160px">
 						</fileupload>
 						<button id="btnRemover1" label="Remover Imagen" width="160px"
 							tooltiptext="Presione para Remover la Imagen" image="/public/imagenes/botones/quitar.png" />
@@ -39,8 +40,8 @@
 						<separator />
 					</tabpanel>
 					<tabpanel>
-						<ckeditor toolbar="emptyToolbar" id="ckTexto"
-							width="950px" height="300px">
+						<ckeditor toolbar="emptyToolbar" id="ckTexto" width="950px"
+							height="300px">
 							<attribute name="value" />
 						</ckeditor>
 					</tabpanel>

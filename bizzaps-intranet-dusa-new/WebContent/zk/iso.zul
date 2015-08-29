@@ -8,7 +8,7 @@
 					</n:h1>
 					<hbox widths="40%,60%">
 						<div>
-							<image id="imagen1" width="250px" height="360px" />
+							<image id="imagen1" width="250px" height="380px" />
 						</div>
 						<div>
 							<html id="primeraA"></html>
@@ -28,7 +28,7 @@
 					</n:h1>
 					<hbox widths="40%,60%">
 						<div>
-							<image id="imagen2" width="250px" height="360px" />
+							<image id="imagen2" width="280px" height="360px" />
 						</div>
 						<div>
 							<html id="segundaA"></html>

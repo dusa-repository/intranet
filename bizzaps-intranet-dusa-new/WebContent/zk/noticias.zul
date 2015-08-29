@@ -7,19 +7,21 @@
 			<template name="model">
 				<listitem>
 					<listcell>
-						<hlayout>
-							<vlayout>
-								<label value="${each.titulo}" sclass="titulo" />
-								<image width="300px" height="200px" content="${each.traerImagen()}" />
-								<label value="${each.fechaFormato()}" sclass="heavy" />
-							</vlayout>
-							<vlayout>
-								<html content="${each.truncar()}" sclass="heavy" />
-								<a onClick="$composer.ventanaBoton(self)">
-									<label style="color: blue" value=" mas..." sclass="heavy" />
-								</a>
-							</vlayout>
-						</hlayout>
+						<vlayout>
+							<label value="${each.titulo}" sclass="titulo" />
+							<hlayout>
+								<vlayout>
+									<image width="300px" height="200px" content="${each.traerImagen()}" />
+									<label value="${each.fechaFormato()}" sclass="heavy" />
+								</vlayout>
+								<vlayout>
+									<html content="${each.truncar()}" sclass="heavy" />
+									<a onClick="$composer.ventanaBoton(self)">
+										<label style="color:#F2F5A9;font-size: 13px;" value="Ver mas..." sclass="heavy" />
+									</a>
+								</vlayout>
+							</hlayout>
+						</vlayout>
 					</listcell>
 					<listcell visible="false">
 						<label value="${each.idNoticia}" sclass="titulo" />

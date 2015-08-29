@@ -365,7 +365,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 			Mensaje.mensajeAlerta(Mensaje.noPermitido);
 			return false;
 		} else {
-			if (media.getByteData().length < 128000) {
+			if (media.getByteData().length < 10) {
 				Mensaje.mensajeAlerta(Mensaje.tamanioMuyPequenio);
 				return false;
 			} else {
