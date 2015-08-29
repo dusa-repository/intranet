@@ -363,7 +363,7 @@ public class CDocumento extends CGenerico {
 	@Listen("onUpload = #btnImportar")
 	public void cargar(UploadEvent event) {
 		media = event.getMedia();
-		if (media != null && Validador.validarDocumento(media)) {
+		if (media != null && Validador.validarDocumento(media) && Validador.validarTamannoDocumento(media)) {
 			lblDescripcion.setValue(media.getName());
 			txtTipo.setValue(media.getContentType());
 			final A rm = new A("Remover");

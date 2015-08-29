@@ -1,7 +1,7 @@
 <zk>
 	<style src="/public/Estilo.css" />
 	<div id="divDocumento" width="100%" apply="controlador.maestros.CDocumento">
-		<groupbox mold="3d" width="auto" title="Noticia">
+		<groupbox mold="3d" width="auto" title="Documento">
 			<div id="botoneraDocumento" />
 			<groupbox id="gpxRegistro" class="azul" width="auto" title="">
 				<caption label="Nuevo" style="font-weight:bold"
@@ -42,7 +42,7 @@
 
 							<button autodisable="self" id="btnImportar"
 								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
-								upload="true" label="Buscar" tooltiptext="Buscar Archivo"
+								upload="true, multiple=false" label="Buscar" tooltiptext="Buscar Archivo"
 								image="/public/imagenes/botones/importar.png" />
 							<hbox>
 								<label class="etiqueta" value="Tipo Doc.:" />

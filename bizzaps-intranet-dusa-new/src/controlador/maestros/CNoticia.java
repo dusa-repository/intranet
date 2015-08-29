@@ -245,7 +245,13 @@ public class CNoticia extends CGenerico {
 			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
+			{
+			if (txtDescripcion.getValue().length() > 4999) {
+				msj.mensajeAlerta("Longitud maxima excedida de la noticia(5000 caracteres)");
+				return false;
+			}
 			return true;
+			}
 	}
 
 	private boolean camposLLenos() {

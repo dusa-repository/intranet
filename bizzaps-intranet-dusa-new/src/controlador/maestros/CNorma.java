@@ -176,7 +176,20 @@ public class CNorma extends CGenerico {
 			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
-			return true;
+		{
+			if (ckTextoPrimera.getValue().length() > 4999) {
+				msj.mensajeAlerta("Longitud maxima excedida del texto la norma 1 (5000 caracteres)");
+				return false;
+			}
+			else
+			{
+				if (ckTextoSegunda.getValue().length() > 4999) {
+					msj.mensajeAlerta("Longitud maxima excedida del texto la norma 2 (5000 caracteres)");
+					return false;
+				}
+				return true;
+			}
+		}
 	}
 
 	private void actualizar() {

@@ -46,4 +46,7 @@
 		<name>org.zkoss.zul.Panel.mold</name>
 		<value>bs</value>
 	</library-property>
+	<system-config>
+		<max-upload-size>-1</max-upload-size>
+	</system-config>
 </zk>

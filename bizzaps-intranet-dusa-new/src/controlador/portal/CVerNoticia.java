@@ -48,10 +48,10 @@ public class CVerNoticia extends CGenerico {
 			fecha.setValue(fech);
 			String texto = noticia.getTexto();
 			if (texto != null) {
-				if (texto.length() <= 1499)
+				if (texto.length() <= 1299)
 					noticiaA.setContent(texto);
 				else {
-					for (int i = 1500; i < texto.length(); i++) {
+					for (int i = 1300; i < texto.length(); i++) {
 
 						if (texto.charAt(i) == ' ') {
 							noticiaA.setContent(texto.substring(0, i));

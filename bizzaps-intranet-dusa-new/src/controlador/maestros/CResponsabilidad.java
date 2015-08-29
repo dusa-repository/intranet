@@ -156,7 +156,13 @@ public class CResponsabilidad  extends CGenerico {
 			msj.mensajeError(Mensaje.camposVacios);
 			return false;
 		} else
+			{
+			if (ckTexto.getValue().length() > 4999) {
+				msj.mensajeAlerta("Longitud maxima excedida del texto (5000 caracteres)");
+				return false;
+			}
 			return true;
+			}
 	}
 
 
