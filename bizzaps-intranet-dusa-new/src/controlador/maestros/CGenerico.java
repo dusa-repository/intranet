@@ -43,7 +43,9 @@ import org.zkoss.zul.Tab;
 
 import servicio.maestros.SNoticia;
 import servicio.maestros.SProducto;
+import servicio.maestros.SResponsabilidad;
 import servicio.portal.SCarrusel;
+import servicio.portal.SNorma;
 import componente.Botonera;
 import componente.Catalogo;
 import componente.Mensaje;
@@ -59,6 +61,11 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SProducto servicioProducto;
 	@WireVariable("SNoticia")
 	protected SNoticia servicioNoticia;
+	@WireVariable("SNorma")
+	protected SNorma servicioNorma;
+	@WireVariable("SResponsabilidad")
+	protected SResponsabilidad servicioResponsabilidad;
+	
 
 	protected static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");

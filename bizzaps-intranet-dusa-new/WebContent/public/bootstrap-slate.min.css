@@ -7152,7 +7152,7 @@ a.list-group-item.active>.badge,.nav-pills>.active>a>.badge {
 
 .jumbotron .container .z-hbox td {
 	background-color: #1c1e22;
-	padding: 0px;
+	padding: 2px;
 	text-align: left;
 }
 @media screen and (min-width:768px) {

@@ -11,7 +11,7 @@
         </param-value>
   </context-param>
 	<session-config>
-		<session-timeout>360</session-timeout>
+		<session-timeout>1000</session-timeout>
 	</session-config>
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>

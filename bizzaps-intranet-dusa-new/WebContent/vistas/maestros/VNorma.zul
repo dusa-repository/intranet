@@ -1,0 +1,87 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div height="100%" id="divNorma" apply="controlador.maestros.CNorma">
+		<groupbox height="100%" width="100%" mold="3d"
+			title="Normas ISO (VNorma)">
+			<div id="botoneraNorma" />
+			<separator />
+			<tabbox width="auto" height="auto" orient="horizontal">
+				<tabs id="tbsNorma" width="auto">
+					<tab label="Titulo y Foto Norma 1" id="tab1" />
+					<tab label="Texto Norma 1" id="tab2n" />
+					<tab label="Titulo y Foto Norma 2" id="tab3" />
+					<tab label="Texto Norma 2" id="tab4" />
+				</tabs>
+				<tabpanels>
+					<tabpanel>
+						<separator />
+						<separator />
+						<textbox class="multilinea" multiline="true" id="txtTituloPrimera"
+							maxlength="250" tooltiptext="Ingrese el Titulo de la Norma 1"
+							placeholder="Ingrese el Titulo de la Norma 1" />
+						<separator />
+						<separator />
+						<image
+							tooltiptext="Tamaños permitidos: Minimo 512KB y Maximo 2MB  &#x0d;Formatos permitidos: .png y .jpeg"
+							style="border: 1px outset #A0A0A0;" id="imagen1" width="250px"
+							height="230px" />
+						<space />
+						<fileupload image="/public/imagenes/botones/cargar.png"
+							id="fudImagen1" label="Cargar Imagen" width="160px">
+						</fileupload>
+						<button id="btnRemover1" label="Remover Imagen" width="160px"
+							tooltiptext="Presione para Remover la Imagen" image="/public/imagenes/botones/quitar.png" />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+					</tabpanel>
+					<tabpanel>
+						<ckeditor toolbar="emptyToolbar" id="ckTextoPrimera"
+							width="950px" height="300px">
+							<attribute name="value" />
+						</ckeditor>
+					</tabpanel>
+					<tabpanel>
+							<separator />
+							<separator />
+							<textbox class="multilinea" multiline="true" id="txtTituloSegunda"
+								maxlength="250" tooltiptext="Ingrese el Titulo de la Norma 2"
+								placeholder="Ingrese el Titulo de la Norma 1" />
+							<separator />
+							<separator />
+							<image
+								tooltiptext="Tamaños permitidos: Minimo 512KB y Maximo 2MB  &#x0d;Formatos permitidos: .png y .jpeg"
+								style="border: 1px outset #A0A0A0;" id="imagen2" width="250px"
+								height="230px" />
+							<space />
+							<fileupload image="/public/imagenes/botones/cargar.png"
+								id="fudImagen2" label="Cargar Imagen" width="160px">
+							</fileupload>
+							<button id="btnRemover2" label="Remover Imagen" width="160px"
+								tooltiptext="Presione para Remover la Imagen" image="/public/imagenes/botones/quitar.png" />
+							<separator />
+							<separator />
+							<separator />
+							<separator />
+							<separator />
+							<separator />
+							<separator />
+							<separator />
+	
+					</tabpanel>
+					<tabpanel>
+						<ckeditor toolbar="emptyToolbar" id="ckTextoSegunda"
+							width="950px" height="300px">
+							<attribute name="value" />
+						</ckeditor>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		</groupbox>
+	</div>
+</zk>

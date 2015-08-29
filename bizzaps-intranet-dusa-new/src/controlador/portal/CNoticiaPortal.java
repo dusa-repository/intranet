@@ -21,6 +21,7 @@ public class CNoticiaPortal extends CGenerico {
 	@Override
 	public void inicializar() throws IOException {
 		noticia.setValue("nknjvdfv-------NOTICIA-----------hdfsoibh");
+		titulo.setValue("nknjvdfv-------NOTICIA-----------hdfsoibh");
 		
 	}
 }
