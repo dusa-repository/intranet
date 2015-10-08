@@ -47,10 +47,10 @@
 					</div>
 				</div>
 				<div class="col-md-9">
-					<div class="bs-docs-section" >
+					<div class="bs-docs-section">
 						<div class="page-header">
 							<n:h1 id="inicio">Inicio</n:h1>
-						</div>				
+						</div>
 						<include src="/carrusel.zul" />
 					</div>
 					<div class="bs-docs-section">
@@ -115,7 +115,22 @@
 									<separator />
 									<separator />
 									<n:h1>D'estilo</n:h1>
-									<a tooltiptext="Pulse para ver D'estilo" target="_blank"
+									<hbox width="70%" widths="28%,72%">
+										<div>
+											<n:p><![CDATA[Fecha de Publicacion:]]></n:p>
+										</div>
+										<div align="right">
+											<combobox tooltiptext="Seleccione una Fecha"
+												placeholder="Seleccione una Fecha" id="cmbFecha" readonly="true"
+												width="100%">
+												<template name="model">
+													<comboitem label="${each.traerFecha()}" context="${each.idDestilo}" />
+												</template>
+											</combobox>
+										</div>
+									</hbox>
+									<separator />
+									<a id="destilo" tooltiptext="Pulse para ver D'estilo" target="_blank"
 										href="">
 										<image style="cursor:pointer"
 											src="/public/imagenes/generales/bannerdestilos.jpg" class="img-rounded" />
@@ -130,11 +145,12 @@
 												<n:h1>Prensa Digital</n:h1>
 											</div>
 											<separator />
-											<a tooltiptext="Pulse ver la prensa digitalizada" target="_blank"
-												href="">
-												<image style="cursor:pointer" src="/public/imagenes/generales/prensa.jpg"
-													class="img-rounded" />
+											<a tooltiptext="Pulse para descargar la prensa digitalizada"
+												target="_blank" href="">
+												<image id="prensa" style="cursor:pointer"
+													src="/public/imagenes/generales/prensa.jpg" class="img-rounded" />
 											</a>
+
 											<separator />
 										</div>
 										<separator />
@@ -143,10 +159,10 @@
 												<n:h1>Dusa Previene</n:h1>
 											</div>
 											<separator />
-											<a tooltiptext="Pulse ir ver el folleto de Dusa Previene"
+											<a tooltiptext="Pulse para descargar el folleto de Dusa Previene"
 												target="_blank" href="">
-												<image style="cursor:pointer" src="/public/imagenes/generales/logo2.png"
-													class="img-rounded" />
+												<image id="previene" style="cursor:pointer"
+													src="/public/imagenes/generales/logo2.png" class="img-rounded" />
 											</a>
 											<separator />
 										</div>

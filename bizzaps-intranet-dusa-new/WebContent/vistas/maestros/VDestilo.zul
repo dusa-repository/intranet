@@ -1,0 +1,60 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divDestilo" width="100%" apply="controlador.maestros.CDestilo">
+		<groupbox mold="3d" width="auto" title="Revista D'estilo">
+			<div id="botoneraDestilo" />
+			<groupbox id="gpxRegistro" class="azul" width="auto" title="">
+				<caption label="Nuevo" style="font-weight:bold"
+					tooltiptext="Presione para ingresar las Revistas" />
+				<separator />
+				<grid width="100%">
+					<columns visible="false">
+						<column label="" width="15%" />
+						<column label="" width="35%" />
+						<column label="" width="15%" />
+						<column label="" width="35%" />
+					</columns>
+					<rows>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Fecha Revista:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<cell colspan="2">
+								<datebox width="100%" readonly="true" id="dtbFecha"
+									constraint="no future" onCreate="self.value = new Date()"
+									tooltiptext="Seleccione la Fecha de Publicacion de la Revista" />
+							</cell>
+						</row>
+						<row>
+							<label class="etiqueta" value="Seleccione el Archivo:" />
+							<button autodisable="self" id="btnImportar"
+								style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+								upload="true, multiple=false" label="Buscar" tooltiptext="Buscar Archivo"
+								image="/public/imagenes/botones/importar.png" />
+							<hbox>
+								<label class="etiqueta" value="Tipo Doc.:" />
+								<space />
+								<label value="" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox readonly="true" id="txtTipo" hflex="1"
+								tooltiptext="Tipo del Documento" />
+						</row>
+						<row id="row">
+							<label class="etiqueta" value="Archivo:" />
+							<label id="lblDescripcion" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<separator />
+			<groupbox class="azul" id="gpxDatos" width="auto" title="">
+				<caption label="Registros" style="font-weight:bold"
+					tooltiptext="Presione para ver las Revistas" />
+				<separator />
+				<div id="catalogoDestilo" tooltiptext="Seleccione la Revista para Realizar una Accion" />
+			</groupbox>
+		</groupbox>
+	</div>
+</zk>

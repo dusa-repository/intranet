@@ -96,4 +96,12 @@ public abstract class Validador {
 		else
 			return false;
 	}
+
+	public static boolean validarDocumentoPdf(Media media) {
+		String extencion = media.getFormat();
+		if (extencion.equals("pdf"))
+			return true;
+		else
+			return false;
+	}
 }

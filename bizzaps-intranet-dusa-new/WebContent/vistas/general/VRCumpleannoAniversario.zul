@@ -1,0 +1,87 @@
+<zk>
+	<style src="/public/Estilo.css" />
+	<div id="divCumple" apply="controlador.reporte.CCumple">
+		<groupbox width="75%" mold="3d"
+			title="Reportes de Cumpleaños y/o Aniversarios">
+			<div id="botoneraCumple" />
+			<separator />
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="16.6%" />
+					<column label="" width="16.6%" />
+					<column label="" width="16.6%" />
+					<column label="" width="16.6%" />
+					<column label="" width="16.6%" />
+					<column label="" width="17%" />
+				</columns>
+				<rows>
+					<row>
+						<hbox>
+							<label class="etiqueta" value="Desde:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<cell colspan="2">
+							<datebox width="100%" readonly="true" id="dtbDesde"
+								constraint="no future" onCreate="self.value = new Date()"
+								tooltiptext="Seleccione el inicio del Periodo a buscar" />
+						</cell>
+						<hbox>
+							<label class="etiqueta" value="Hasta:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<cell colspan="6">
+							<datebox width="100%" readonly="true" id="dtbHasta"
+								onCreate="self.value = new Date()" tooltiptext="Seleccione el fin del Periodo a buscar" />
+
+						</cell>
+					</row>
+					<row>
+						<hbox>
+							<label class="etiqueta" value="Reporte:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<cell colspan="2">
+							<hbox>
+								<radiogroup id="rdgReporte">
+									<radio label="Cumpleañeros" value="SI" id="rdoCumple" />
+									<space />
+									<radio label="Aniversarios" value="NO" id="rdoAniversario" />
+								</radiogroup>
+							</hbox>
+						</cell>
+						<label class="etiqueta" value="Observacion:" />
+						<cell colspan="2">
+							<textbox class="multilinea" multiline="true" id="txtObservacion"
+								hflex="1" maxlength="250" tooltiptext="Ingrese la Observacion" />
+
+						</cell>
+
+					</row>
+					<row>
+						<hbox>
+							<label class="etiqueta" value="Reporte de Tipo:" />
+							<space />
+							<label value="*" style="font-weight:bold;color:red" />
+						</hbox>
+						<cell colspan="2">
+							<combobox id="cmbTipo" readonly="true" tabindex="1"
+								value="PDF" width="100%" tooltiptext="Seleccione un Tipo"
+								placeholder="Seleccione un Tipo">
+								<comboitem label="PDF" />
+								<comboitem label="EXCEL" />
+							</combobox>
+						</cell>
+						<hbox />
+						<hbox />
+						<hbox />
+					</row>
+
+				</rows>
+			</grid>
+
+		</groupbox>
+	</div>
+</zk>

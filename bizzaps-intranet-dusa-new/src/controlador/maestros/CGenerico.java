@@ -26,6 +26,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.util.media.Media;
@@ -38,11 +40,13 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Tab;
 
 import servicio.maestros.SCarrusel;
+import servicio.maestros.SDestilo;
 import servicio.maestros.SDocumento;
 import servicio.maestros.SEmpleado;
 import servicio.maestros.SEnlace;
 import servicio.maestros.SNorma;
 import servicio.maestros.SNoticia;
+import servicio.maestros.SPrensaPreviene;
 import servicio.maestros.SProduccion;
 import servicio.maestros.SProducto;
 import servicio.maestros.SResponsabilidad;
@@ -76,8 +80,12 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	protected SVenta servicioVenta;
 	@WireVariable("SProduccion")
 	protected SProduccion servicioProduccion;
+	@WireVariable("SPrensaPreviene")
+	protected SPrensaPreviene servicioPrensaPreviene;
+	@WireVariable("SDestilo")
+	protected SDestilo servicioDestilo;
 	
-
+	protected DateFormat formatoReporte = new SimpleDateFormat("dd-MM-yyyy");
 	public static SimpleDateFormat formatoFecha = new SimpleDateFormat(
 			"dd-MM-yyyy");
 	protected static SimpleDateFormat formatoFechaRara = new SimpleDateFormat(
@@ -85,7 +93,6 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	public List<Tab> tabs = new ArrayList<Tab>();
 	protected DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	public Calendar calendario = Calendar.getInstance();
-	// Cambio en la hora borrados los :
 	public String horaAuditoria = String.valueOf(calendario
 			.get(Calendar.HOUR_OF_DAY))
 			+ String.valueOf(calendario.get(Calendar.MINUTE))
@@ -96,7 +103,19 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 	public String cerrar;
 	public Time tiempo = new Time(fecha.getTime());
 	URL url = getClass().getResource("/controlador/maestros/ohne.png");
-
+	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+			"/META-INF/ConfiguracionAplicacion.xml");
+	
+	public static SEmpleado getServicioEmpleado() {
+		return applicationContext.getBean(SEmpleado.class);
+	}
+	public static SDestilo getServicioDestilo() {
+		return applicationContext.getBean(SDestilo.class);
+	}
+	public static SNoticia getServicioNoticia() {
+		return applicationContext.getBean(SNoticia.class);
+	}
+	
 	public Timestamp metodoFecha() {
 		fecha = new Date();
 		return fechaHora = new Timestamp(fecha.getTime());
@@ -116,95 +135,7 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		inicializar();
 	}
 
-	public BigDecimal transformarGregorianoAJulia(Date fecha) {
-		String valor = "";
 
-		calendario = new GregorianCalendar();
-		calendario.setTime(fecha);
-		String dia = "";
-		if (calendario.get(Calendar.DAY_OF_YEAR) < 10)
-			dia = "00";
-		else {
-			if (calendario.get(Calendar.DAY_OF_YEAR) >= 10
-					&& calendario.get(Calendar.DAY_OF_YEAR) < 100)
-				dia = "0";
-		}
-		if ((fecha.getYear() + 1900) < 2000)
-			valor = "";
-		else
-			valor = "1";
-		long al = Long.valueOf(valor
-				+ String.valueOf(calendario.get(Calendar.YEAR)).substring(2)
-				+ dia + String.valueOf(calendario.get(Calendar.DAY_OF_YEAR)));
-		BigDecimal a = BigDecimal.valueOf(al);
-		return a;
-	}
-
-	public Date transformarJulianaAGregoria(BigDecimal valor) {
-		String j = valor.toString();
-		Date date = new Date();
-		String primerValor = "";
-		if (j.length() == 5) {
-			try {
-				date = new SimpleDateFormat("yyD").parse(j);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			primerValor = j.substring(0, 1);
-			if (primerValor.equals("1")) {
-				String anno = j.substring(1, 3);
-				date.setYear(Integer.valueOf("20" + anno) - 1900);
-				String s = j.substring(3);
-				Date fecha = new Date();
-				try {
-					fecha = new SimpleDateFormat("D").parse(s);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				fecha.setYear(date.getYear());
-				return fecha;
-			}
-		}
-
-		return date;
-
-	}
-
-	public Date transformarJulianaAGregoriadeLong(Long valor) {
-		String j = valor.toString();
-		Date date = new Date();
-		String primerValor = "";
-		if (j.length() == 5) {
-			try {
-				date = new SimpleDateFormat("yyD").parse(j);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			primerValor = j.substring(0, 1);
-			if (primerValor.equals("1")) {
-				String anno = j.substring(1, 3);
-				date.setYear(Integer.valueOf("20" + anno) - 1900);
-				String s = j.substring(3);
-				Date fecha = new Date();
-				try {
-					fecha = new SimpleDateFormat("D").parse(s);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				fecha.setYear(date.getYear());
-				return fecha;
-			}
-		}
-
-		return date;
-
-	}
 
 	public abstract void inicializar() throws IOException;
 
@@ -369,13 +300,20 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 				Mensaje.mensajeAlerta(Mensaje.tamanioMuyPequenio);
 				return false;
 			} else {
-				if (media.getByteData().length > 2048000) {
+				if (media.getByteData().length > 5242880) {
 					Mensaje.mensajeAlerta(Mensaje.tamanioMuyGrande);
 					return false;
 				} else
 					return true;
 			}
 		}
+	}
+	
+	public Date agregarDia(Date fecha) {
+		Calendar calendario = Calendar.getInstance();
+		calendario.setTime(fecha);
+		calendario.add(Calendar.DAY_OF_YEAR, +1);
+		return fecha = calendario.getTime();
 	}
 
 }

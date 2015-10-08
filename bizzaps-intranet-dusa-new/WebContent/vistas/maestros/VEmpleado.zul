@@ -24,6 +24,23 @@
 							<textbox id="txtFicha" hflex="1" maxlength="250"
 								tooltiptext="Ingrese la Ficha del Empleado" />
 							<hbox>
+								<label class="etiqueta" value="Empresa:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox id="txtEmpresa" hflex="1" maxlength="250"
+								tooltiptext="Ingrese la Empresa del Empleado" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Fecha Ingreso:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+							<datebox readonly="true" width="100%" id="dtbFechaIngreso"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de Ingreso del Empleado" />
+							<hbox>
 								<label class="etiqueta" value="Fecha Nacimiento:" />
 								<space />
 								<label value="*" style="font-weight:bold;color:red">
@@ -34,19 +51,36 @@
 						</row>
 						<row>
 							<hbox>
-								<label class="etiqueta" value="Nombres:" />
+								<label class="etiqueta" value="Primer Nombre:" />
 								<space />
 								<label value="*" style="font-weight:bold;color:red" />
 							</hbox>
 							<textbox class="multilinea" multiline="true" id="txtNombre"
-								hflex="1" maxlength="250" tooltiptext="Ingrese los Nombres del Empleado" />
+								hflex="1" maxlength="250" tooltiptext="Ingrese el Nombre del Empleado" />
 							<hbox>
-								<label class="etiqueta" value="Apellidos:" />
+								<label class="etiqueta" value="Primer Apellido:" />
 								<space />
 								<label value="*" style="font-weight:bold;color:red" />
 							</hbox>
 							<textbox class="multilinea" multiline="true" id="txtApellido"
-								hflex="1" maxlength="250" tooltiptext="Ingrese los Apellidos del Empleado" />
+								hflex="1" maxlength="250" tooltiptext="Ingrese el Apellido del Empleado" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="Segundo Nombre:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox class="multilinea" multiline="true" id="txtSegundoNombre"
+								hflex="1" maxlength="250" tooltiptext="Ingrese el segundo Nombre del Empleado" />
+							<hbox>
+								<label class="etiqueta" value="Segundo Apellido:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<textbox class="multilinea" multiline="true"
+								id="txtSegundoApellido" hflex="1" maxlength="250"
+								tooltiptext="Ingrese el Segundo Apellido del Empleado" />
 						</row>
 						<row>
 							<hbox>
@@ -79,6 +113,23 @@
 								image="/public/imagenes/botones/cargar.png" id="fudImagenUsuario">
 							</fileupload>
 							<image id="imagen" width="100px" height="100px" />
+						</row>
+						<row>
+							<hbox>
+								<label class="etiqueta" value="¿Empleado de Excepcion?" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red" />
+							</hbox>
+							<cell colspan="2">
+							<hbox>
+								<radiogroup id="rdgExcepcion">
+									<radio label="SI" value="SI" id="rdoSi" />
+									<space/>
+									<radio label="NO" value="NO" id="rdoNo" />
+								</radiogroup>
+								</hbox>
+							</cell>
+								<hbox/>
 						</row>
 					</rows>
 				</grid>

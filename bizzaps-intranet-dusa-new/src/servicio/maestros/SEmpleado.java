@@ -50,7 +50,7 @@ public class SEmpleado {
 	public List<Empleado> buscarPrimerosOrdenados() {
 		Sort sort = new Sort(Direction.ASC, "nombre", "apellido", "ficha");
 		Pageable topTen = new PageRequest(0, 10, sort);
-		return empleadoDAO.findByFichaGreaterThan("0", topTen);
+		return empleadoDAO.findByEstatusTrueAndFichaGreaterThan("0", topTen);
 	}
 
 	public Collection<? extends Empleado> buscarTodosOrdenadosFecha(Date date) {
@@ -66,5 +66,12 @@ public class SEmpleado {
 		return empleadoDAO
 				.findByNombreLikeOrApellidoLikeAndTelefonoCelularLikeAndTelefonoFijoLikeAndDireccionLike(
 						nombre, nombre, celular, fijo, direccion, sort);
+	}
+
+	public Collection<? extends Empleado> buscarAniversarios(Date date,Date date2) {
+		return empleadoDAO.findByFechaIngresoBetweenAndEstatusTrue(date,date2);
+	}
+	public Collection<? extends Empleado> buscarCumpleannos(Date date,Date date2) {
+		return empleadoDAO.findByFechaNacimientoBetweenAndEstatusTrue(date,date2);
 	}
 }

@@ -50,7 +50,7 @@
 												<hbox width="100%">
 													<cell width="30%">
 														<vlayout>
-															<image width="100%" height="100%" content="${each.traerImagen()}" />
+															<image onClick="$composer.ventanaImagen(self)" width="90%" height="100%" content="${each.traerImagen()}" />
 															<label value="${each.fechaFormato()}" sclass="heavy" />
 														</vlayout>
 													</cell>

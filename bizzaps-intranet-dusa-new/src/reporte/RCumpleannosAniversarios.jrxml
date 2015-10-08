@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RCumpleannosAniversarios" language="groovy" columnCount="10" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="80" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="291efb52-6f67-4f9e-865d-3a40af5563a0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="observacion" class="java.lang.String"/>
+	<parameter name="desde" class="java.lang.String"/>
+	<parameter name="hasta" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="imagen" class="java.lang.Object"/>
+	<field name="fechaNacimiento" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="12" width="188" height="30" forecolor="#990000" uuid="39d2ea65-16c8-4565-8a62-4a9e6b771900"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="12" width="114" height="30" uuid="525e6e9b-7163-4b33-a4f7-c7804449b5dd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{desde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="550" y="12" width="140" height="30" uuid="50f7ecd3-b91e-4557-8d0a-db1bec691cf7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{hasta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="368" y="12" width="39" height="30" forecolor="#990000" uuid="71a5f429-2727-4594-a947-8fabbf6439a5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[del]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="521" y="12" width="29" height="30" forecolor="#990000" uuid="ae58f3d3-cc49-4a70-b8d8-78b91e2b765c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[al]]></text>
+			</staticText>
+			<image>
+				<reportElement x="50" y="8" width="106" height="52" uuid="f45fc5d4-2057-4e71-be14-eecf3ab2c372"/>
+				<imageExpression><![CDATA["/reporte/LogoDusa.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="113" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="76" height="73" uuid="f5d6ae61-cb87-4971-bc14-d012be503f8c"/>
+				<imageExpression><![CDATA[net.sf.jasperreports.engine.util.JRImageLoader.loadImage ((byte []) $F{imagen})]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="16" y="73" width="62" height="15" uuid="ab5163f2-d99b-4ec2-98fc-4950bafc4979"/>
+				<box leftPadding="2"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="16" y="89" width="62" height="15" uuid="b841a2b4-a935-4ced-b3eb-2a6bf863e479"/>
+				<box leftPadding="2"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="76" width="16" height="27" backcolor="#CCCCCC" uuid="2c83d7ff-2fbb-4a08-9e47-0722b8d59b86"/>
+			</rectangle>
+			<textField>
+				<reportElement x="1" y="79" width="15" height="20" uuid="c82f8ef4-5f38-4b13-8d29-81ee7b77cf58"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format($F{fechaNacimiento})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="31">
+			<textField>
+				<reportElement x="116" y="4" width="578" height="27" uuid="d23f9f3c-74b7-4e0a-ae87-07bd4b9d4714"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{observacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

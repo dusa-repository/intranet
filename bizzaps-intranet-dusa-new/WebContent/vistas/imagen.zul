@@ -1,0 +1,5 @@
+<zk>
+	<window id="wdwDatos" title="Imagen de la Noticia" border="normal"
+		width="60%" height="80%" contentStyle="overflow:auto" closable="true">
+	</window>
+</zk>

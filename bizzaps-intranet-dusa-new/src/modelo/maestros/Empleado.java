@@ -19,6 +19,8 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import controlador.maestros.CGenerico;
 
 @Entity
@@ -38,12 +40,21 @@ public class Empleado implements Serializable {
 
 	@Column(length = 250)
 	private String ficha;
+	
+	@Column(length = 250)
+	private String empresa;
 
 	@Column(length = 250)
 	private String nombre;
+	
+	@Column(name = "segundo_nombre", length = 250)
+	private String segundoNombre;
 
 	@Column(length = 250)
 	private String apellido;
+
+	@Column(name = "segundo_apellido", length = 250)
+	private String segundoApellido;
 
 	@Column(length = 500)
 	private String direccion;
@@ -59,6 +70,9 @@ public class Empleado implements Serializable {
 
 	@Column(name = "fecha_nacimiento")
 	private Timestamp fechaNacimiento;
+	
+	@Column(name = "fecha_ingreso")
+	private Timestamp fechaIngreso;
 
 	@Column(name = "fecha_auditoria")
 	private Timestamp fechaAuditoria;
@@ -74,6 +88,14 @@ public class Empleado implements Serializable {
 
 	@Column(length = 250)
 	private String futuro2;
+	
+	@Column
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	private boolean estatus;
+	
+	@Column
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	private boolean excepcion;
 
 	public Empleado() {
 		super();
@@ -212,6 +234,54 @@ public class Empleado implements Serializable {
 
 	public void setFuturo2(String futuro2) {
 		this.futuro2 = futuro2;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getSegundoNombre() {
+		return segundoNombre;
+	}
+
+	public void setSegundoNombre(String segundoNombre) {
+		this.segundoNombre = segundoNombre;
+	}
+
+	public String getSegundoApellido() {
+		return segundoApellido;
+	}
+
+	public void setSegundoApellido(String segundoApellido) {
+		this.segundoApellido = segundoApellido;
+	}
+
+	public Timestamp getFechaIngreso() {
+		return fechaIngreso;
+	}
+
+	public void setFechaIngreso(Timestamp fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
+	}
+
+	public boolean isEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(boolean estatus) {
+		this.estatus = estatus;
+	}
+
+	public boolean isExcepcion() {
+		return excepcion;
+	}
+
+	public void setExcepcion(boolean excepcion) {
+		this.excepcion = excepcion;
 	}
 
 	@Override

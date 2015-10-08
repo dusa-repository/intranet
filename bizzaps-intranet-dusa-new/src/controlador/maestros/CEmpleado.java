@@ -25,6 +25,8 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Groupbox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Radio;
+import org.zkoss.zul.Radiogroup;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
@@ -50,6 +52,10 @@ public class CEmpleado extends CGenerico {
 	@Wire
 	private Textbox txtApellido;
 	@Wire
+	private Textbox txtSegundoNombre;
+	@Wire
+	private Textbox txtSegundoApellido;
+	@Wire
 	private Textbox txtTelefonoFijo;
 	@Wire
 	private Textbox txtTelefonoCedular;
@@ -58,7 +64,17 @@ public class CEmpleado extends CGenerico {
 	@Wire
 	private Textbox txtFicha;
 	@Wire
+	private Textbox txtEmpresa;
+	@Wire
 	private Datebox dtbFecha;
+	@Wire
+	private Datebox dtbFechaIngreso;
+	@Wire
+	private Radiogroup rdgExcepcion;
+	@Wire
+	private Radio rdoSi;
+	@Wire
+	private Radio rdoNo;
 	@Wire
 	private Groupbox gpxDatos;
 	@Wire
@@ -104,12 +120,21 @@ public class CEmpleado extends CGenerico {
 						clave = producto.getIdEmpleado();
 						txtNombre.setValue(producto.getNombre());
 						txtApellido.setValue(producto.getApellido());
+						txtSegundoNombre.setValue(producto.getSegundoNombre());
+						txtSegundoApellido.setValue(producto
+								.getSegundoApellido());
 						txtDireccion.setValue(producto.getDireccion());
 						txtFicha.setValue(producto.getFicha());
+						txtEmpresa.setValue(producto.getEmpresa());
 						txtTelefonoCedular.setValue(producto
 								.getTelefonoCelular());
 						txtTelefonoFijo.setValue(producto.getTelefonoFijo());
 						dtbFecha.setValue(producto.getFechaNacimiento());
+						dtbFechaIngreso.setValue(producto.getFechaIngreso());
+						if (producto.isExcepcion())
+							rdoSi.setChecked(true);
+						else
+							rdoNo.setChecked(true);
 						BufferedImage imag;
 						if (producto.getImagen() != null) {
 							try {
@@ -168,6 +193,18 @@ public class CEmpleado extends CGenerico {
 							new Timestamp(dtbFecha.getValue().getTime()),
 							fechaHora, horaAuditoria, nombreUsuarioSesion(),
 							"", "");
+					empleado.setEmpresa(txtEmpresa.getValue());
+					empleado.setSegundoApellido(txtSegundoApellido.getValue());
+					empleado.setSegundoNombre(txtSegundoNombre.getValue());
+					empleado.setFechaIngreso(new Timestamp(dtbFechaIngreso
+							.getValue().getTime()));
+
+					if (rdoSi.isChecked())
+						empleado.setExcepcion(true);
+					else
+						empleado.setExcepcion(false);
+					empleado.setEstatus(true);
+
 					servicioEmpleado.guardar(empleado);
 					msj.mensajeInformacion(Mensaje.guardado);
 					limpiar();
@@ -194,8 +231,18 @@ public class CEmpleado extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioEmpleado
-															.eliminarVarios(eliminarLista);
+													for (int i = 0; i < eliminarLista
+															.size(); i++) {
+
+														Empleado emple = eliminarLista
+																.get(i);
+														if (emple != null) {
+															emple.setEstatus(false);
+															servicioEmpleado
+																	.guardar(emple);
+														}
+													}
+
 													msj.mensajeInformacion(Mensaje.eliminado);
 													listaGeneral = servicioEmpleado
 															.buscarTodosOrdenados();
@@ -218,8 +265,13 @@ public class CEmpleado extends CGenerico {
 													throws InterruptedException {
 												if (evt.getName()
 														.equals("onOK")) {
-													servicioEmpleado
-															.eliminarUno(clave);
+													Empleado emple = servicioEmpleado
+															.buscar(clave);
+													if (emple != null) {
+														emple.setEstatus(false);
+														servicioEmpleado
+																.guardar(emple);
+													}
 													msj.mensajeInformacion(Mensaje.eliminado);
 													limpiar();
 													listaGeneral = servicioEmpleado
@@ -282,7 +334,11 @@ public class CEmpleado extends CGenerico {
 		if (txtNombre.getText().compareTo("") == 0
 				|| txtApellido.getText().compareTo("") == 0
 				|| txtDireccion.getText().compareTo("") == 0
-				|| txtTelefonoCedular.getText().compareTo("") == 0) {
+				|| txtSegundoNombre.getText().compareTo("") == 0
+				|| txtSegundoApellido.getText().compareTo("") == 0
+				|| txtEmpresa.getText().compareTo("") == 0
+				|| txtTelefonoCedular.getText().compareTo("") == 0
+				|| !rdoSi.isChecked() && !rdoNo.isChecked()) {
 			return false;
 		} else
 			return true;
@@ -294,7 +350,10 @@ public class CEmpleado extends CGenerico {
 				|| txtDireccion.getText().compareTo("") != 0
 				|| txtFicha.getText().compareTo("") != 0
 				|| txtTelefonoCedular.getText().compareTo("") != 0
-				|| txtTelefonoFijo.getText().compareTo("") != 0) {
+				|| txtTelefonoFijo.getText().compareTo("") != 0
+				|| txtEmpresa.getText().compareTo("") != 0
+				|| txtSegundoApellido.getText().compareTo("") != 0
+				|| txtSegundoNombre.getText().compareTo("") != 0) {
 			return true;
 		} else
 			return false;
@@ -314,13 +373,19 @@ public class CEmpleado extends CGenerico {
 			e1.printStackTrace();
 		}
 		clave = null;
+		txtSegundoNombre.setValue("");
+		txtSegundoApellido.setValue("");
+		txtEmpresa.setValue("");
+		rdoNo.setChecked(true);
+		dtbFechaIngreso.setValue(new Date());
+		
 	}
 
 	private void mostrarCatalogo() {
 		listaGeneral = servicioEmpleado.buscarTodosOrdenados();
 		catalogo = new Catalogo<Empleado>(catalogoEmpleado, "Empleados",
 				listaGeneral, false, false, false, "Ficha", "Nombre",
-				"Apellido", "Fecha Nacimiento", "Tlf. Cedular", "Tlf. Fijo") {
+				"Apellido", "Fecha Nacimiento", "Tlf. Cedular", "Estatus") {
 
 			@Override
 			protected List<Empleado> buscar(List<String> valores) {
@@ -338,9 +403,7 @@ public class CEmpleado extends CGenerico {
 									.toLowerCase()
 									.contains(valores.get(3).toLowerCase())
 							&& objeto.getTelefonoCelular().toLowerCase()
-									.contains(valores.get(4).toLowerCase())
-							&& objeto.getTelefonoFijo().toLowerCase()
-									.contains(valores.get(5).toLowerCase())) {
+									.contains(valores.get(4).toLowerCase())) {
 						lista.add(objeto);
 					}
 				}
@@ -350,12 +413,15 @@ public class CEmpleado extends CGenerico {
 			@Override
 			protected String[] crearRegistros(Empleado objeto) {
 				String[] registros = new String[6];
+				String activo = "Activo";
+				if (!objeto.isEstatus())
+					activo = "Inactivo";
 				registros[0] = objeto.getFicha();
 				registros[1] = objeto.getNombre();
 				registros[2] = objeto.getApellido();
 				registros[3] = formatoFecha.format(objeto.getFechaNacimiento());
 				registros[4] = objeto.getTelefonoCelular();
-				registros[5] = objeto.getTelefonoFijo();
+				registros[5] = activo;
 				return registros;
 			}
 		};

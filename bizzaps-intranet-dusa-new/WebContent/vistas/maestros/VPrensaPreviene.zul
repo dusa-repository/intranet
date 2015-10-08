@@ -1,0 +1,62 @@
+<zk>
+	<style src="../public/Estilo.css" />
+	<div height="100%" id="divPrensa" apply="controlador.maestros.CPrensaPreviene">
+		<groupbox height="100%" width="100%" mold="3d"
+			title="Prensa Digital y Dusa Previene">
+			<div id="botoneraPrensa" />
+			<separator />
+			<grid width="100%">
+				<columns visible="false">
+					<column label="" width="25%" />
+					<column label="" width="30%" />
+					<column label="" width="15%" />
+					<column label="" width="30%" />
+				</columns>
+				<rows>
+					<row>
+						<label id="lblPrensa" class="etiqueta"
+							value="Seleccione el Archivo para Prensa Digital:" />
+						<button autodisable="self" id="btnPrensa"
+							style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+							upload="true, multiple=false" label="Buscar" tooltiptext="Buscar Archivo"
+							image="/public/imagenes/botones/importar.png" />
+						<hbox>
+							<label class="etiqueta" value="Tipo Doc.:" />
+							<space />
+							<label value="" style="font-weight:bold;color:red" />
+						</hbox>
+						<textbox readonly="true" id="txtPrensa" hflex="1"
+							tooltiptext="Tipo del Documento" />
+					</row>
+					<row>
+						<label class="etiqueta" value="Archivo:" />
+						<label id="lblDescripcionPrensa" />
+						<hbox />
+						<hbox />
+					</row>
+					<row>
+						<label id="lblPreviene" class="etiqueta"
+							value="Seleccione el Archivo para Dusa Previene:" />
+						<button autodisable="self" id="btnPreviene"
+							style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 100px;height: 33px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;"
+							upload="true, multiple=false" label="Buscar" tooltiptext="Buscar Archivo"
+							image="/public/imagenes/botones/importar.png" />
+						<hbox>
+							<label class="etiqueta" value="Tipo Doc.:" />
+							<space />
+							<label value="" style="font-weight:bold;color:red" />
+						</hbox>
+						<textbox readonly="true" id="txtPreviene" hflex="1"
+							tooltiptext="Tipo del Documento" />
+					</row>
+					<row id="row2">
+						<label class="etiqueta" value="Archivo:" />
+						<label id="lblDescripcionPreviene" />
+						<hbox />
+						<hbox />
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</div>
+</zk>

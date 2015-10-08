@@ -52,6 +52,7 @@ public class Mensaje {
 	public static String consumidoMayor = "La cantidad total debe ser mayor a la cantidad consumida";
 	public static String fechasErroneas = "La fecha de Vigencia desde debe ser menor a la fecha de vigencia hasta";
 	public static String archivoExcel = "Los Archivos deben ser de Tipo xlsx, doc, pdf, docx, xls y no deben exceder el tamaño maximo establecido (3MB) ";
+	public static String archivoPdf = "El Archivo debe ser de Tipo pdf y no debe exceder el tamaño maximo establecido (3MB) ";
 	public static String usernameUsado  = "El Username esta siendo Usado por Otro Registro.";
 	public static String seleccionarStatus= "Debe Seleccionar un Status";
 	public static String fechaPosterior = "La Fecha de Inicio no puede ser posterior a la Fecha Fin";
@@ -61,7 +62,7 @@ public class Mensaje {
 	public static String cedulaUsada="La Cedula esta siendo usada por otro Registro";
 	public static String placaUsada="La Placa esta siendo usada por otro Registro";
 	public static String tamanioMuyPequenio = "El archivo que ha seleccionado es menor el tamaño minimo establecido (128 KB)";
-	public static String tamanioMuyGrande = "El archivo que ha seleccionado excede el tamaño maximo establecido (2 MB)";
+	public static String tamanioMuyGrande = "El archivo que ha seleccionado excede el tamaño maximo establecido (5 MB)";
 	
 	
 	public void mensajeInformacion(String msj) {
