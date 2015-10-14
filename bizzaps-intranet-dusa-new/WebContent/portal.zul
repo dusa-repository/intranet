@@ -12,7 +12,7 @@
 			<hbox widths="75%,25%" width="100%">
 				<div>
 					<separator />
-					<label value="Sistema INTRANET de Dusa" class="label" />
+					<label value="" class="label" />
 				</div>
 				<div align="right">
 					<separator />
