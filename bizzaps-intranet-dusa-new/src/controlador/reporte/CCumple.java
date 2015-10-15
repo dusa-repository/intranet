@@ -188,6 +188,7 @@ public class CCumple extends CGenerico {
 		byte[] fichero = null;
 		Integer anios = Integer.valueOf(par7);
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat formatoCorto = new SimpleDateFormat("MM-yyyy");
 		Date fecha1 = null;
 		try {
 			fecha1 = formato.parse(par6);
@@ -207,11 +208,24 @@ public class CCumple extends CGenerico {
 		int month = cal.get(Calendar.MONTH);
 
 		String[] monthNames = { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO",
-				"JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE",
-				"DICIEMBRE" };
+				"JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE",
+				"NOVIEMBRE", "DICIEMBRE" };
 		String mes = monthNames[month];
 
 		p.put("desde", mes);
+		Calendar calendario = Calendar.getInstance();
+		String formateada = formatoCorto.format(fecha1);
+		try {
+			fecha1 = formato.parse("01-" + formateada);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		calendario.setTime(fecha1);
+		calendario.set(Calendar.MONTH, calendario.get(Calendar.MONTH) + 1);
+		calendario.set(Calendar.DAY_OF_YEAR,
+				calendario.get(Calendar.DAY_OF_YEAR) - 1);
+		fecha1 = calendario.getTime();
 		p.put("fechaReal", new Timestamp(fecha1.getTime()));
 		p.put("hasta", par7);
 		p.put("observacion", observacion);
