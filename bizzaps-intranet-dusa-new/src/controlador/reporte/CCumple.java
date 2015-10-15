@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -200,7 +201,17 @@ public class CCumple extends CGenerico {
 			empleados = getServicioEmpleado().buscarAniversarios(fecha1, anios);
 
 		Map<String, Object> p = new HashMap<String, Object>();
-		p.put("desde", par6);
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(fecha1);
+		int month = cal.get(Calendar.MONTH);
+
+		String[] monthNames = { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO",
+				"JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE",
+				"DICIEMBRE" };
+		String mes = monthNames[month];
+
+		p.put("desde", mes);
 		p.put("fechaReal", new Timestamp(fecha1.getTime()));
 		p.put("hasta", par7);
 		p.put("observacion", observacion);

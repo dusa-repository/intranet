@@ -402,7 +402,7 @@ public class CEmpleado extends CGenerico {
 							&& formatoFecha.format(objeto.getFechaNacimiento())
 									.toLowerCase()
 									.contains(valores.get(3).toLowerCase())
-							&& objeto.getTelefonoCelular().toLowerCase()
+							&& String.valueOf(objeto.getTelefonoCelular()).toLowerCase()
 									.contains(valores.get(4).toLowerCase())) {
 						lista.add(objeto);
 					}
@@ -420,7 +420,10 @@ public class CEmpleado extends CGenerico {
 				registros[1] = objeto.getNombre();
 				registros[2] = objeto.getApellido();
 				registros[3] = formatoFecha.format(objeto.getFechaNacimiento());
+				if(objeto.getTelefonoCelular()!=null)
 				registros[4] = objeto.getTelefonoCelular();
+				else
+					registros[4] ="";
 				registros[5] = activo;
 				return registros;
 			}
