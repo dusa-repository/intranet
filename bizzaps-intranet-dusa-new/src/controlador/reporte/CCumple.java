@@ -31,6 +31,7 @@ import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Radio;
 import org.zkoss.zul.Radiogroup;
+import org.zkoss.zul.Spinner;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Textbox;
 
@@ -60,6 +61,8 @@ public class CCumple extends CGenerico {
 	private Textbox txtObservacion;
 	@Wire
 	private Div divCumple;
+	@Wire
+	private Spinner spnAnnos;
 	private String nombre;
 
 	@Override
@@ -82,6 +85,7 @@ public class CCumple extends CGenerico {
 			public void seleccionar() {
 				Date desde = dtbDesde.getValue();
 				Date hasta = dtbHasta.getValue();
+				hasta = agregarDia(hasta);
 				String fecha1 = formatoReporte.format(desde);
 				String fecha2 = formatoReporte.format(hasta);
 				String tipoReporte = cmbTipo.getValue();

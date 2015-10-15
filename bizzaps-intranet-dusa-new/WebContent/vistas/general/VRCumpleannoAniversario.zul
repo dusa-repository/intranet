@@ -24,7 +24,8 @@
 						<cell colspan="2">
 							<datebox width="100%" readonly="true" id="dtbDesde"
 								constraint="no future" onCreate="self.value = new Date()"
-								tooltiptext="Seleccione el inicio del Periodo a buscar" />
+								tooltiptext="Seleccione el inicio del Periodo a buscar" lenient="true"
+								format="MMMM" />
 						</cell>
 						<hbox>
 							<label class="etiqueta" value="Hasta:" />
@@ -52,13 +53,26 @@
 								</radiogroup>
 							</hbox>
 						</cell>
-						<label class="etiqueta" value="Observacion:" />
 						<cell colspan="2">
+							<hbox>
+								<label class="etiqueta" value="Años de Aniversario:" />
+								<space />
+								<label value="*" style="font-weight:bold;color:red">
+								</label>
+							</hbox>
+						</cell>
+						<spinner id="spnAnnos" width="100%" step="1" value="0"
+							constraint="min 0 max 99999999" tooltiptext="Ingrese los años de aniversario" />
+					</row>
+					<row>
+						<label class="etiqueta" value="Observacion:" />
+						<cell colspan="3">
 							<textbox class="multilinea" multiline="true" id="txtObservacion"
 								hflex="1" maxlength="250" tooltiptext="Ingrese la Observacion" />
 
 						</cell>
-
+						<hbox />
+						<hbox />
 					</row>
 					<row>
 						<hbox>

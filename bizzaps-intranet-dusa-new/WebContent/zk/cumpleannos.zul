@@ -20,7 +20,7 @@
 				<listitem>
 					<listcell>
 						<hlayout>
-							<image width="100px" height="100px" content="${each.traerImagen()}" />
+							<image width="60px" height="60px" content="${each.traerImagen()}" />
 							<vlayout>
 								<label value="${each.nombre} ${each.apellido}" sclass="titulo" />
 								<hlayout>
