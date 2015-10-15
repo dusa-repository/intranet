@@ -8,6 +8,9 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.imageio.ImageIO;
 import javax.persistence.Column;
@@ -40,13 +43,13 @@ public class Empleado implements Serializable {
 
 	@Column(length = 250)
 	private String ficha;
-	
+
 	@Column(length = 250)
 	private String empresa;
 
 	@Column(length = 250)
 	private String nombre;
-	
+
 	@Column(name = "segundo_nombre", length = 250)
 	private String segundoNombre;
 
@@ -70,7 +73,7 @@ public class Empleado implements Serializable {
 
 	@Column(name = "fecha_nacimiento")
 	private Timestamp fechaNacimiento;
-	
+
 	@Column(name = "fecha_ingreso")
 	private Timestamp fechaIngreso;
 
@@ -88,11 +91,11 @@ public class Empleado implements Serializable {
 
 	@Column(length = 250)
 	private String futuro2;
-	
+
 	@Column
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean estatus;
-	
+
 	@Column
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean excepcion;
@@ -408,6 +411,25 @@ public class Empleado implements Serializable {
 
 	public String fechaCumple() {
 		return CGenerico.formatoFecha.format(fechaNacimiento);
+	}
+
+	public int restarFecha(Timestamp birthDate) {
+		Calendar birth = new GregorianCalendar();
+		Calendar today = new GregorianCalendar();
+		int age = 0;
+		int factor = 0;
+		birth.setTime(fechaIngreso);
+		today.setTime(birthDate);
+		if (today.get(Calendar.DAY_OF_YEAR) < birth.get(Calendar.DAY_OF_YEAR)) {
+			factor = -1;
+		}
+		age = (today.get(Calendar.YEAR) - birth.get(Calendar.YEAR)) + factor;
+		if (age == -1)
+			age = 0;
+		if (today.get(Calendar.YEAR) == birth.get(Calendar.YEAR))
+			// age = today.get(Calendar.MONTH) - birth.get(Calendar.MONTH);
+			age = 0;
+		return age;
 	}
 
 }

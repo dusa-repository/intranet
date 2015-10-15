@@ -7,10 +7,15 @@
 	<parameter name="observacion" class="java.lang.String"/>
 	<parameter name="desde" class="java.lang.String"/>
 	<parameter name="hasta" class="java.lang.String"/>
+	<parameter name="fechaReal" class="java.sql.Timestamp"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
 	<field name="imagen" class="java.lang.Object"/>
 	<field name="fechaNacimiento" class="java.sql.Timestamp"/>
+	<field name="modelo" class="java.lang.Object">
+		<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+	</field>
+	<field name="fechaIngreso" class="java.sql.Timestamp"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -79,11 +84,19 @@
 				<reportElement x="0" y="76" width="16" height="27" backcolor="#CCCCCC" uuid="2c83d7ff-2fbb-4a08-9e47-0722b8d59b86"/>
 			</rectangle>
 			<textField>
-				<reportElement x="1" y="79" width="15" height="20" uuid="c82f8ef4-5f38-4b13-8d29-81ee7b77cf58"/>
+				<reportElement x="1" y="79" width="15" height="20" uuid="c82f8ef4-5f38-4b13-8d29-81ee7b77cf58">
+					<printWhenExpression><![CDATA[$P{titulo}.equals( "CUMPLEAÑEROS" )]]></printWhenExpression>
+				</reportElement>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format($F{fechaNacimiento})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="79" width="16" height="24" uuid="b39f876f-f189-4af4-8df1-10478f822702">
+					<printWhenExpression><![CDATA[$P{titulo}.equals( "ANIVERSARIOS" )]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{modelo}.restarFecha($P{fechaReal})]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

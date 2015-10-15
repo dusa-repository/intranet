@@ -2,6 +2,7 @@ package controlador.reporte;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,7 +38,6 @@ import org.zkoss.zul.Textbox;
 
 import componente.Botonera;
 import componente.Mensaje;
-
 import controlador.maestros.CGenerico;
 
 public class CCumple extends CGenerico {
@@ -45,8 +45,6 @@ public class CCumple extends CGenerico {
 	private static final long serialVersionUID = 1L;
 	@Wire
 	private Datebox dtbDesde;
-	@Wire
-	private Datebox dtbHasta;
 	@Wire
 	private Combobox cmbTipo;
 	@Wire
@@ -84,13 +82,11 @@ public class CCumple extends CGenerico {
 			@Override
 			public void seleccionar() {
 				Date desde = dtbDesde.getValue();
-				Date hasta = dtbHasta.getValue();
-				hasta = agregarDia(hasta);
 				String fecha1 = formatoReporte.format(desde);
-				String fecha2 = formatoReporte.format(hasta);
 				String tipoReporte = cmbTipo.getValue();
 				String tipo = "";
 				String observacion = txtObservacion.getValue();
+				Integer anios = spnAnnos.getValue();
 				if (rdoAniversario.isChecked())
 					tipo = "a";
 				else
@@ -99,10 +95,10 @@ public class CCumple extends CGenerico {
 				Collection<? extends Empleado> empleados = new ArrayList<Empleado>();
 				if (tipo.equals("c"))
 					empleados = servicioEmpleado
-							.buscarCumpleannos(desde, hasta);
+							.buscarTodosOrdenadosFecha(dtbDesde.getValue());
 				else
 					empleados = servicioEmpleado.buscarAniversarios(desde,
-							hasta);
+							anios);
 
 				if (!empleados.isEmpty())
 					Clients.evalJavaScript("window.open('"
@@ -110,7 +106,7 @@ public class CCumple extends CGenerico {
 							+ "Reportero?valor=1&valor6="
 							+ fecha1
 							+ "&valor7="
-							+ fecha2
+							+ String.valueOf(anios)
 							+ "&valor8="
 							+ tipo
 							+ "&valor9="
@@ -138,7 +134,6 @@ public class CCumple extends CGenerico {
 			@Override
 			public void limpiar() {
 				dtbDesde.setValue(fecha);
-				dtbHasta.setValue(fecha);
 				rdoCumple.setChecked(true);
 				cmbTipo.setValue("PDF");
 				txtObservacion.setValue("");
@@ -190,6 +185,7 @@ public class CCumple extends CGenerico {
 	public byte[] reporteResumen(String par6, String par7, String tipo,
 			String observacion, String tipo2) {
 		byte[] fichero = null;
+		Integer anios = Integer.valueOf(par7);
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 		Date fecha1 = null;
 		try {
@@ -197,22 +193,15 @@ public class CCumple extends CGenerico {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		Date fecha2 = null;
-		try {
-			fecha2 = formato.parse(par7);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		fecha2 = agregarDia(fecha2);
 		Collection<? extends Empleado> empleados = new ArrayList<Empleado>();
 		if (tipo.equals("c"))
-			empleados = getServicioEmpleado().buscarCumpleannos(fecha1, fecha2);
+			empleados = getServicioEmpleado().buscarTodosOrdenadosFecha(fecha1);
 		else
-			empleados = getServicioEmpleado()
-					.buscarAniversarios(fecha1, fecha2);
+			empleados = getServicioEmpleado().buscarAniversarios(fecha1, anios);
 
 		Map<String, Object> p = new HashMap<String, Object>();
 		p.put("desde", par6);
+		p.put("fechaReal", new Timestamp(fecha1.getTime()));
 		p.put("hasta", par7);
 		p.put("observacion", observacion);
 
@@ -254,7 +243,7 @@ public class CCumple extends CGenerico {
 				fichero = JasperRunManager.runReportToPdf(reporte, p,
 						new JRBeanCollectionDataSource(empleados));
 			} catch (JRException e) {
-				msj.mensajeError("Error en Reporte");
+				e.printStackTrace();
 			}
 			return fichero;
 		}

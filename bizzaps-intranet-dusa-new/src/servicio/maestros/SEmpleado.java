@@ -2,6 +2,9 @@ package servicio.maestros;
 
 import interfacedao.maestros.IEmpleadoDAO;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -21,6 +24,8 @@ public class SEmpleado {
 
 	@Autowired
 	private IEmpleadoDAO empleadoDAO;
+	private DateFormat formato = new SimpleDateFormat("MM-yyyy");
+	private DateFormat formatoLargo = new SimpleDateFormat("dd-MM-yyyy");
 
 	public List<Empleado> buscarTodosOrdenados() {
 		Sort sort = new Sort(Direction.ASC, "ficha", "nombre", "apellido");
@@ -68,10 +73,30 @@ public class SEmpleado {
 						nombre, nombre, celular, fijo, direccion, sort);
 	}
 
-	public Collection<? extends Empleado> buscarAniversarios(Date date,Date date2) {
-		return empleadoDAO.findByFechaIngresoBetweenAndEstatusTrue(date,date2);
+	public Collection<? extends Empleado> buscarAniversarios(Date date,
+			Integer anios) {
+		Calendar calendario = Calendar.getInstance();
+		calendario.setTime(date);
+		int fecha = calendario.get(Calendar.MONTH);
+		String formateada = formato.format(date);
+		try {
+			date = formatoLargo.parse("01-" + formateada);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		calendario.setTime(date);
+		calendario.set(Calendar.MONTH, calendario.get(Calendar.MONTH) + 1);
+		calendario.set(Calendar.DAY_OF_YEAR,
+				calendario.get(Calendar.DAY_OF_YEAR) - 1);
+		date = calendario.getTime();
+		return empleadoDAO.findByFechaIngresoBetweenAndEstatusTrue(date, anios,
+				fecha + 1);
 	}
-	public Collection<? extends Empleado> buscarCumpleannos(Date date,Date date2) {
-		return empleadoDAO.findByFechaNacimientoBetweenAndEstatusTrue(date,date2);
+
+	public Collection<? extends Empleado> buscarCumpleannos(Date date,
+			Date date2) {
+		return empleadoDAO.findByFechaNacimientoBetweenAndEstatusTrue(date,
+				date2);
 	}
 }

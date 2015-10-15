@@ -17,25 +17,17 @@
 				<rows>
 					<row>
 						<hbox>
-							<label class="etiqueta" value="Desde:" />
+							<label class="etiqueta" value="Mes:" />
 							<space />
 							<label value="*" style="font-weight:bold;color:red" />
 						</hbox>
 						<cell colspan="2">
 							<datebox width="100%" readonly="true" id="dtbDesde"
-								constraint="no future" onCreate="self.value = new Date()"
-								tooltiptext="Seleccione el inicio del Periodo a buscar" lenient="true"
-								format="MMMM" />
+								onCreate="self.value = new Date()" tooltiptext="Seleccione el inicio del Periodo a buscar"
+								lenient="true" format="MMMM" />
 						</cell>
-						<hbox>
-							<label class="etiqueta" value="Hasta:" />
-							<space />
-							<label value="*" style="font-weight:bold;color:red" />
-						</hbox>
-						<cell colspan="6">
-							<datebox width="100%" readonly="true" id="dtbHasta"
-								onCreate="self.value = new Date()" tooltiptext="Seleccione el fin del Periodo a buscar" />
-
+						<cell colspan="7">
+							<hbox />
 						</cell>
 					</row>
 					<row>
